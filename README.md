@@ -1,208 +1,114 @@
-# Recommender System - Hướng dẫn nhiệm vụ, setup và phối hợp
+# ba-chien - Hướng dẫn làm việc của Bá Chiến
 
-Repository nghiên cứu P0 của **Bá Chiến, Trung Chiến và Bảo Long**: đo lường các baseline
-gợi ý theo phiên khi gặp sản phẩm cold-start trên **Yoochoose và Diginetica**.
-Ba người dùng chung dữ liệu, metric, split và cách phân nhóm để kết quả so sánh được.
+**Đề tài 1: Chuẩn bị dữ liệu và bộ thước đo cho nghiên cứu P0.**
 
-README này được dùng chung trên các nhánh. Chọn đúng mục nhiệm vụ theo nhánh đang làm;
-không đổi README thành một dòng tên cá nhân khi merge.
+Bạn làm trên nhánh `ba-chien`, gửi PR vào `dev`. Hai sản phẩm quan trọng nhất của bạn là
+**dữ liệu sạch có thể tái tạo** và **bộ metric HR/MRR/NDCG được kiểm chứng**.
+Trung Chiến cần chúng để tạo split/baseline; Bảo Long cần chúng để chấm điểm mô hình category.
 
-## 1. Chọn đúng nhánh và nhiệm vụ
+## 1. Phạm vi công việc của bạn
 
-| Nhánh | Người / mục đích | Làm gì trên nhánh? | PR vào đâu? |
-| --- | --- | --- | --- |
-| `ba-chien` | Bá Chiến - ĐT1 | Dữ liệu sạch, thống kê, HR/MRR/NDCG | `dev` |
-| `trung-chien` | Trung Chiến - ĐT2 | Split cold-start 20%, chống rò rỉ, Random/Popularity | `dev` |
-| `bao-long` | Bảo Long - ĐT3 | Group-wise và Cat-Popularity oracle/non-oracle; tích hợp gia cố CI | `dev` |
-| `dev` | Bản tích hợp của nhóm | Ghép các phần đã review, kiểm tra giao diện và tiếp tục nghiên cứu | `main` khi nghiên cứu hoàn tất |
-| `main` | Bản ổn định đã chốt | Tái chạy, kiểm chứng và lưu phiên bản dùng để báo cáo | Chỉ nhận từ `dev` |
+| Bạn chịu trách nhiệm | Sản phẩm cần có |
+| --- | --- |
+| Đọc Yoochoose và Diginetica | Bộ đọc riêng cho định dạng gốc của mỗi dataset, đưa về schema chung |
+| Kiểm tra và làm sạch dữ liệu | Code lọc, cấu hình, thống kê trước/sau và log lý do loại |
+| Thống kê dữ liệu | Bảng số lượng, độ dài phiên và biểu đồ tần suất/long-tail |
+| Metric dùng chung | HR@K, MRR@K, NDCG@K cho dự đoán next-item, có test tính tay |
+| Bàn giao nền dữ liệu | Manifest, checksum, vị trí dữ liệu và lệnh tái chạy |
 
-```mermaid
-flowchart LR
-    B[ba-chien] --> D[PR vào dev]
-    T[trung-chien] --> D
-    L[bao-long] --> D
-    D --> C[CI đạt và một người khác duyệt]
-    C --> V[dev: tích hợp và nghiên cứu]
-    V --> R[Nghiên cứu hoàn tất, đủ bằng chứng]
-    R --> P[PR dev vào main]
-    P --> M[main: phiên bản ổn định sau CI và review]
+Bạn không phải xây dựng Cat-Popularity hay tự chia lại split để chạy kết quả của riêng mình.
+Nếu cần thay đổi schema/metric, thống nhất với hai người dùng lại trước khi ghép vào dev.
+
+**Hiện trạng nhánh:** hiện chỉ có README. Trước khi chạy Python, nhận khung code từ dev
+theo mục 3. Bộ đọc/lọc dataset thật và các báo cáo dữ liệu là phần bạn còn phải phát triển;
+không coi fixture sẵn có là dữ liệu đã xử lý hoàn chỉnh.
+
+## 2. Thứ tự triển khai và yêu cầu cụ thể
+
+### Bước A - Chốt schema và bộ đọc
+
+1. Xem cấu trúc file gốc của từng dataset, ghi tên cột, kiểu dữ liệu, đơn vị thời gian,
+   cách biểu diễn item/category và trường nào có thể thiếu.
+2. Chuẩn hóa các trường tối thiểu: `session_id`, `item_id`, `timestamp`, `category_id`.
+   Giữ ID dạng chuỗi để không mất số 0 đầu; giữ ý nghĩa category gốc.
+3. Ghi rõ cách ánh xạ schema gốc sang schema chung và nguồn lấy metadata.
+   Không tự đặt tên chữ cho category ID như các ví dụ minh họa trong tài liệu P0.
+4. Thống nhất cách xử lý timestamp bằng nhau, giá trị thiếu, dữ liệu lặp và item nhiều category.
+   Không tự xóa mọi click lặp vì chúng có thể là hành vi hợp lệ.
+5. Tạo dữ liệu rất nhỏ để kiểm thử bộ đọc; không tải toàn bộ dataset trong unit test.
+
+**Đầu ra bước A:** code bộ đọc, tài liệu schema và mẫu đã chuẩn hóa mà Trung Chiến đọc được.
+
+### Bước B - Làm sạch có truy nguyên
+
+- Xử lý phiên ngắn dưới 2 item và item xuất hiện dưới 5 lần theo phạm vi tài liệu P0.
+- Ghi rõ cách đếm: số event hay số item khác nhau; thứ tự các phép lọc; có lọc lặp hay không;
+  nếu có thì điều kiện dừng là gì. Các quy ước này phải được nhóm duyệt.
+- Phối hợp với Trung Chiến để chốt thứ tự làm sạch và chia dữ liệu.
+  Không tính thống kê có dùng tương lai rồi tuyên bố toàn bộ quy trình không rò rỉ.
+- Lưu số event/session/item trước và sau mỗi bước; ghi tỷ lệ thiếu category và xử lý tương ứng.
+- Cùng input, cấu hình và quy tắc sắp thứ tự phải tạo lại cùng dữ liệu sạch.
+
+**Đầu ra bước B:** bộ dữ liệu sạch, config xử lý và bảng kiểm tra trước/sau.
+Dataset lớn lưu ở nơi nhóm thống nhất, không commit vào Git.
+
+### Bước C - Hoàn thiện metric trước khi chạy bảng kết quả
+
+Sau khi nhận nền dev, mã tham chiếu nằm ở `src/recommender/metrics.py`:
+
+```python
+ranking_metrics(predictions: list[str], target: str, k: int) -> dict[str, float]
 ```
 
-**Công việc nghiên cứu luôn đi qua `dev` trước.** Không push code thẳng vào `dev/main`,
-không gửi nhánh cá nhân thẳng vào `main`, không tự duyệt PR của mình.
-Thay đổi tài liệu trên nhánh bảo vệ cũng cần review hoặc ngoại lệ do chủ repo xác nhận riêng;
-việc sửa README không có nghĩa nghiên cứu đã được duyệt.
+- `predictions` đã được xếp hạng, không trùng item; `target` là một next-item đúng;
+  K là số nguyên dương. Nếu thay hợp đồng này, cập nhật test và báo cả nhóm.
+- HR@K = 1 nếu target nằm trong top-K, ngược lại 0.
+- MRR@K = 1/rank khi trúng; NDCG@K = 1/log2(rank+1) cho trường hợp một target đúng.
+- Ví dụ target ở hạng 3, K >= 3: HR = 1, MRR = 1/3, NDCG = 0.5.
+- Test target ở đầu/cuối top-K, ngoài top-K, không xuất hiện, ranking rỗng,
+  K không hợp lệ và ranking có item trùng. Phân biệt điểm từng mẫu và trung bình nhiều mẫu.
+- Không dùng số minh họa trong PDF làm ngưỡng để CI phải đạt.
 
-## 2. Nhiệm vụ nhánh ba-chien - Bá Chiến
+**Đầu ra bước C:** module metric được test và giao diện mà hai người còn lại gọi trực tiếp;
+không để họ sao chép thành hai bản metric khác nhau.
 
-**Mục tiêu:** tạo nền dữ liệu và thước đo chung cho hai bạn còn lại.
+### Bước D - Thống kê và manifest
 
-**Đầu vào:** dữ liệu thô Yoochoose/Diginetica và quy ước schema cả nhóm thống nhất.
-Giữ mã item/category thật; tên sản phẩm và số liệu minh họa trong tài liệu không phải nhãn/kết quả thật.
+Với mỗi dataset, bàn giao tối thiểu:
 
-| Việc cần làm | Yêu cầu | Đầu ra bàn giao |
-| --- | --- | --- |
-| Đọc dữ liệu | Nhận session, item, timestamp, category; kiểm tra kiểu và ID | Code đọc dữ liệu, mô tả schema |
-| Làm sạch | Xử lý phiên ngắn dưới 2 item, item dưới 5 lần theo protocol; ghi rõ thứ tự lọc/lọc lặp | Script và cấu hình tái chạy, số lượng trước/sau |
-| Thống kê | Số phiên/item/tương tác; độ dài phiên; phân phối tần suất/long-tail | Bảng thống kê, biểu đồ và lệnh tạo |
-| Metric | HR@K, MRR@K, NDCG@K dùng chung; quy ước K và đầu vào rõ | Hàm metric có test tính tay |
-| Bàn giao | Có phiên bản và checksum, không chỉ gửi notebook hoặc ảnh kết quả | Manifest dữ liệu và hướng dẫn lấy đúng bản |
+- Số event/session/item/category; số giá trị thiếu và số bị loại theo từng lý do.
+- Thống kê độ dài phiên: min, median, mean, max và phân phối.
+- Phân phối tần suất item/long-tail; script tạo biểu đồ từ dữ liệu đã ghi phiên bản.
+- Manifest ghi nguồn, phiên bản dữ liệu, config xử lý, số lượng, checksum và commit code.
+- Lệnh tái tạo chạy từ thư mục gốc; đường dẫn input/output là tham số, không hard-code ổ đĩa máy mình.
 
-**Tiêu chí hoàn tất:**
+## 3. Setup trên đúng nhánh ba-chien
 
-- [ ] Bộ đọc/lọc chạy lại được; schema thống nhất và thống kê có bằng chứng.
-- [ ] Test lọc phiên/item và metric đạt; xử lý danh sách rỗng, K, item dự đoán trùng rõ ràng.
-- [ ] Trung Chiến và Bảo Long đọc được dữ liệu và gọi cùng bộ metric.
-- [ ] PR nêu ảnh hưởng nếu sửa cách metric, tie-break hoặc làm sạch; người dùng lại phần đó review.
-
-Ưu tiên metric và schema trước để hai bạn kia làm song song. Không tự viết baseline category
-hoặc thay split của Trung Chiến nếu chưa thống nhất.
-
-## 3. Nhiệm vụ nhánh trung-chien - Trung Chiến
-
-**Mục tiêu:** tạo luật chia dữ liệu công bằng và hai baseline mốc sàn.
-
-**Đầu vào:** dữ liệu sạch, manifest và metric từ Bá Chiến. Khi chưa có dữ liệu thật,
-dùng fixture nhỏ để phát triển phần độc lập; không dùng kết quả fixture làm số liệu P0.
-
-| Việc cần làm | Yêu cầu | Đầu ra bàn giao |
-| --- | --- | --- |
-| Chọn cold item | Giữ 20%; chốt item universe, cách làm tròn và seed | Cold item IDs, cấu hình và giải thích |
-| Tạo split | Train/validation/test theo quy ước session/thời gian đã duyệt | Split files và script tái tạo |
-| Chống rò rỉ | Cold item không nằm trong dữ liệu fit; kiểm tra session, thời gian và dữ liệu tune | Test và báo cáo kiểm tra |
-| Random | Seed tái lập được; đúng cùng tập candidate đã thống nhất | Code, cấu hình và kết quả từng seed |
-| Popularity | Chỉ học thống kê từ train; tie-break rõ ràng | Code và kết quả trên cùng split |
-| Bàn giao | Tất cả baseline dùng cùng phiên bản split; không để mỗi người chia lại | Manifest dữ liệu/split, checksum, seed và lệnh chạy |
-
-**Tiêu chí hoàn tất:**
-
-- [ ] Không có cold item trong train; không có rò rỉ theo protocol đã chốt.
-- [ ] Cùng dữ liệu, cấu hình và seed tái tạo cùng split.
-- [ ] Hai baseline dùng metric của Bá Chiến, không tạo bản metric riêng.
-- [ ] Bảo Long chạy được trên đúng split/candidate policy đã bàn giao.
-- [ ] Có kết quả từng seed và trung bình ± độ lệch chuẩn khi chạy nghiên cứu thật.
-
-Không học độ phổ biến từ validation/test; không tự quét 10%, 30% hoặc các tỷ lệ cold khác trong P0.
-
-## 4. Nhiệm vụ nhánh bao-long - Bảo Long
-
-**Mục tiêu:** đo riêng warm/cold và xác định hiện tượng khi dùng thông tin category.
-
-**Đầu vào:** dữ liệu sạch + metric của Bá Chiến; split, cold IDs và baseline sàn của Trung Chiến.
-
-| Việc cần làm | Yêu cầu | Đầu ra bàn giao |
-| --- | --- | --- |
-| Group-wise | Phân nhóm theo item đích cần dự đoán, không theo item lịch sử | Công cụ overall/warm/cold và test |
-| Ghép baseline sàn | Đo lại Random/Popularity bằng cùng công cụ | Bảng đối chiếu giao diện/kết quả |
-| Cat-Popularity | Tách oracle và non-oracle; ghi rõ thông tin được phép đọc | Code, cấu hình và test chống dùng đáp án |
-| Báo cáo | HR/MRR/NDCG theo K, số mẫu từng nhóm, kết quả từng seed | Bảng kết quả có thể truy nguyên |
-| CI và phối hợp | Thay đổi luật/metric/protocol cần người khác review | PR vào dev, tài liệu và bằng chứng kiểm tra |
-
-**Tiêu chí hoàn tất:**
-
-- [ ] `n_warm + n_cold = n_overall`; nhóm rỗng là N/A, không biến thành điểm 0.
-- [ ] Non-oracle không dùng đáp án thật/category của đáp án để tạo dự đoán.
-- [ ] Oracle được đánh dấu riêng; mọi baseline dùng cùng split và thước đo.
-- [ ] Có ba seed và mean ± sample std; có report, config, checksum, commit và lệnh tái chạy.
-- [ ] Kết luận mô tả số liệu; không sửa quy trình để làm mô hình của mình thắng.
-
-Không tự thêm kỹ thuật bù vector trung bình category ngoài phạm vi P0.
-Nếu mô hình không hỗ trợ trường hợp cold, ghi N/A và lý do; không tự điền kết quả giả.
-
-## 5. Nhiệm vụ nhánh dev - tích hợp nghiên cứu
-
-`dev` là nơi ba phần gặp nhau, chưa phải tuyên bố nghiên cứu đã hoàn tất.
-
-1. Nhận PR từ `ba-chien`, `trung-chien`, `bao-long`; mỗi PR tập trung một việc.
-2. Reviewer kiểm tra input/output, test, ảnh hưởng tới phần dùng chung và nguồn dữ liệu.
-3. Ghép khi CI đạt, nhánh nguồn cập nhật với dev và có một người khác duyệt.
-4. Chạy tích hợp trên fixture trước; sau đó chạy dataset thật theo protocol đã chốt.
-5. Theo dõi các quyết định còn mở, kết quả ba seed và hồ sơ bàn giao.
-6. Chỉ mở PR `dev -> main` để chốt nghiên cứu khi đáp ứng mục 6.
-
-**Yêu cầu:** không sửa trực tiếp để né review, không sửa/xóa test chỉ để CI xanh,
-không đưa code chưa bàn giao làm baseline tham chiếu cho cả nhóm.
-
-## 6. Nhiệm vụ nhánh main - chốt bản ổn định
-
-`main` dùng để tái chạy và công bố đúng phiên bản đã kiểm chứng, không làm nơi thử nghiệm hằng ngày.
-
-Chỉ nhận PR từ `dev` khi:
-
-- [ ] Dữ liệu/split, metric và baseline đã hoàn tất, kiểm tra rò rỉ đạt.
-- [ ] Có kết quả thật tối thiểu ba seed, tách overall/warm/cold và ghi số mẫu.
-- [ ] Protocol được cả nhóm chốt; `research.status = "approved"`, giải quyết hết câu hỏi mở.
-- [ ] `docs/research-readiness.json` có trạng thái `complete`, summary và năm mục xác nhận.
-- [ ] Có bốn file bằng chứng không rỗng: data manifest, split manifest, results manifest, report.
-- [ ] Người khác kiểm tra chất lượng bằng chứng, CI đạt và PR cập nhật với main.
-
-Không đánh dấu hoàn tất chỉ vì chạy fixture thành công. CI kiểm tra khai báo và sự hiện diện
-của hồ sơ; chất lượng khoa học vẫn cần người review xác nhận.
-Không ghép một PR nghiên cứu đang thiếu bằng chứng chỉ để làm README trên main mới hơn.
-
-## 7. Trạng thái nền code và các điều kiện đang áp dụng
-
-Tại lần cập nhật tài liệu 10/11/2026:
-
-- `main`: có khung Python/fixture đầu tiên, chưa nhận toàn bộ luật dev và gia cố.
-- `dev`: có metric, validator, baseline tham chiếu, group-wise và luật nhánh; chưa có runner dataset thật.
-- `bao-long`: có bản gia cố đang chờ [PR #1](https://github.com/baolong06/recommender_system/pull/1) vào dev.
-- `ba-chien`, `trung-chien`: trước khi nhận nền dev chỉ có README; làm bước đồng bộ bên dưới trước setup.
-- Cả ba đề tài chưa cần GPU. Chưa có xử lý Yoochoose/Diginetica đầy đủ, split thật hoặc Cat-Popularity hoàn chỉnh.
-
-Các trạng thái này phải được cập nhật khi code được bàn giao. README là hướng dẫn công việc,
-không phải bằng chứng các nhiệm vụ đã làm xong.
-
-## 8. Setup lần đầu trên Windows PowerShell
-
-**Cần có:** Git, Python 3.12, quyền đọc repository; quyền ghi để push/review.
-Node.js 24 hoặc mới hơn cần khi chạy bộ test workflow của bản gia cố.
-Không cần GPU, token cá nhân trong file cấu hình hoặc dataset thật để chạy fixture.
-
-### 8.1. Clone và chọn nhánh
+Cần Git và Python 3.12; không cần GPU. Lần đầu:
 
 ```powershell
 git clone https://github.com/baolong06/recommender_system.git
 cd recommender_system
-git fetch origin
 git switch ba-chien
-```
-
-Đổi lệnh cuối thành `git switch trung-chien`, `git switch bao-long`, `git switch dev`
-hoặc `git switch main` theo đúng vai trò. Nếu máy đã có repository, không clone đè;
-chạy `git status`, commit/cất công việc rồi fetch và đổi nhánh.
-
-### 8.2. Nhận nền chung trên nhánh cá nhân
-
-Chỉ làm bước này trên `ba-chien`, `trung-chien` hoặc `bao-long`:
-
-```powershell
-git status
 git fetch origin
 git merge origin/dev
 ```
 
-Nếu README xung đột, giữ bản hướng dẫn chung đã được nhóm cập nhật; xem từng file khác
-và không chọn ghi đè toàn bộ code. Sau khi sửa xong: `git add README.md`, xử lý hết file
-xung đột còn lại rồi `git commit` nếu Git đang chờ hoàn tất merge.
-
-Trên `dev/main`, chỉ lấy bản đã ghép bằng `git pull --ff-only origin dev` hoặc
-`git pull --ff-only origin main` khi đang đứng đúng nhánh tương ứng; không tự merge nhánh cá nhân ở đây.
-
-Tên nhánh cũ đã đổi: `Long -> bao-long`, `Ba-Chien -> ba-chien`, `Trung-Chien -> trung-chien`.
-Nếu local còn tên cũ, dùng `git branch -m TEN_CU ten-moi`, fetch rồi đặt upstream bằng
-`git branch --set-upstream-to=origin/ten-moi ten-moi`. Với đổi hoa/thường trên Windows,
-đổi qua một tên tạm nếu cần; không push tạo lại tên cũ.
-
-### 8.3. Tạo môi trường và cài dependencies
-
-Chạy từ thư mục gốc, sau khi đã có `pyproject.toml`:
+Nếu máy đã có repo, bỏ bước clone; trước merge, chạy `git status` và lưu công việc đang làm.
+Nếu **README.md** xung đột với bản chung từ dev, giữ hướng dẫn riêng của Bá Chiến bằng:
 
 ```powershell
-if (-not (Test-Path pyproject.toml)) {
-    throw "Nhanh chua co nen Python. Hay dong bo dev tren nhanh ca nhan truoc."
-}
+git restore --ours -- README.md
+git add README.md
+```
+
+Chỉ dùng hai lệnh trên khi README đang xung đột trong lần nhập dev vào ba-chien.
+Xử lý riêng các file khác, rồi `git commit` nếu Git đang chờ hoàn tất merge.
+Không dùng cách này để ghi đè hàng loạt code từ dev.
+
+Khi đã có `pyproject.toml`, cài môi trường:
+
+```powershell
 py -3.12 -m venv .venv
 if (Test-Path requirements-dev.in) {
     .\.venv\Scripts\python.exe -m pip install --require-hashes --only-binary=:all: -r requirements-dev.txt
@@ -212,155 +118,76 @@ if (Test-Path requirements-dev.in) {
 }
 ```
 
-Điều kiện trên hỗ trợ cả nền cũ và bản gia cố có lock hash. Không tự thêm `--require-hashes`
-vào file cũ chưa có hash. Khi bản gia cố đã vào dev, đồng bộ dev để dùng cách cài mới.
-Không cần đổi execution policy hoặc kích hoạt môi trường vì các lệnh dùng đường dẫn Python cụ thể.
+Nhánh dev cũ chưa có lock hash nên cần điều kiện trên. Nếu bạn thêm pandas/numpy cho xử lý thật,
+khai báo trong `pyproject.toml` và cập nhật input/lock tương ứng sau khi bản gia cố được nhận;
+không chỉ cài riêng trên máy. Linux/macOS dùng `python3.12` và `.venv/bin/python`.
 
-Linux/macOS dùng `python3.12 -m venv .venv`, thay `.\.venv\Scripts\python.exe`
-bằng `.venv/bin/python` trong các lệnh cài và kiểm tra tương ứng.
+## 4. Bạn nên sửa file nào và kiểm tra gì?
 
-### 8.4. Chạy kiểm tra và fixture
+| Vị trí | Cách dùng trong nhiệm vụ |
+| --- | --- |
+| `src/recommender/metrics.py` | Bộ metric dùng chung; ưu tiên hoàn thiện trước |
+| `src/recommender/contracts.py` | Tham khảo validator fixture; mở rộng schema phải giữ kiểm tra chống rò rỉ |
+| `src/recommender/data/` | Thư mục đề xuất để bạn bổ sung bộ đọc/lọc thật, hiện chưa có trong nền |
+| `tests/test_metrics.py` | Test metric tính tay đã có sau khi nhận dev |
+| `tests/test_data.py` | File đề xuất để bạn bổ sung test bộ đọc/lọc; chưa phải test đã có |
+| `docs/data/` | Vị trí đề xuất lưu schema, manifest nhỏ và cách tái tạo |
+
+Các thư mục/file đề xuất cần được tạo cùng code, không có sẵn lệnh xử lý dataset thật để chạy ngay.
+Kiểm tra nền trước, rồi bổ sung test của phần mình:
 
 ```powershell
+.\.venv\Scripts\python.exe -m pytest tests/test_metrics.py tests/test_contracts.py
 .\.venv\Scripts\python.exe -m ruff check .
 .\.venv\Scripts\python.exe -m ruff format --check .
 .\.venv\Scripts\python.exe -m pytest
-.\.venv\Scripts\python.exe -m recommender.smoke --output artifacts/smoke.json
-.\.venv\Scripts\python.exe -m recommender.smoke --seeds 42 43 44 --output artifacts/fixture-three-seeds.json
-if (Test-Path .github/tests/trusted-policy.test.cjs) {
-    node --test .github/tests/trusted-policy.test.cjs
-}
 ```
 
-JSON fixture chỉ dùng kiểm tra phần ghép nối và khả năng tái lập, không dùng làm kết quả bài P0.
-Artifact đầu ra không cần commit. `python -m ...` ở phần khác có thể thay bằng Python của `.venv`.
+Test bộ đọc/lọc mới phải có dữ liệu biên: phiên bị loại, item hiếm, timestamp sai,
+category thiếu và lọc lặp làm thay đổi kết quả. Không viết test chỉ kiểm tra file tồn tại.
 
-## 9. Cấu trúc và hợp đồng dữ liệu dùng chung
+## 5. Bàn giao cho Trung Chiến và Bảo Long
 
-Sau khi nhận nền code:
-
-```text
-.github/workflows/       CI và workflow fixture
-configs/protocol.toml    Các quy ước P0 và quyết định còn mở
-docs/                   Kế hoạch, hồ sơ nghiên cứu và hướng dẫn
-src/recommender/         Metric, validator, baseline, group-wise và runner fixture
-tests/fixtures/          Dữ liệu giả lập nhỏ được phép commit
-tests/                  Test tương ứng từng phần
-pyproject.toml           Package Python và cấu hình công cụ
-requirements-dev.txt    Dependencies để chạy kiểm tra
-```
-
-Bản gia cố còn có input/lock audit, CODEOWNERS, workflow luật tin cậy và hướng dẫn bảo mật.
-Khi tách thêm `data/`, `splits/`, `baselines/`, cập nhật import và test trong cùng PR.
-
-| Thành phần fixture | Hợp đồng |
+| Bàn giao | Yêu cầu nghiệm thu |
 | --- | --- |
-| Catalog | Ánh xạ chuỗi item ID sang chuỗi category ID |
-| Train | Event có session_id, item_id, timestamp Unix seconds và category_id; thời gian không giảm trong session |
-| Validation/test | Ví dụ có session_id, history và target; fixture dùng một ví dụ cho một session |
-| Cold IDs | Không xuất hiện trong train; fixture có 1/5 item cold |
-| Ranking | Danh sách item có thứ tự, không trùng; một target đúng và K dương |
-| Group-wise | Theo target; ghi n và metric của overall/warm/cold; nhóm rỗng là null/N/A |
+| Dữ liệu sạch | Đọc được bằng schema đã duyệt, có phiên bản và checksum |
+| Metric | Test tính tay đạt, có ví dụ gọi hàm và ý nghĩa output |
+| Bảng thống kê/biểu đồ | Do code chạy ra, có lệnh tạo lại |
+| Manifest/config | Chỉ đúng dữ liệu, nguồn và quy trình; không cần hỏi riêng đường dẫn máy bạn |
 
-Ví dụ tính tay cho target ở hạng 3, K >= 3: HR = 1, MRR = 1/3, NDCG = 0.5.
-Nếu dùng nhiều prefix trong một session thật, mở rộng schema có example_id;
-vẫn phải giữ kiểm tra chống session overlap giữa các split.
-Fixture đã chia sẵn, chưa kiểm tra tải dữ liệu, lọc 5-core hoặc thuật toán tạo split thật.
+- [ ] Người nhận đọc được mẫu và toàn bộ dữ liệu đúng phiên bản.
+- [ ] Số lượng trước/sau khớp log; không bỏ qua dữ liệu lỗi mà không báo.
+- [ ] Code metric chỉ có một bản dùng chung; thay đổi được ghi rõ trong PR.
+- [ ] CI đạt và một người khác review trước khi merge vào dev.
 
-## 10. Các quy ước phải chốt trước khi chạy dataset thật
+Đề xuất chia PR: schema/bộ đọc nhỏ -> metric -> làm sạch -> thống kê và manifest.
+Ưu tiên PR metric và schema để hai bạn còn lại không bị chờ toàn bộ dữ liệu.
 
-1. Cold item: 20% tính trên tập nào, cách làm tròn, seed chọn item.
-2. Split: session hay thời gian, mốc chia, thứ tự làm sạch và xử lý phiên sau khi loại cold item.
-3. Candidate: item nào được phép gợi ý, có cold item không, thời điểm khả dụng, item đã xem.
-4. Tie-break: xử lý điểm bằng nhau nhất quán giữa các mô hình.
-5. Category: nguồn metadata và thông tin được dùng trong oracle/non-oracle.
-6. Đánh giá: K, cố định split hay lặp split seed, cách tổng hợp.
-
-Ghi các quyết định trong protocol/tài liệu chung và review. Không coi quy ước fixture top-3,
-toàn catalog và tie-break theo item ID là protocol nghiên cứu đã duyệt.
-Nếu candidate chỉ gồm item train, cold item không có cơ hội được gợi ý; phải ghi rõ khi diễn giải.
-
-## 11. Công việc hằng ngày và PR
-
-1. Trên nhánh cá nhân: `git fetch origin`, `git merge origin/dev` sau khi đã lưu công việc.
-2. Code kèm test; thay đổi metric/split/group-wise phải thông báo trong PR để người dùng lại review.
-3. Chạy kiểm tra mục 8.4; xem diff rồi chỉ stage những file của nhiệm vụ.
-4. Ví dụ trên nhánh Bá Chiến:
+## 6. Commit và PR của Bá Chiến
 
 ```powershell
-git add README.md src/recommender tests
-git commit -m "feat(data): add validated preprocessing"
+git status
+git add src/recommender/metrics.py tests/test_metrics.py
+git commit -m "feat(metrics): validate next-item ranking metrics"
 git push origin ba-chien
 ```
 
-Lệnh stage là ví dụ sau khi có nền code; chọn đúng file thực tế, không stage dữ liệu lớn.
-Trung Chiến/Bảo Long dùng đúng nhánh và nội dung commit của mình.
+Stage đúng file của thay đổi; ví dụ trên dành cho PR metric, không phải lệnh stage mọi nhiệm vụ.
+Mở PR **base: dev**, **compare: ba-chien**; điền input/output, lệnh test và người dùng lại bị ảnh hưởng.
+Mỗi ngày nhập `origin/dev` trên nhánh này để nhận code chung. Push tiếp lên ba-chien khi PR cần sửa.
 
-5. Trên GitHub: **Pull requests -> New pull request**, base = `dev`, compare = nhánh cá nhân.
-6. Điền nhiệm vụ, input/output, lệnh kiểm tra, thay đổi protocol và bằng chứng bàn giao.
-7. Mở Draft PR sớm để CI chạy sau mỗi lần push; sẵn sàng thì Ready for review.
-8. CI đạt và có người khác duyệt mới ghép. Giữ nhánh cá nhân để làm tiếp.
+README này chỉ dành cho Bá Chiến. Khi review PR code vào dev, phải xem riêng thay đổi README,
+giữ tài liệu nhánh đích phù hợp; không dùng README cá nhân làm hướng dẫn của dev/main.
 
-Nếu PR đang mở, push commit mới lên cùng nhánh; không tạo PR mới cho mỗi lần sửa lỗi.
-Nếu README khác nhau do bản hướng dẫn cũ, reviewer giữ hướng dẫn chung mới nhất,
-không xóa phần nhiệm vụ người khác. Bàn giao qua dev, không chép một bộ metric/split riêng.
+## 7. Lỗi thường gặp và các giới hạn cần nhớ
 
-## 12. CI và cách xử lý lỗi
+- **Không có pyproject/test:** bạn chưa nhận nền dev; làm lại mục 3 trước khi cài.
+- **Metric sai dù chương trình chạy:** kiểm tra rank bắt đầu từ 1, cutoff K và công thức log2.
+- **Thống kê thay đổi mỗi lần chạy:** kiểm tra dữ liệu nguồn, thứ tự sort và cấu hình xử lý.
+- **CI chờ dependency-audit:** nền dev còn chờ [PR gia cố #1](https://github.com/baolong06/recommender_system/pull/1);
+  cần ghép bản đã review để có đủ check, không tắt yêu cầu CI.
+- **Dữ liệu quá lớn:** để ngoài Git, chỉ commit manifest/schema/fixture nhỏ và code.
 
-CI chạy trên PR vào dev/main và push lên dev/main; nhánh cá nhân chưa có PR không tự chạy.
-Bản gia cố còn kiểm tra đề xuất Dependabot vào bao-long để cập nhật đi qua nhánh cá nhân trước.
-
-| Check | Ý nghĩa | Khi lỗi |
-| --- | --- | --- |
-| branch-policy | Đúng nguồn/đích PR và hồ sơ nghiên cứu | Kiểm tra base/compare; cá nhân -> dev, dev -> main khi đủ bằng chứng |
-| quality | Ruff; bản gia cố có test ranh giới workflow | Sửa lỗi được báo; format bằng `python -m ruff format .` |
-| unit-tests | Metric, schema, rò rỉ, baseline và group-wise | Chạy lại test lỗi; sửa nguyên nhân, không xóa test để làm xanh |
-| pipeline-smoke | Ghép split giả lập -> ranking -> metric -> báo cáo | Kiểm tra hợp đồng các phần và seed |
-| dependency-audit | Advisory của tập dependency đã khóa | Đọc advisory/log, cập nhật input/lock và chạy lại |
-
-Dev/main đã cấu hình năm required checks, một approval, nhánh cập nhật với đích,
-review cho đường dẫn có CODEOWNERS và chặn force-push/xóa.
-Nền cũ chưa có dependency-audit: cần bản gia cố được review/ghép trước để có đủ check;
-không coi trạng thái Expected/Pending là đã đạt.
-
-`branch-policy` hiện chạy code PR nên không phải luật độc lập khỏi PR. Workflow
-`Trusted branch policy` đã được chuẩn bị trong PR #1; cần có trên main và chạy thật
-trước khi được thêm thành required check. Lịch Dependabot trong file cấu hình cũng
-cần có trên default branch; alerts/security updates ở cấp repository đã bật.
-
-Đọc lỗi tại PR -> Checks hoặc [Actions](https://github.com/baolong06/recommender_system/actions).
-Thiếu pyproject thì nhận nền dev; thiếu review thì cần thành viên khác có quyền ghi;
-nhánh cũ thì fetch/merge nhánh đích; không tắt kiểm tra để đi tiếp.
-JUnit/smoke giữ 7 ngày, báo cáo audit/SBOM giữ 14 ngày trong Actions;
-artifact ngắn hạn không thay nơi lưu kết quả nghiên cứu cuối.
-
-## 13. Yêu cầu với kết quả P0 và dữ liệu
-
-- Giữ cold item 20%; không tự quét tỷ lệ hoặc thêm kỹ thuật ngoài phạm vi P0.
-- Tối thiểu ba seed; lưu từng lượt và mean ± sample std (ddof=1).
-  Phân biệt seed mô hình và split; nếu đổi split seed thì mọi baseline dùng cùng split tương ứng.
-- Báo HR/MRR/NDCG theo K, overall/warm/cold và số mẫu; dùng chung metric/candidate policy.
-- `0` là đã đo và không trúng; N/A là không hỗ trợ/không xác định kèm lý do.
-- Lưu config, nguồn dữ liệu, data/split checksum, commit, phiên bản môi trường và lệnh tái chạy.
-- Số liệu thấp hoặc bất ngờ vẫn báo trung thực. Không ép CI đòi category thắng Popularity.
-- Chỉ mô tả hiện tượng đo được, không chuyển P0 thành khuyến nghị phương pháp.
-- Không commit dataset lớn, token, `.env` hoặc đường dẫn tuyệt đối chỉ chạy được trên một máy.
-  Nền code ignore data/raw, data/processed, data/splits và artifacts; lưu manifest nhỏ cùng
-  địa chỉ lấy đúng bản dữ liệu phù hợp điều kiện sử dụng.
-- Không coi kiểm tra CI là chứng nhận AppSec 11 lĩnh vực; bộ rubric gốc chưa được cung cấp.
-
-## 14. Tài liệu và việc cần làm ngay
-
-- [ ] Đọc nhiệm vụ đúng nhánh ở mục 2-6.
-- [ ] Nhận nền dev trước khi setup nhánh cá nhân; xử lý README cũ khi merge.
-- [ ] Cài Python 3.12, chạy test và fixture trước khi bắt đầu dữ liệu thật.
-- [ ] Chốt giao diện và protocol còn mở; ưu tiên metric và split để không chờ nhau.
-- [ ] Mở draft PR vào dev, ghi rõ đầu ra và yêu cầu reviewer.
-
-Nguồn phân công: tài liệu nhóm *Phối hợp 3 đề tài - Bá Chiến, Trung Chiến, Bảo Long - P0*.
-Các con số minh họa trong tài liệu không phải mục tiêu bắt buộc phải đạt.
-
-- [Bản gia cố và hướng dẫn bảo mật đang review](https://github.com/baolong06/recommender_system/pull/1)
-- [Chi tiết bảo mật CI ở nhánh bao-long](https://github.com/baolong06/recommender_system/blob/bao-long/docs/security.md)
-- [GitHub Actions cho Python](https://docs.github.com/en/actions/tutorials/build-and-test-code/python)
-- [Bảo vệ nhánh GitHub](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
+Không đổi tỷ lệ cold 20%, không dùng test để chọn quy tắc có lợi, không biến ví dụ thành kết quả.
+Không tự đánh dấu nghiên cứu hoàn tất hoặc đưa code thẳng lên main.
+Nguồn nhiệm vụ: tài liệu P0 của nhóm; đây là hướng dẫn triển khai, không phải xác nhận các việc đã xong.
