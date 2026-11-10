@@ -17,8 +17,10 @@ Bảo Long dùng lại split và kết quả của bạn để so sánh mô hìn
 Bạn có thể phát triển thuật toán split và baseline trên fixture trong lúc chờ dữ liệu thật.
 Không tự viết lại metric để tránh chờ; dùng module chung khi nó được bàn giao.
 
-**Hiện trạng nhánh:** hiện chỉ có README. Bạn cần nhập nền dev theo mục 4.
-Validator và baseline trong nền chỉ là tham chiếu nhỏ; chưa có bộ sinh split Yoochoose/Diginetica hoàn chỉnh.
+**Hiện trạng nhánh:** đã có khung Python, validator, metric, Random/Popularity tham chiếu,
+fixture, CI và dependency lock để setup/chạy kiểm tra ngay. Nhánh có thêm
+`configs/split.example.toml`, manifest split, bảng cột kết quả và checklist trong `docs/splits/`.
+Chưa có bộ sinh split Yoochoose/Diginetica hoàn chỉnh; các file mẫu không phải kết quả nghiên cứu.
 
 ## 2. Công việc split - làm theo thứ tự này
 
@@ -86,17 +88,24 @@ trung bình và sample std (`ddof=1`). Baseline xác định có std = 0 vẫn l
 
 ## 4. Setup trên nhánh trung-chien
 
-Cần Git, Python 3.12; không cần GPU:
+Cần Git, Python 3.12; Node.js 24 hoặc mới hơn để kiểm tra workflow. Không cần GPU:
 
 ```powershell
 git clone https://github.com/baolong06/recommender_system.git
 cd recommender_system
 git switch trung-chien
 git fetch origin
+```
+
+Nếu đã clone thì bỏ hai dòng đầu. Sau `git status` và khi đã lưu công việc, chạy
+`git pull --ff-only origin trung-chien` trên đúng nhánh để nhận khung mới.
+Không cần merge dev để setup lần đầu. Khi cần nhận phần chung mới, lưu công việc rồi chạy:
+
+```powershell
+git fetch origin
 git merge origin/dev
 ```
 
-Nếu đã clone thì bỏ hai dòng đầu. Trước merge, commit/cất thay đổi đang làm.
 Nếu README đang xung đột khi nhận dev, giữ hướng dẫn riêng của bạn:
 
 ```powershell
@@ -107,20 +116,16 @@ git add README.md
 Chỉ áp dụng cho README xung đột; xem và xử lý riêng các file code khác.
 Hoàn tất bằng `git commit` nếu Git còn ở trạng thái merge.
 
-Sau khi đã có `pyproject.toml`:
+Cài môi trường từ thư mục gốc:
 
 ```powershell
 py -3.12 -m venv .venv
-if (Test-Path requirements-dev.in) {
-    .\.venv\Scripts\python.exe -m pip install --require-hashes --only-binary=:all: -r requirements-dev.txt
-    .\.venv\Scripts\python.exe -m pip install --no-build-isolation --no-deps -e .
-} else {
-    .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt -e .
-}
+.\.venv\Scripts\python.exe -m pip install --require-hashes --only-binary=:all: -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m pip install --no-build-isolation --no-deps -e .
 ```
 
-Điều kiện xử lý cả nền cũ và nền gia cố có hash. Khai báo thư viện mới trong cấu hình dự án
-và cập nhật lock khi đã nhận bản gia cố. Không yêu cầu người khác cài thủ công thư viện thiếu.
+Khai báo thư viện mới trong cấu hình dự án và cập nhật lock theo `docs/security.md`.
+Không yêu cầu người khác cài thủ công thư viện thiếu.
 Linux/macOS dùng Python 3.12 và `.venv/bin/python` thay đường dẫn Windows.
 
 ## 5. File nên phát triển và lệnh kiểm tra của bạn
@@ -133,6 +138,8 @@ Linux/macOS dùng Python 3.12 và `.venv/bin/python` thay đường dẫn Window
 | `src/recommender/baselines.py` | Baseline tham chiếu; mở rộng/tách module khi cần |
 | `tests/test_splits.py` | Test thuật toán split bạn cần bổ sung, chưa có trong nền |
 | `tests/test_contracts.py`, `tests/test_baselines.py` | Test nền để chạy trước/sau thay đổi |
+| `configs/split.example.toml` | Mẫu tham số/đường dẫn và các quyết định cần chốt, chưa có runner dữ liệu thật |
+| `docs/splits/` | Đã có manifest JSON mẫu, header bảng baseline và HANDOFF.md để làm bộ bàn giao |
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest tests/test_contracts.py tests/test_baselines.py
@@ -140,6 +147,7 @@ Linux/macOS dùng Python 3.12 và `.venv/bin/python` thay đường dẫn Window
 .\.venv\Scripts\python.exe -m ruff check .
 .\.venv\Scripts\python.exe -m ruff format --check .
 .\.venv\Scripts\python.exe -m pytest
+node --test .github/tests/trusted-policy.test.cjs
 ```
 
 Smoke dùng split giả lập đã có; nó không chứng minh thuật toán split mới của bạn đúng.
@@ -175,9 +183,10 @@ bằng chứng chống rò rỉ và cách người nhận tái chạy; cần m�
 README này là hướng dẫn riêng của bạn; khi review code vào dev, xử lý riêng README
 để tài liệu của nhánh đích không bị thay bằng hướng dẫn cá nhân.
 
-- Thiếu code/test: chưa nhận nền dev, quay lại mục 4.
-- CI chờ dependency-audit: cần [PR gia cố #1](https://github.com/baolong06/recommender_system/pull/1)
-  được review/ghép và nhánh nhận nền mới, không tắt required check.
+- Thiếu code/test: bản local cũ, cập nhật origin/trung-chien theo mục 4.
+- Nhánh này đã có dependency-audit; nền dev còn chờ
+  [PR gia cố #1](https://github.com/baolong06/recommender_system/pull/1).
+  Không tắt required check hoặc review để ghép code.
 - Kết quả khác nhau: kiểm tra dữ liệu, seed, thứ tự item/candidate và tie-break trước khi kết luận mô hình.
 - Split bị phát hiện rò rỉ: sửa quy trình, ghi version mới và báo Bảo Long chạy lại.
 
