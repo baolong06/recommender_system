@@ -1,0 +1,2 @@
+-r requirements-dev.in
+pip-audit==2.10.1

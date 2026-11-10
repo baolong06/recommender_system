@@ -1,0 +1,24 @@
+kind = "template-not-a-research-run"
+owner = "ba-chien"
+datasets = ["yoochoose", "diginetica"]
+
+[input]
+raw_directory = "data/raw"
+
+[output]
+processed_directory = "data/processed"
+manifest_directory = "docs/data"
+
+[cleaning]
+min_session_length = 2
+min_item_frequency = 5
+filter_order = "pending-team-agreement"
+repeat_until_stable = "pending-team-agreement"
+
+[schema]
+required_fields = ["session_id", "item_id", "timestamp", "category_id"]
+id_type = "string"
+timestamp_unit = "unix_seconds"
+missing_category_policy = "pending-team-agreement"
+
+# A full dataset reader/cleaner must be implemented before this config can drive a run.

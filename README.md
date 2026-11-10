@@ -19,9 +19,11 @@ Trung Chiến cần chúng để tạo split/baseline; Bảo Long cần chúng �
 Bạn không phải xây dựng Cat-Popularity hay tự chia lại split để chạy kết quả của riêng mình.
 Nếu cần thay đổi schema/metric, thống nhất với hai người dùng lại trước khi ghép vào dev.
 
-**Hiện trạng nhánh:** hiện chỉ có README. Trước khi chạy Python, nhận khung code từ dev
-theo mục 3. Bộ đọc/lọc dataset thật và các báo cáo dữ liệu là phần bạn còn phải phát triển;
-không coi fixture sẵn có là dữ liệu đã xử lý hoàn chỉnh.
+**Hiện trạng nhánh:** đã có khung Python, metric, baseline tham chiếu, validator, fixture,
+CI và dependency lock để setup/chạy kiểm tra ngay. Nhánh có thêm `configs/data.example.toml`,
+schema, manifest và checklist bàn giao trong `docs/data/`, cùng mẫu event tổng hợp.
+Bộ đọc/lọc dataset thật và các báo cáo dữ liệu là phần bạn còn phải phát triển;
+không coi fixture hoặc manifest mẫu là nghiên cứu đã hoàn tất.
 
 ## 2. Thứ tự triển khai và yêu cầu cụ thể
 
@@ -84,17 +86,24 @@ Với mỗi dataset, bàn giao tối thiểu:
 
 ## 3. Setup trên đúng nhánh ba-chien
 
-Cần Git và Python 3.12; không cần GPU. Lần đầu:
+Cần Git và Python 3.12; Node.js 24 hoặc mới hơn để chạy test workflow. Không cần GPU. Lần đầu:
 
 ```powershell
 git clone https://github.com/baolong06/recommender_system.git
 cd recommender_system
 git switch ba-chien
 git fetch origin
+```
+
+Nếu máy đã có repo, bỏ bước clone; sau `git status` và khi đã lưu công việc, chạy
+`git pull --ff-only origin ba-chien` trên đúng nhánh để nhận bộ khung mới.
+Khung code đã có sẵn, không cần merge dev để setup lần đầu. Khi muốn nhận phần chung mới:
+
+```powershell
+git fetch origin
 git merge origin/dev
 ```
 
-Nếu máy đã có repo, bỏ bước clone; trước merge, chạy `git status` và lưu công việc đang làm.
 Nếu **README.md** xung đột với bản chung từ dev, giữ hướng dẫn riêng của Bá Chiến bằng:
 
 ```powershell
@@ -106,20 +115,16 @@ Chỉ dùng hai lệnh trên khi README đang xung đột trong lần nhập dev
 Xử lý riêng các file khác, rồi `git commit` nếu Git đang chờ hoàn tất merge.
 Không dùng cách này để ghi đè hàng loạt code từ dev.
 
-Khi đã có `pyproject.toml`, cài môi trường:
+Cài môi trường từ thư mục gốc:
 
 ```powershell
 py -3.12 -m venv .venv
-if (Test-Path requirements-dev.in) {
-    .\.venv\Scripts\python.exe -m pip install --require-hashes --only-binary=:all: -r requirements-dev.txt
-    .\.venv\Scripts\python.exe -m pip install --no-build-isolation --no-deps -e .
-} else {
-    .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt -e .
-}
+.\.venv\Scripts\python.exe -m pip install --require-hashes --only-binary=:all: -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m pip install --no-build-isolation --no-deps -e .
 ```
 
-Nhánh dev cũ chưa có lock hash nên cần điều kiện trên. Nếu bạn thêm pandas/numpy cho xử lý thật,
-khai báo trong `pyproject.toml` và cập nhật input/lock tương ứng sau khi bản gia cố được nhận;
+Nếu bạn thêm pandas/numpy cho xử lý thật,
+khai báo trong `pyproject.toml` và cập nhật input/lock theo `docs/security.md`;
 không chỉ cài riêng trên máy. Linux/macOS dùng `python3.12` và `.venv/bin/python`.
 
 ## 4. Bạn nên sửa file nào và kiểm tra gì?
@@ -131,7 +136,9 @@ không chỉ cài riêng trên máy. Linux/macOS dùng `python3.12` và `.venv/b
 | `src/recommender/data/` | Thư mục đề xuất để bạn bổ sung bộ đọc/lọc thật, hiện chưa có trong nền |
 | `tests/test_metrics.py` | Test metric tính tay đã có sau khi nhận dev |
 | `tests/test_data.py` | File đề xuất để bạn bổ sung test bộ đọc/lọc; chưa phải test đã có |
-| `docs/data/` | Vị trí đề xuất lưu schema, manifest nhỏ và cách tái tạo |
+| `configs/data.example.toml` | Mẫu thông số/đường dẫn; còn quyết định cần nhóm duyệt, chưa có runner dữ liệu thật |
+| `docs/data/` | Đã có schema, manifest JSON mẫu và HANDOFF.md để điền khi thực hiện |
+| `tests/fixtures/raw_events.example.csv` | Mẫu tổng hợp nhỏ cho bộ đọc/lọc bạn sẽ phát triển |
 
 Các thư mục/file đề xuất cần được tạo cùng code, không có sẵn lệnh xử lý dataset thật để chạy ngay.
 Kiểm tra nền trước, rồi bổ sung test của phần mình:
@@ -141,6 +148,8 @@ Kiểm tra nền trước, rồi bổ sung test của phần mình:
 .\.venv\Scripts\python.exe -m ruff check .
 .\.venv\Scripts\python.exe -m ruff format --check .
 .\.venv\Scripts\python.exe -m pytest
+.\.venv\Scripts\python.exe -m recommender.smoke --seeds 42 43 44 --output artifacts/ba-chien-smoke.json
+node --test .github/tests/trusted-policy.test.cjs
 ```
 
 Test bộ đọc/lọc mới phải có dữ liệu biên: phiên bị loại, item hiếm, timestamp sai,
@@ -181,11 +190,12 @@ giữ tài liệu nhánh đích phù hợp; không dùng README cá nhân làm h
 
 ## 7. Lỗi thường gặp và các giới hạn cần nhớ
 
-- **Không có pyproject/test:** bạn chưa nhận nền dev; làm lại mục 3 trước khi cài.
+- **Không có pyproject/test:** bản local cũ; cập nhật origin/ba-chien theo mục 3 trước khi cài.
 - **Metric sai dù chương trình chạy:** kiểm tra rank bắt đầu từ 1, cutoff K và công thức log2.
 - **Thống kê thay đổi mỗi lần chạy:** kiểm tra dữ liệu nguồn, thứ tự sort và cấu hình xử lý.
-- **CI chờ dependency-audit:** nền dev còn chờ [PR gia cố #1](https://github.com/baolong06/recommender_system/pull/1);
-  cần ghép bản đã review để có đủ check, không tắt yêu cầu CI.
+- **CI chờ review:** nhánh này đã có dependency-audit; nền dev vẫn còn chờ
+  [PR gia cố #1](https://github.com/baolong06/recommender_system/pull/1).
+  Không tắt yêu cầu CI/review để ghép code.
 - **Dữ liệu quá lớn:** để ngoài Git, chỉ commit manifest/schema/fixture nhỏ và code.
 
 Không đổi tỷ lệ cold 20%, không dùng test để chọn quy tắc có lợi, không biến ví dụ thành kết quả.

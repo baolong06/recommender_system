@@ -1,0 +1,6 @@
+session_id,item_id,timestamp,category_id
+session-a,item-01,1700000000,category-1
+session-a,item-02,1700000001,category-1
+session-b,item-01,1700000010,category-1
+session-b,item-03,1700000011,category-2
+session-short,item-rare,1700000020,category-2
