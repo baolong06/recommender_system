@@ -1,12 +1,15 @@
-# main
-
 # Recommender System - Phối hợp ba đề tài P0
 
-[![CI](https://github.com/baolong06/recommender_system/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/baolong06/recommender_system/actions/workflows/ci.yml)
+[![CI dev](https://github.com/baolong06/recommender_system/actions/workflows/ci.yml/badge.svg?branch=dev)](https://github.com/baolong06/recommender_system/actions/workflows/ci.yml?query=branch%3Adev)
 
 Repository chung của **Bá Chiến, Trung Chiến và Bảo Long** để đo lường khả năng xử lý
 item cold-start của các baseline gợi ý theo phiên trên Yoochoose và Diginetica.
 Mục tiêu là cùng dùng một bộ dữ liệu, metric, split và cách phân nhóm để kết quả so sánh được.
+
+**Luồng chính:** `bao-long` / `ba-chien` / `trung-chien` -> **`dev`** -> **`main`**.
+`dev` tích hợp công việc đang nghiên cứu. `main` giữ phiên bản ổn định, chỉ nhận PR từ `dev`
+khi nghiên cứu đã hoàn tất, có bằng chứng và được người khác review.
+Hướng dẫn luồng mới hiện nằm trên `dev`; `main` giữ nguyên tới lần promotion được duyệt.
 
 > **Trạng thái hiện tại:** đã có khung Python, metric và các hàm tham chiếu nhỏ,
 > CI trên dữ liệu giả lập. Chưa có bộ xử lý Yoochoose/Diginetica đầy đủ,
@@ -17,10 +20,11 @@ Mục tiêu là cùng dùng một bộ dữ liệu, metric, split và cách phâ
 
 | Người / nhánh | Nhiệm vụ chính | Nhận từ ai | Đầu ra để bàn giao |
 | --- | --- | --- | --- |
-| **Bá Chiến / `Ba-Chien`** | Dữ liệu sạch, thống kê và metric | Dữ liệu thô Yoochoose/Diginetica | Code làm sạch; manifest dữ liệu; bảng thống kê/biểu đồ; HR/MRR/NDCG có kiểm thử |
-| **Trung Chiến / `Trung-Chien`** | Chia cold-start 20%, kiểm tra rò rỉ; Random/Popularity | Dữ liệu sạch và metric của Bá Chiến | Split dùng chung; cold item IDs; manifest/protocol; kết quả baseline sàn |
-| **Bảo Long / `Long`** | Group-wise; Cat-Popularity oracle/non-oracle | Dữ liệu sạch, metric và split dùng chung | Code category baseline; báo cáo overall/warm/cold; kiểm thử phân nhóm; bảng so sánh |
-| **Cả nhóm / `main`** | Ghép phần đã duyệt, giữ quy ước chung | Pull request của từng thành viên | Phiên bản chung CI đạt và dữ liệu/kết quả có thể truy nguyên |
+| **Bá Chiến / `ba-chien`** | Dữ liệu sạch, thống kê và metric | Dữ liệu thô Yoochoose/Diginetica | Code làm sạch; manifest dữ liệu; bảng thống kê/biểu đồ; HR/MRR/NDCG có kiểm thử |
+| **Trung Chiến / `trung-chien`** | Chia cold-start 20%, kiểm tra rò rỉ; Random/Popularity | Dữ liệu sạch và metric của Bá Chiến | Split dùng chung; cold item IDs; manifest/protocol; kết quả baseline sàn |
+| **Bảo Long / `bao-long`** | Group-wise; Cat-Popularity oracle/non-oracle | Dữ liệu sạch, metric và split dùng chung | Code category baseline; báo cáo overall/warm/cold; kiểm thử phân nhóm; bảng so sánh |
+| **Cả nhóm / `dev`** | Ghép phần đã review, thử nghiệm chung | PR từ ba nhánh cá nhân | Bản tích hợp CI đạt, tiếp tục nghiên cứu |
+| **Cả nhóm / `main`** | Lưu phiên bản nghiên cứu đã chốt | Chỉ PR từ `dev` | Bản hoàn tất có hồ sơ bằng chứng và review |
 
 ### Bá Chiến - ĐT1
 
@@ -76,16 +80,18 @@ người sử dụng phần đó phải review trước khi ghép.
 
 ```text
 .github/
-  workflows/ci.yml                  # Ba kiểm tra bắt buộc
+  workflows/ci.yml                  # Bốn kiểm tra bắt buộc trên dev/main
   workflows/validate-results.yml    # Chạy fixture với ba seed, thủ công
   pull_request_template.md
 configs/protocol.toml               # Phạm vi P0 và các quyết định còn phải chốt
+docs/research-readiness.json        # Điều kiện đề nghị đưa dev lên main
 src/recommender/
   contracts.py                     # Kiểm tra fixture đã chia sẵn
   metrics.py                       # HR/MRR/NDCG cho một next-item đúng
   baselines.py                     # Random/Popularity tham chiếu nhỏ
   evaluation.py                    # Tổng hợp overall/warm/cold
   smoke.py                         # Chạy thử fixture, xuất JSON
+  branch_policy.py                 # Kiểm tra nguồn PR và hồ sơ nghiên cứu
 tests/
   fixtures/session_dataset.json    # Dữ liệu giả lập, được phép commit
   test_*.py
@@ -173,46 +179,54 @@ phải ghi rõ điều đó khi diễn giải số liệu. Không tự chọn m�
 
 ```mermaid
 flowchart LR
-    M[main đã kiểm tra] --> W[Đồng bộ nhánh cá nhân]
-    W --> C[Code và test trên máy]
-    C --> P[Push và mở PR vào main]
-    P --> Q[quality + unit-tests + pipeline-smoke]
-    Q --> R[Một người khác duyệt]
-    R --> N[Merge vào main]
-    N --> W
+    L[bao-long] --> D[PR vào dev]
+    B[ba-chien] --> D
+    T[trung-chien] --> D
+    D --> C[CI đạt và người khác review]
+    C --> V[dev: tích hợp và tiếp tục nghiên cứu]
+    V --> R[Nghiên cứu xong, đủ hồ sơ bằng chứng]
+    R --> P[PR dev vào main]
+    P --> G[CI và review xác nhận nghiên cứu]
+    G --> M[main: phiên bản ổn định]
 ```
 
-### 6.1. Đồng bộ lần đầu sau khi khung CI được thêm
+### 6.1. Cập nhật tên nhánh và nhận nền dev
 
-Nhánh cá nhân hiện được tạo trước khung CI. **Workflow chỉ có trên nhánh nào đã nhận nó**;
-trước khi làm việc, mỗi bạn nhập nền chung từ `main`. Ví dụ với Bảo Long:
+GitHub đã đổi tên nhánh: `Long` -> `bao-long`, `Ba-Chien` -> `ba-chien`,
+`Trung-Chien` -> `trung-chien`, giữ nguyên commit. Trên máy đang có tên cũ,
+chạy `git status`, commit/cất thay đổi trước, rồi đổi tên local. Ví dụ Bảo Long:
 
 ```bash
 git status
+git branch -m Long bao-long
 git fetch origin
-git switch Long
-git merge origin/main
+git switch bao-long
+git branch --set-upstream-to=origin/bao-long
+git merge origin/dev
 ```
 
-Trung Chiến thay `Long` bằng `Trung-Chien`; Bá Chiến thay bằng `Ba-Chien`.
-Chỉ đổi nhánh/merge khi đã commit hoặc cất công việc đang làm.
+Trung Chiến đổi `Trung-Chien` thành `trung-chien`; Bá Chiến đổi `Ba-Chien` thành `ba-chien`.
+Nếu Windows không nhận đổi tên chỉ khác chữ hoa/thường, đổi qua một tên tạm:
+`git branch -m Ba-Chien branch-temp`, rồi `git branch -m branch-temp ba-chien`.
+Nếu clone mới, dùng `git switch --track origin/bao-long` thay bước đổi tên.
+Sau khi đổi tên, upstream phải trỏ tên mới, tránh vô tình push tạo lại tên nhánh cũ.
 
 README cũ của nhánh cá nhân chỉ có tên nhánh nên lần đồng bộ đầu có thể xung đột README.
-**Riêng xung đột đó**, giữ bản hướng dẫn chung từ `main`:
+**Riêng xung đột đó**, giữ bản hướng dẫn chung từ `dev`:
 
 ```bash
-git restore --source=origin/main -- README.md
+git restore --source=origin/dev -- README.md
 git add README.md
 git status
 ```
 
 Nếu có file khác xung đột, mở và xử lý riêng; không chọn ghi đè toàn bộ code.
-Khi đã hết xung đột, hoàn tất merge bằng `git commit` nếu Git đang chờ, rồi `git push origin Long`.
+Khi đã hết xung đột, hoàn tất merge bằng `git commit` nếu Git đang chờ, rồi `git push origin bao-long`.
 Không đổi README về chỉ một dòng tên nhánh trong các PR sau.
 
 ### 6.2. Mỗi ngày / mỗi nhiệm vụ
 
-1. `git fetch origin`, đổi sang nhánh của mình và `git merge origin/main` để nhận phần đã bàn giao.
+1. `git fetch origin`, đổi sang nhánh của mình và `git merge origin/dev` để nhận phần đã bàn giao.
 2. Sửa code kèm kiểm thử; mỗi PR tập trung một việc có thể review.
 3. Chạy Ruff và pytest trên máy như mục 4.
 4. Commit có ý nghĩa và push đúng nhánh:
@@ -220,29 +234,51 @@ Không đổi README về chỉ một dòng tên nhánh trong các PR sau.
 ```bash
 git add src/recommender tests
 git commit -m "feat(metrics): add next-item evaluation"
-git push origin Long
+git push origin bao-long
 ```
 
 Lệnh `git add` là ví dụ cho thay đổi code/test; thêm đúng đường dẫn cấu hình/tài liệu nếu có.
 Thay tên nhánh và nội dung commit theo việc thực tế.
 
 5. Trên GitHub chọn **Pull requests -> New pull request**,
-   đặt **base: main**, **compare: nhánh của mình**.
+   đặt **base: dev**, **compare: nhánh của mình**.
 6. Điền mẫu PR, nêu input/output, lệnh đã chạy và ảnh hưởng tới tài sản dùng chung.
    Mở **Draft PR** sớm nếu đang làm để CI kiểm tra mỗi lần push.
 7. Khi sẵn sàng, chuyển draft sang **Ready for review**, nhờ một bạn khác review.
-8. CI đạt, nhánh đã cập nhật với main và có đủ review thì merge; giữ nhánh cá nhân để làm tiếp.
+8. CI đạt, nhánh đã cập nhật với dev và có đủ review thì merge vào **dev**; giữ nhánh cá nhân để làm tiếp.
 
 Nếu PR đang mở, chỉ cần push commit mới lên **cùng nhánh**, CI sẽ chạy lại.
 Không mở PR mới cho từng lần sửa lỗi của cùng nhiệm vụ.
 
+### 6.3. Chỉ đưa dev lên main khi nghiên cứu hoàn tất
+
+1. Hoàn thiện ba phần, chạy nghiên cứu thật và chốt quy ước. Fixture chạy xanh chưa đủ.
+2. Từ một nhánh cá nhân, chuẩn bị PR vào `dev` cập nhật `docs/research-readiness.json`:
+   đổi `status` thành `complete`, viết `summary`, đánh dấu đủ năm mục kiểm tra,
+   dẫn bốn file manifest/báo cáo có thật bằng đường dẫn tương đối trong repo.
+   Manifest có thể trỏ nơi lưu dữ liệu lớn bên ngoài; không cần commit dataset.
+3. Trong `configs/protocol.toml`, đặt `research.status = "approved"` và giải quyết hết
+   `open_decisions`; ghi quy ước cuối vào tài liệu, không chỉ xóa danh sách câu hỏi.
+4. Sau khi hồ sơ được review và ghép vào dev, mở PR **base: main**, **compare: dev**.
+5. `branch-policy` kiểm tra nguồn dev, checklist, file bằng chứng và trạng thái protocol.
+   Người review kiểm tra kết quả, số seed, chống rò rỉ và báo cáo; chỉ duyệt khi thực sự xong.
+6. Khi cả bốn check đạt và có một review, mới merge vào main. Không push thẳng main.
+
+Năm mục là dữ liệu/split đã kiểm chứng, metric đã kiểm chứng, baseline đầy đủ,
+kết quả ba seed đã lưu và báo cáo đã review. Bốn file là `data_manifest`, `split_manifest`,
+`results_manifest`, `report`; phải là file không rỗng trong repository.
+CI kiểm tra hồ sơ có mặt và khai báo hoàn tất, **không tự chứng minh kết luận khoa học**.
+Trạng thái hiện tại là `in_progress`, nên đề nghị dev -> main sẽ bị chặn.
+
 ## 7. CI tự chạy lúc nào, kiểm tra gì?
 
-Workflow **CI** chạy khi mở/cập nhật PR vào `main`, khi có push lên `main`, hoặc bấm Run workflow.
+Workflow **CI** chạy khi mở/cập nhật PR vào `dev` hoặc `main`, khi push lên hai nhánh này,
+hoặc bấm Run workflow (chọn nhánh dev để kiểm tra cấu hình mới).
 Push lên nhánh cá nhân **chưa có PR** không tự chạy CI; mở draft PR để có kiểm tra liên tục.
 
 | Job bắt buộc | Lệnh chính | Hiện đang kiểm tra |
 | --- | --- | --- |
+| `branch-policy` | `python src/recommender/branch_policy.py` | PR cá nhân -> dev; chỉ dev -> main khi đủ hồ sơ nghiên cứu |
 | `quality` | `python -m ruff check .` và `python -m ruff format --check .` | Lỗi code cơ bản, import, định dạng |
 | `unit-tests` | `python -m pytest -m 'not smoke'` | Metric tính tay, rò rỉ cold/session, schema, baseline và group-wise |
 | `pipeline-smoke` | `python -m pytest -m smoke`; `python -m recommender.smoke` | Ghép split giả lập -> baseline -> metric -> báo cáo; tái lập ba seed |
@@ -261,7 +297,8 @@ mở lần chạy -> mở job đỏ -> đọc bước lỗi đầu tiên.
 | `quality` báo import/biến chưa dùng | Chạy `python -m ruff check .`, sửa theo đường dẫn/dòng được báo |
 | `unit-tests` đỏ | Chạy lại bài test tương ứng, sửa phép tính/hợp đồng dữ liệu; không xóa test để làm xanh |
 | `pipeline-smoke` đỏ | Kiểm tra phần bàn giao giữa train/split, ranking, metric và group-wise |
-| Nhánh chưa cập nhật | Nhập `origin/main` vào nhánh cá nhân, xử lý xung đột, push lại và chờ CI |
+| `branch-policy` đỏ | Kiểm tra base/compare; công việc cá nhân gửi dev, main chỉ nhận dev có hồ sơ hoàn tất |
+| Nhánh chưa cập nhật | Nhập `origin/dev` vào nhánh cá nhân; PR dev -> main thì đồng bộ main vào dev qua một PR cá nhân |
 | Thiếu review | Nhờ một thành viên có quyền ghi repository duyệt; tác giả không tự duyệt PR của mình |
 
 JUnit report được lưu 7 ngày; JSON smoke được lưu 7 ngày trong **Artifacts** của lần chạy.
@@ -270,7 +307,7 @@ phải bổ sung test tương ứng, không coi fixture hiện tại đã bao ph
 
 ## 8. Workflow thủ công và kết quả nghiên cứu
 
-Trong Actions chọn **Fixture reproducibility -> Run workflow -> main**.
+Trong Actions chọn **Fixture reproducibility -> Run workflow -> dev**.
 Tên file là `validate-results.yml`, nhưng phiên bản hiện tại **chỉ chạy dữ liệu giả lập** với
 ba seed 42, 43, 44. Nó lưu từng lượt, mean/sample standard deviation, checksum fixture/protocol,
 commit và môi trường Python trong artifact `synthetic-fixture-three-seeds` trong 14 ngày.
@@ -308,10 +345,14 @@ Không bắt CI đòi HR vượt một ngưỡng hoặc đòi một mô hình lu
 - Mô tả hiện tượng đo được; số xấu/bất ngờ vẫn báo trung thực, không chỉnh cho đẹp.
 - Cả ba phần P0 hiện tại không yêu cầu GPU; phần mô hình nơ-ron là hướng dự phòng riêng.
 
-## 10. Quy tắc bảo vệ main
+## 10. Quy tắc bảo vệ dev và main
 
-Main dùng quy trình PR, một review và ba check `quality`, `unit-tests`, `pipeline-smoke`.
-Nhánh PR phải cập nhật với main trước khi ghép; cấm force-push và xóa main.
+Dev và main đều yêu cầu PR, một review và bốn check:
+`branch-policy`, `quality`, `unit-tests`, `pipeline-smoke`.
+Nhánh PR phải cập nhật với nhánh đích trước khi ghép; cấm force-push và xóa dev/main.
+PR từ nhánh cá nhân vào main bị chặn; PR dev -> main thiếu hồ sơ nghiên cứu bị chặn.
+Main hiện giữ bản cũ; bốn required check được cấu hình tại GitHub ngay trong lần chuyển luồng.
+PR phải mang cấu hình CI mới từ dev để tạo đủ check; PR theo workflow cũ sẽ chờ check còn thiếu.
 Không đổi tên job bắt buộc nếu chưa cập nhật thiết lập bảo vệ nhánh tương ứng.
 
 Quản trị viên quản lý tại **Settings -> Branches -> Branch protection rules**.
@@ -321,12 +362,13 @@ Nếu chưa có tài khoản của hai bạn trong repo, chủ repo thêm tại 
 ## 11. Checklist bắt đầu cho nhóm
 
 - [ ] Cài Python 3.12, clone và chạy bộ kiểm tra mục 4.
-- [ ] Đồng bộ main vào nhánh cá nhân theo mục 6.1.
+- [ ] Cập nhật tên nhánh không dấu, chữ thường; đồng bộ dev theo mục 6.1.
 - [ ] Cả nhóm chốt các quyết định protocol mục 5 trước khi chạy dataset thật.
 - [ ] Bá Chiến ưu tiên metric và schema dữ liệu sạch.
 - [ ] Trung Chiến ưu tiên split/manifest và bài test chống rò rỉ.
 - [ ] Bảo Long ưu tiên group-wise và giao diện category baseline trên dữ liệu mẫu.
-- [ ] Mở draft PR sớm; bàn giao qua PR và main, không chép file riêng giữa các nhánh.
+- [ ] Mở draft PR vào dev sớm; bàn giao qua dev, không chép file riêng giữa các nhánh.
+- [ ] Chỉ mở PR dev -> main sau khi hoàn tất hồ sơ nghiên cứu ở mục 6.3.
 
 ## Tài liệu tham khảo
 
