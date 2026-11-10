@@ -1,0 +1,23 @@
+{
+  "kind": "synthetic",
+  "catalog": {"a": "c1", "b": "c1", "c": "c2", "d": "c2", "e": "c2"},
+  "cold_items": ["e"],
+  "train": [
+    {"session_id": "train1", "item_id": "a", "timestamp": 1, "category_id": "c1"},
+    {"session_id": "train1", "item_id": "b", "timestamp": 2, "category_id": "c1"},
+    {"session_id": "train2", "item_id": "a", "timestamp": 3, "category_id": "c1"},
+    {"session_id": "train2", "item_id": "c", "timestamp": 4, "category_id": "c2"},
+    {"session_id": "train3", "item_id": "a", "timestamp": 5, "category_id": "c1"},
+    {"session_id": "train3", "item_id": "b", "timestamp": 6, "category_id": "c1"},
+    {"session_id": "train4", "item_id": "a", "timestamp": 7, "category_id": "c1"},
+    {"session_id": "train4", "item_id": "d", "timestamp": 8, "category_id": "c2"}
+  ],
+  "validation": [
+    {"session_id": "val1", "history": ["a", "c"], "target": "b"},
+    {"session_id": "val2", "history": ["a", "d"], "target": "e"}
+  ],
+  "test": [
+    {"session_id": "test1", "history": ["a", "d"], "target": "b"},
+    {"session_id": "test2", "history": ["a", "c"], "target": "e"}
+  ]
+}

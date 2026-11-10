@@ -1,0 +1,17 @@
+{
+  "status": "in_progress",
+  "summary": "",
+  "checks": {
+    "data_and_splits_verified": false,
+    "metrics_verified": false,
+    "baselines_complete": false,
+    "three_seed_results_recorded": false,
+    "report_reviewed": false
+  },
+  "evidence": {
+    "data_manifest": "",
+    "split_manifest": "",
+    "results_manifest": "",
+    "report": ""
+  }
+}
