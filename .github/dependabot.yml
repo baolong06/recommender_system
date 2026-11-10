@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: /
+    target-branch: bao-long
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    groups:
+      python-dependencies:
+        patterns: ['*']
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: bao-long
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3

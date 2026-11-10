@@ -113,7 +113,8 @@ Dùng **Python 3.12** cho cả nhóm, giống CI. Các lệnh dưới chạy t�
 git clone https://github.com/baolong06/recommender_system.git
 cd recommender_system
 py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt -e .
+.\.venv\Scripts\python.exe -m pip install --require-hashes --only-binary=:all: -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m pip install --no-build-isolation --no-deps -e .
 .\.venv\Scripts\python.exe -m ruff check .
 .\.venv\Scripts\python.exe -m ruff format --check .
 .\.venv\Scripts\python.exe -m pytest
@@ -126,7 +127,8 @@ Không cần kích hoạt môi trường hay đổi PowerShell execution policy 
 
 ```bash
 python3.12 -m venv .venv
-.venv/bin/python -m pip install -r requirements-dev.txt -e .
+.venv/bin/python -m pip install --require-hashes --only-binary=:all: -r requirements-dev.txt
+.venv/bin/python -m pip install --no-build-isolation --no-deps -e .
 .venv/bin/python -m ruff check .
 .venv/bin/python -m ruff format --check .
 .venv/bin/python -m pytest
@@ -136,7 +138,10 @@ python3.12 -m venv .venv
 Các ví dụ `python -m ...` tiếp theo giả định đã kích hoạt `.venv`, hoặc thay `python`
 bằng đường dẫn Python của môi trường như hai ví dụ trên.
 Khi thêm pandas/numpy hay thư viện khác, khai báo dependency trong `pyproject.toml`,
-cài lại môi trường và kiểm tra CI; không chỉ cài riêng trên máy rồi quên cập nhật cấu hình.
+cập nhật các input/lock theo [hướng dẫn bảo mật CI](docs/security.md), cài lại môi trường
+và kiểm tra CI; không chỉ cài riêng trên máy rồi quên cập nhật cấu hình.
+Kiểm tra đầy đủ workflow có thêm `node --test .github/tests/trusted-policy.test.cjs`
+(Node.js 24 hoặc mới hơn); CI luôn chạy bước này.
 
 ## 5. Giao diện dữ liệu và protocol
 
@@ -282,11 +287,18 @@ Push lên nhánh cá nhân **chưa có PR** không tự chạy CI; mở draft PR
 | `quality` | `python -m ruff check .` và `python -m ruff format --check .` | Lỗi code cơ bản, import, định dạng |
 | `unit-tests` | `python -m pytest -m 'not smoke'` | Metric tính tay, rò rỉ cold/session, schema, baseline và group-wise |
 | `pipeline-smoke` | `python -m pytest -m smoke`; `python -m recommender.smoke` | Ghép split giả lập -> baseline -> metric -> báo cáo; tái lập ba seed |
+| `dependency-audit` | `python -m pip_audit ... -r requirements-audit.txt` | Advisory của dependencies đã khóa và công cụ kiểm tra; xuất JSON/CycloneDX |
 
 Mỗi job dùng CPU, Python 3.12, giới hạn 10 phút. Lần chạy cũ của cùng PR bị hủy khi có bản cập nhật.
 Actions dùng quyền đọc code, không cần token cá nhân hoặc dataset thật.
 Mọi PR đều chạy bộ kiểm tra chung, kể cả khi sửa tài liệu; không dùng path filter làm treo required checks.
 Các action được ghim bằng commit SHA, phiên bản tham khảo ghi ngay bên cạnh trong workflow.
+
+Workflow còn chạy trên PR của Dependabot vào `bao-long` để cập nhật được kiểm tra trước
+khi người phụ trách đưa qua `dev`. Ngoại lệ staging này chỉ dành cho bot trong cùng repository.
+`branch-policy` trong CI vẫn dùng code PR; workflow độc lập `Trusted branch policy`
+đã được chuẩn bị để dùng nguồn đã review, cần có trên default branch để kích hoạt.
+Chi tiết phạm vi tin cậy, giới hạn và các bước kích hoạt: [docs/security.md](docs/security.md).
 
 **Cách xem:** vào PR -> Checks hoặc [Actions](https://github.com/baolong06/recommender_system/actions),
 mở lần chạy -> mở job đỏ -> đọc bước lỗi đầu tiên.
@@ -298,6 +310,7 @@ mở lần chạy -> mở job đỏ -> đọc bước lỗi đầu tiên.
 | `unit-tests` đỏ | Chạy lại bài test tương ứng, sửa phép tính/hợp đồng dữ liệu; không xóa test để làm xanh |
 | `pipeline-smoke` đỏ | Kiểm tra phần bàn giao giữa train/split, ranking, metric và group-wise |
 | `branch-policy` đỏ | Kiểm tra base/compare; công việc cá nhân gửi dev, main chỉ nhận dev có hồ sơ hoàn tất |
+| `dependency-audit` đỏ | Đọc advisory/log; cập nhật dependency và tạo lại lock, không tự bỏ qua để làm xanh |
 | Nhánh chưa cập nhật | Nhập `origin/dev` vào nhánh cá nhân; PR dev -> main thì đồng bộ main vào dev qua một PR cá nhân |
 | Thiếu review | Nhờ một thành viên có quyền ghi repository duyệt; tác giả không tự duyệt PR của mình |
 
@@ -349,6 +362,9 @@ Không bắt CI đòi HR vượt một ngưỡng hoặc đòi một mô hình lu
 
 Dev và main đều yêu cầu PR, một review và bốn check:
 `branch-policy`, `quality`, `unit-tests`, `pipeline-smoke`.
+Đợt gia cố bổ sung `dependency-audit` vào required checks sau khi chạy đạt trên PR.
+CODEOWNERS dành cho workflow, luật nhánh, protocol và dependencies cần được review;
+quy tắc code-owner bắt đầu có tác dụng ở nhánh đã nhận file CODEOWNERS.
 Nhánh PR phải cập nhật với nhánh đích trước khi ghép; cấm force-push và xóa dev/main.
 PR từ nhánh cá nhân vào main bị chặn; PR dev -> main thiếu hồ sơ nghiên cứu bị chặn.
 Main hiện giữ bản cũ; bốn required check được cấu hình tại GitHub ngay trong lần chuyển luồng.
@@ -358,6 +374,9 @@ Không đổi tên job bắt buộc nếu chưa cập nhật thiết lập bảo
 Quản trị viên quản lý tại **Settings -> Branches -> Branch protection rules**.
 Cả ba người cần quyền ghi repository để push nhánh và review; tên nhánh không tự cấp quyền tài khoản.
 Nếu chưa có tài khoản của hai bạn trong repo, chủ repo thêm tại **Settings -> Collaborators**.
+
+Phần gia cố chưa phải chứng nhận AppSec 11 lĩnh vực vì không có rubric gốc.
+Xem [quy trình bảo mật và dependency](docs/security.md) và [cách báo vấn đề](SECURITY.md).
 
 ## 11. Checklist bắt đầu cho nhóm
 
