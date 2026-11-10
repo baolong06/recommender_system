@@ -1,0 +1,21 @@
+scope = "P0"
+cold_item_fraction = 0.20
+research_seeds = [42, 43, 44]
+
+[smoke]
+dataset_kind = "synthetic"
+fixture = "tests/fixtures/session_dataset.json"
+k = 3
+rounding = "ceil"
+candidate_policy = "all fixture catalog items"
+tie_break = "item_id ascending"
+
+[research]
+status = "pending-team-agreement"
+open_decisions = [
+  "Item universe and rounding for cold item selection",
+  "Temporal/session split and filtering order",
+  "Candidate availability and treatment of previously seen items",
+  "Tie-breaking and oracle/non-oracle category sources",
+  "Fixed split or multiple shared split seeds; K values",
+]
