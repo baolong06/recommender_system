@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [dev, main]
+    branches: [bao-long, ba-chien, trung-chien, dev, main]
   pull_request:
     branches: [bao-long, dev, main]
     types: [opened, synchronize, reopened, edited, ready_for_review]
