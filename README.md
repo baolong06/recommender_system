@@ -6,6 +6,10 @@ Bạn phát triển trên `ba-chien`, gửi PR vào `dev`. Hai sản phẩm quan
 **dữ liệu sạch có thể tái tạo** và **bộ metric HR/MRR/NDCG được kiểm chứng**.
 Trung Chiến cần chúng để tạo split/baseline; Bảo Long cần chúng để chấm điểm mô hình category.
 
+**Dữ liệu đóng gói:** xem [data/processed](data/processed/README.md) để tải Yoochoose đầy đủ,
+Diginetica và mẫu Yoochoose từ GitHub Release. Manifest và SHA-256 nằm ngay trong thư mục đó.
+Đây là bản legacy dùng timestamp giây; cần chạy lại raw khi sử dụng schema `timestamp_ms` mới.
+
 ## 1. Phạm vi công việc của bạn
 
 | Bạn chịu trách nhiệm | Sản phẩm cần có |

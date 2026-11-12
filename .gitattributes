@@ -4,3 +4,5 @@
 *.toml text eol=lf
 *.json text eol=lf
 *.md text eol=lf
+data/processed/source-manifest.json -text
+data/processed/SHA256SUMS text eol=lf
