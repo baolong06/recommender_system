@@ -1,0 +1,136 @@
+{
+  "kind": "research-run",
+  "owner": "ba-chien",
+  "dataset": "diginetica",
+  "dataset_version": "unspecified",
+  "source_reference": "Kaggle CIKM Cup 2016",
+  "code_commit": "6eac36cd57d41f8795d26c4736e161a4689ae7da",
+  "config_path": "configs/data.toml",
+  "raw_files": [
+    {
+      "path": "data/raw/diginetica/train-item-views.csv",
+      "location": "Kaggle CIKM Cup 2016",
+      "sha256": "0b9edf1b7960bb855a2248972f8ed593f18721f321b976b2077c9f782fb43e38",
+      "rows": 1235381
+    },
+    {
+      "path": "data/raw/diginetica/product-categories.csv",
+      "location": "Kaggle CIKM Cup 2016",
+      "sha256": "9e9566e34548e5d1b8d05ed6dd0222fbb8a7b7b2a8a18cdf28c1a4eba8f9e42c",
+      "rows": 184048
+    }
+  ],
+  "processed_files": [
+    {
+      "path": "data/processed/diginetica_clean.parquet",
+      "location": "local: data/processed",
+      "sha256": "72ae7155bb043aa7cf840d769ac8dde9e9cec0c6223fa9ee28768448c76eb0df",
+      "rows": 988884
+    }
+  ],
+  "counts_before": {
+    "events": 1235380,
+    "sessions": 310324,
+    "items": 122993
+  },
+  "counts_after": {
+    "events": 988884,
+    "sessions": 204043,
+    "items": 42163
+  },
+  "filter_steps": [
+    {
+      "step": "raw",
+      "events": 1235380,
+      "sessions": 310324,
+      "items": 122993
+    },
+    {
+      "step": "drop_missing",
+      "events": 1235380,
+      "sessions": 310324,
+      "items": 122993
+    },
+    {
+      "step": "drop_duplicates",
+      "events": 1235093,
+      "sessions": 310324,
+      "items": 122993
+    },
+    {
+      "step": "item_frequency_1",
+      "events": 1094748,
+      "sessions": 301549,
+      "items": 44521
+    },
+    {
+      "step": "session_length_1",
+      "events": 998879,
+      "sessions": 205680,
+      "items": 44518
+    },
+    {
+      "step": "item_frequency_2",
+      "events": 990829,
+      "sessions": 205443,
+      "items": 42306
+    },
+    {
+      "step": "session_length_2",
+      "events": 989561,
+      "sessions": 204175,
+      "items": 42306
+    },
+    {
+      "step": "item_frequency_3",
+      "events": 989074,
+      "sessions": 204161,
+      "items": 42182
+    },
+    {
+      "step": "session_length_3",
+      "events": 988970,
+      "sessions": 204057,
+      "items": 42182
+    },
+    {
+      "step": "item_frequency_4",
+      "events": 988899,
+      "sessions": 204054,
+      "items": 42164
+    },
+    {
+      "step": "session_length_4",
+      "events": 988888,
+      "sessions": 204043,
+      "items": 42164
+    },
+    {
+      "step": "item_frequency_5",
+      "events": 988884,
+      "sessions": 204043,
+      "items": 42163
+    },
+    {
+      "step": "session_length_5",
+      "events": 988884,
+      "sessions": 204043,
+      "items": 42163
+    },
+    {
+      "step": "item_frequency_6",
+      "events": 988884,
+      "sessions": 204043,
+      "items": 42163
+    },
+    {
+      "step": "session_length_6",
+      "events": 988884,
+      "sessions": 204043,
+      "items": 42163
+    }
+  ],
+  "schema_reference": "docs/data/schema.md",
+  "reproduce_command": "python scripts/run_clean.py --dataset diginetica --source-reference Kaggle CIKM Cup 2016",
+  "review_status": "draft"
+}
