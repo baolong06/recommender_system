@@ -1,4 +1,4 @@
-"""Require work branches -> personal staging -> dev -> reviewed promotion to main."""
+"""Require personal branches -> dev -> reviewed research promotion to main."""
 
 import argparse
 import json
@@ -7,11 +7,6 @@ import tomllib
 from pathlib import Path, PurePosixPath
 
 PERSONAL_BRANCHES = {"bao-long", "ba-chien", "trung-chien"}
-WORK_BRANCHES = {
-    "bao-long": "baolong-dev",
-    "ba-chien": "bachien-dev",
-    "trung-chien": "trungchien-dev",
-}
 RESEARCH_CHECKS = {
     "data_and_splits_verified",
     "metrics_verified",
@@ -66,10 +61,7 @@ def validate_event(event_name: str, event: dict, repository: str, root: Path) ->
         and source.startswith("dependabot/")
     ):
         return
-    if target in WORK_BRANCHES:
-        if source != WORK_BRANCHES[target]:
-            raise ValueError(f"Personal staging {target} only accepts {WORK_BRANCHES[target]}.")
-    elif target == "dev":
+    if target == "dev":
         if source not in PERSONAL_BRANCHES:
             raise ValueError("PRs into dev must come from bao-long, ba-chien or trung-chien.")
     elif target == "main":

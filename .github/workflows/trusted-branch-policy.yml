@@ -4,7 +4,7 @@ name: Trusted branch policy
 # Never execute PR code, install its dependencies, or use a PR artifact in this workflow.
 on:
   pull_request_target:
-    branches: [bao-long, ba-chien, trung-chien, dev, main]
+    branches: [bao-long, dev, main]
     types: [opened, synchronize, reopened, edited, ready_for_review]
 
 permissions:

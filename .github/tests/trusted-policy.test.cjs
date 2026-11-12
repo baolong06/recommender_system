@@ -114,19 +114,6 @@ test('rejects oversized evidence before downloading it', async () => {
 });
 
 
-for (const [source, target] of [
-  ['bachien-dev', 'ba-chien'], ['trungchien-dev', 'trung-chien'], ['baolong-dev', 'bao-long']
-]) {
-  test(`work branch ${source} is read as metadata for ${target}`, async () => {
-    const probe = fixture({ source, target });
-    await probe.execute();
-    assert.deepEqual(probe.fetched, []);
-    const pr = JSON.parse(probe.written.get('event.json')).pull_request;
-    assert.equal(pr.head.ref, source);
-    assert.equal(pr.base.ref, target);
-  });
-}
-
-test('trusted trigger covers every personal staging branch', () => {
-  assert.match(workflow, /branches: \[bao-long, ba-chien, trung-chien, dev, main\]/);
+test('trusted trigger covers integration and Dependabot staging', () => {
+  assert.match(workflow, /branches: \[bao-long, dev, main\]/);
 });
