@@ -101,6 +101,6 @@
     }
   ],
   "schema_reference": "docs/data/schema.md",
-  "reproduce_command": "python scripts/run_clean.py --dataset yoochoose --nrows 1000000 --source-reference Kaggle dataset_po",
-  "review_status": "draft"
+  "reproduce_command": "python scripts/run_clean.py --dataset yoochoose --nrows 1000000 --source-reference 'Kaggle dataset_po'",
+  "review_status": "requires-rerun"
 }

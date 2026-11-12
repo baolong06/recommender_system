@@ -2,7 +2,7 @@
 
 **Đề tài 1: Chuẩn bị dữ liệu và bộ thước đo cho nghiên cứu P0.**
 
-Bạn làm trên nhánh `ba-chien`, gửi PR vào `dev`. Hai sản phẩm quan trọng nhất của bạn là
+Bạn phát triển trên `bachien-dev`, gửi PR vào `ba-chien`, rồi `ba-chien` gửi PR vào `dev`. Hai sản phẩm quan trọng nhất của bạn là
 **dữ liệu sạch có thể tái tạo** và **bộ metric HR/MRR/NDCG được kiểm chứng**.
 Trung Chiến cần chúng để tạo split/baseline; Bảo Long cần chúng để chấm điểm mô hình category.
 
@@ -84,19 +84,19 @@ Với mỗi dataset, bàn giao tối thiểu:
 - Manifest ghi nguồn, phiên bản dữ liệu, config xử lý, số lượng, checksum và commit code.
 - Lệnh tái tạo chạy từ thư mục gốc; đường dẫn input/output là tham số, không hard-code ổ đĩa máy mình.
 
-## 3. Setup trên đúng nhánh ba-chien
+## 3. Setup trên đúng nhánh bachien-dev
 
 Cần Git và Python 3.12; Node.js 24 hoặc mới hơn để chạy test workflow. Không cần GPU. Lần đầu:
 
 ```powershell
 git clone https://github.com/baolong06/recommender_system.git
 cd recommender_system
-git switch ba-chien
+git switch bachien-dev
 git fetch origin
 ```
 
 Nếu máy đã có repo, bỏ bước clone; sau `git status` và khi đã lưu công việc, chạy
-`git pull --ff-only origin ba-chien` trên đúng nhánh để nhận bộ khung mới.
+`git pull --ff-only origin bachien-dev` trên đúng nhánh để nhận bộ khung mới.
 Khung code đã có sẵn, không cần merge dev để setup lần đầu. Khi muốn nhận phần chung mới:
 
 ```powershell
@@ -123,7 +123,7 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --no-build-isolation --no-deps -e .
 ```
 
-Nếu bạn thêm pandas/numpy cho xử lý thật,
+`pandas` và `pyarrow` đã được khai báo và khóa phiên bản. Nếu thêm dependency khác,
 khai báo trong `pyproject.toml` và cập nhật input/lock theo `docs/security.md`;
 không chỉ cài riêng trên máy. Linux/macOS dùng `python3.12` và `.venv/bin/python`.
 
@@ -178,12 +178,12 @@ category thiếu và lọc lặp làm thay đổi kết quả. Không viết tes
 git status
 git add src/recommender/metrics.py tests/test_metrics.py
 git commit -m "feat(metrics): validate next-item ranking metrics"
-git push origin ba-chien
+git push origin bachien-dev
 ```
 
 Stage đúng file của thay đổi; ví dụ trên dành cho PR metric, không phải lệnh stage mọi nhiệm vụ.
-Mở PR **base: dev**, **compare: ba-chien**; điền input/output, lệnh test và người dùng lại bị ảnh hưởng.
-Mỗi ngày nhập `origin/dev` trên nhánh này để nhận code chung. Push tiếp lên ba-chien khi PR cần sửa.
+Mở PR **base: ba-chien**, **compare: bachien-dev**; điền input/output, lệnh test và người dùng lại bị ảnh hưởng.
+Mỗi ngày nhập `origin/dev` trên nhánh này để nhận code chung. Push tiếp lên `bachien-dev` khi PR cần sửa. Sau khi review và merge vào `ba-chien`, mở PR `ba-chien → dev`.
 
 README này chỉ dành cho Bá Chiến. Khi review PR code vào dev, phải xem riêng thay đổi README,
 giữ tài liệu nhánh đích phù hợp; không dùng README cá nhân làm hướng dẫn của dev/main.
@@ -201,3 +201,12 @@ giữ tài liệu nhánh đích phù hợp; không dùng README cá nhân làm h
 Không đổi tỷ lệ cold 20%, không dùng test để chọn quy tắc có lợi, không biến ví dụ thành kết quả.
 Không tự đánh dấu nghiên cứu hoàn tất hoặc đưa code thẳng lên main.
 Nguồn nhiệm vụ: tài liệu P0 của nhóm; đây là hướng dẫn triển khai, không phải xác nhận các việc đã xong.
+
+
+## Luồng nhánh và pipeline đã sửa
+
+Xem [quy trình nhánh](docs/plans/2026-11-12-work-branches.md). PR công việc không đi thẳng
+vào `dev` hoặc `main`. Test dữ liệu bắt buộc có pandas/pyarrow, gồm xuất Parquet/manifest.
+Timestamp giây vẫn được giữ để tương thích; `timestamp_ms` dùng để sort và loại click trùng.
+Xem `docs/data/schema.md` trước khi dùng dữ liệu. Các manifest cũ cần chạy lại trên dữ liệu gốc
+sau thay đổi độ chính xác timestamp; không dùng số lượng/checksum cũ làm kết quả của code mới.

@@ -13,7 +13,7 @@ manifest_directory = "docs/data"
 min_session_length = 2
 min_item_frequency = 5
 # Đề xuất, chờ nhóm duyệt
-filter_order = ["drop_missing", "drop_duplicates", "item_frequency", "session_length"]
+filter_order = ["drop_missing", "drop_invalid_timestamp", "drop_duplicates", "item_frequency", "session_length"]
 repeat_until_stable = true
 max_iterations = 10
 

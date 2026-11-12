@@ -1,6 +1,7 @@
 """Clean one raw dataset. Run from the repository root."""
 
 import argparse
+import shlex
 import sys
 import tomllib
 from pathlib import Path
@@ -17,7 +18,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--dataset-version", default="unspecified")
     parser.add_argument("--source-reference", default="")
     parser.add_argument("--nrows", type=int, default=None, help="Yoochoose only: quick trial")
-    args = parser.parse_args(argv)
+    arguments = list(sys.argv[1:] if argv is None else argv)
+    args = parser.parse_args(arguments)
+    if args.nrows is not None and (args.nrows <= 0 or args.dataset != "yoochoose"):
+        parser.error("--nrows must be positive and is supported only for yoochoose")
 
     config = tomllib.loads(Path(args.config).read_text(encoding="utf-8"))
     raw_dir = Path(config["input"]["raw_directory"]) / args.dataset
@@ -27,7 +31,6 @@ def main(argv: list[str] | None = None) -> int:
     else:
         raw_paths = [raw_dir / "train-item-views.csv", raw_dir / "product-categories.csv"]
         events = read_diginetica(*raw_paths)
-    validate_events(events)
 
     rules = config["cleaning"]
     events, steps = clean_events(
@@ -37,6 +40,8 @@ def main(argv: list[str] | None = None) -> int:
         repeat_until_stable=rules["repeat_until_stable"],
         max_iterations=rules["max_iterations"],
     )
+
+    validate_events(events)
 
     suffix = f"_nrows{args.nrows}" if args.nrows else ""
     out_dir = Path(config["output"]["processed_directory"])
@@ -51,10 +56,13 @@ def main(argv: list[str] | None = None) -> int:
         dataset_version=args.dataset_version,
         source_reference=args.source_reference,
         config_path=args.config,
-        raw_files=[file_entry(p, args.source_reference) for p in raw_paths],
+        raw_files=[
+            file_entry(p, args.source_reference, has_header=args.dataset == "diginetica")
+            for p in raw_paths
+        ],
         processed_files=[file_entry(out_path, "local: data/processed", rows=len(events))],
         steps=steps,
-        reproduce_command="python scripts/run_clean.py " + " ".join(sys.argv[1:]),
+        reproduce_command=shlex.join(["python", "scripts/run_clean.py", *arguments]),
     )
     manifest_path = Path(config["output"]["manifest_directory"])
     write_manifest(manifest, manifest_path / f"{args.dataset}{suffix}_manifest.json")

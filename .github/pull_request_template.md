@@ -4,7 +4,7 @@ Mô tả phần thay đổi, lý do và đầu ra được bàn giao.
 
 ## Kiểm tra
 
-- [ ] Đúng luồng: nhánh cá nhân -> `dev`, hoặc `dev` -> `main` khi nghiên cứu xong.
+- [ ] Đúng luồng: nhánh làm việc -> nhánh cá nhân -> `dev`, hoặc `dev` -> `main` khi nghiên cứu xong.
 - [ ] Đã đồng bộ với nhánh đích và xử lý xung đột.
 - [ ] Ruff và pytest chạy đạt trên máy.
 - [ ] Có kiểm thử cho phép tính/hợp đồng dữ liệu mới hoặc thay đổi.

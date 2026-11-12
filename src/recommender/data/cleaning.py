@@ -22,11 +22,19 @@ def clean_events(
 
     The last two steps repeat until the number of events stops changing.
     """
+    if min_session_length < 1 or min_item_frequency < 1 or max_iterations < 1:
+        raise ValueError("cleaning thresholds and max_iterations must be positive")
+    events = events.copy()
     steps: list[dict] = [{"step": "raw", **count_events(events)}]
 
-    events = events.dropna(subset=["session_id", "item_id", "timestamp"])
+    for column in ["session_id", "item_id"]:
+        events[column] = events[column].astype("string").str.strip().replace("", pd.NA)
+    clock = "timestamp_ms" if "timestamp_ms" in events else "timestamp"
+    events = events.dropna(subset=["session_id", "item_id", "timestamp", clock])
     steps.append({"step": "drop_missing", **count_events(events)})
-    events = events.drop_duplicates(["session_id", "item_id", "timestamp"])
+    events = events[(events["timestamp"] >= 0) & (events[clock] >= 0)]
+    steps.append({"step": "drop_invalid_timestamp", **count_events(events)})
+    events = events.drop_duplicates(["session_id", "item_id", clock])
     steps.append({"step": "drop_duplicates", **count_events(events)})
 
     for iteration in range(1, max_iterations + 1):
@@ -45,5 +53,7 @@ def clean_events(
     else:
         raise RuntimeError("filtering did not stabilise within max_iterations")
 
-    events = events.sort_values(["session_id", "timestamp"], kind="stable")
+    events = events.sort_values(["session_id", clock], kind="stable")
+    for column in {"timestamp", clock}:
+        events[column] = events[column].astype("int64")
     return events.reset_index(drop=True), steps

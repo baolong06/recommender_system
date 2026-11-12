@@ -1,5 +1,6 @@
 """Build a data manifest following docs/data/data_manifest.example.json."""
 
+import csv
 import hashlib
 import json
 import subprocess
@@ -14,20 +15,23 @@ def sha256_of(path: str | Path, chunk_size: int = 1 << 20) -> str:
     return digest.hexdigest()
 
 
-def count_lines(path: str | Path, chunk_size: int = 1 << 20) -> int:
-    total = 0
-    with open(path, "rb") as handle:
-        while chunk := handle.read(chunk_size):
-            total += chunk.count(b"\n")
-    return total
+def count_lines(path: str | Path, *, has_header: bool = False) -> int:
+    """Count CSV records, including the last record without a newline; exclude headers."""
+    with open(path, newline="", encoding="utf-8") as handle:
+        records = csv.reader(handle)
+        if has_header:
+            next(records, None)
+        return sum(1 for row in records if row)
 
 
-def file_entry(path: str | Path, location: str, rows: int | None = None) -> dict:
+def file_entry(
+    path: str | Path, location: str, rows: int | None = None, *, has_header: bool = False
+) -> dict:
     return {
         "path": Path(path).as_posix(),
         "location": location,
         "sha256": sha256_of(path),
-        "rows": count_lines(path) if rows is None else rows,
+        "rows": count_lines(path, has_header=has_header) if rows is None else rows,
     }
 
 

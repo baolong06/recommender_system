@@ -1,9 +1,8 @@
 import json
 from pathlib import Path
 
+import pandas as pd
 import pytest
-
-pd = pytest.importorskip("pandas")
 
 from recommender.data.cleaning import clean_events  # noqa: E402
 from recommender.data.manifest import build_manifest, file_entry  # noqa: E402
@@ -53,7 +52,7 @@ def test_read_yoochoose(tmp_path):
     )
     events = read_yoochoose(path)
     validate_events(events)
-    assert list(events.columns) == EVENT_COLUMNS
+    assert list(events.columns) == [*EVENT_COLUMNS, "timestamp_ms"]
     assert events.loc[0, "item_id"] == "0123"
     assert events.loc[0, "timestamp"] == 1396867869
     assert set(events.loc[events["item_id"] == "9", "category_id"]) == {"2"}
@@ -100,3 +99,127 @@ def test_manifest_matches_template_keys(tmp_path):
     assert set(manifest) == set(template)
     assert len(manifest["raw_files"][0]["sha256"]) == 64
     assert manifest["raw_files"][0]["rows"] == 2
+
+
+def test_cleaning_preserves_subsecond_clicks_and_chronology(tmp_path):
+    path = tmp_path / "clicks.dat"
+    path.write_text(
+        "1,2014-04-07T10:51:09.900Z,9,1\n"
+        "1,2014-04-07T10:51:09.100Z,9,1\n"
+        "1,2014-04-07T10:51:09.100Z,9,1\n",
+        encoding="utf-8",
+    )
+    cleaned, steps = clean_events(read_yoochoose(path), 2, 1)
+    validate_events(cleaned)
+    assert len(cleaned) == 2
+    assert cleaned["timestamp"].nunique() == 1
+    assert cleaned["timestamp_ms"].tolist() == [1396867869100, 1396867869900]
+    assert next(s for s in steps if s["step"] == "drop_duplicates")["events"] == 2
+
+
+def test_invalid_yoochoose_rows_are_logged_and_removed(tmp_path):
+    path = tmp_path / "clicks.dat"
+    path.write_text(
+        "1,2014-04-07T10:51:09.100Z,9,1\n"
+        "1,2014-04-07T10:51:09.900Z,10,1\n"
+        ",2014-04-07T10:51:10Z,9,1\n"
+        "1,not-a-date,9,1\n"
+        "1,,9,1\n"
+        "1,2014-04-07T10:51:10Z, ,1\n"
+        "1,1960-01-01T00:00:00Z,9,1\n",
+        encoding="utf-8",
+    )
+    cleaned, steps = clean_events(read_yoochoose(path), 2, 1)
+    validate_events(cleaned)
+    assert len(cleaned) == 2
+    assert steps[0]["events"] == 7
+    assert next(s for s in steps if s["step"] == "drop_missing")["events"] == 3
+    assert next(s for s in steps if s["step"] == "drop_invalid_timestamp")["events"] == 2
+
+
+def test_invalid_diginetica_dates_and_offsets_are_cleaned(tmp_path):
+    views, cats = tmp_path / "views.csv", tmp_path / "cats.csv"
+    views.write_text(
+        "sessionId;userId;itemId;timeframe;eventdate\n"
+        "1;NA;1;100;2016-05-09\n1;NA;2;900;2016-05-09\n"
+        "1;NA;3;bad;2016-05-09\n1;NA;4;-1;2016-05-09\n"
+        "1;NA;5;1;bad-date\n1;NA;6;1.5;2016-05-09\n",
+        encoding="utf-8",
+    )
+    cats.write_text("itemId;categoryId\n1;7\n", encoding="utf-8")
+    cleaned, steps = clean_events(read_diginetica(views, cats), 2, 1)
+    validate_events(cleaned)
+    assert cleaned["item_id"].tolist() == ["1", "2"]
+    assert steps[1]["events"] == 2
+
+
+def test_record_count_excludes_header_and_handles_final_record(tmp_path):
+    path = tmp_path / "records.csv"
+    path.write_text('id,value\n1,"multi\nline"\n2,end', encoding="utf-8")
+    assert file_entry(path, "local", has_header=True)["rows"] == 2
+    assert file_entry(path, "local")["rows"] == 3
+
+
+@pytest.mark.parametrize("dataset", ["yoochoose", "diginetica"])
+def test_clean_cli_exports_parquet_and_replayable_manifest(tmp_path, dataset):
+    import shlex
+    import subprocess
+    import sys
+
+    raw = tmp_path / "raw" / dataset
+    raw.mkdir(parents=True)
+    if dataset == "yoochoose":
+        (raw / "yoochoose-clicks.dat").write_text(
+            "1,2014-04-07T10:51:09.900Z,9,1\n1,2014-04-07T10:51:09.100Z,9,1\n1,broken,9,1\n",
+            encoding="utf-8",
+        )
+    else:
+        (raw / "train-item-views.csv").write_text(
+            "sessionId;userId;itemId;timeframe;eventdate\n"
+            "1;NA;9;900;2016-05-09\n1;NA;9;100;2016-05-09\n"
+            "1;NA;9;bad;2016-05-09",
+            encoding="utf-8",
+        )
+        (raw / "product-categories.csv").write_text("itemId;categoryId\n9;1", encoding="utf-8")
+    config = tmp_path / "data config.toml"
+    config.write_text(
+        f'kind = "research-run"\n[input]\nraw_directory = "{(tmp_path / "raw").as_posix()}"\n'
+        f'[output]\nprocessed_directory = "{(tmp_path / "processed").as_posix()}"\n'
+        f'manifest_directory = "{(tmp_path / "manifests").as_posix()}"\n'
+        "[cleaning]\nmin_session_length = 2\nmin_item_frequency = 1\n"
+        "repeat_until_stable = true\nmax_iterations = 10\n",
+        encoding="utf-8",
+    )
+    arguments = [
+        "--dataset",
+        dataset,
+        "--config",
+        str(config),
+        "--source-reference",
+        "Kaggle sample with spaces",
+    ]
+    subprocess.run([sys.executable, "scripts/run_clean.py", *arguments], cwd=ROOT, check=True)
+    manifest = json.loads((tmp_path / "manifests" / f"{dataset}_manifest.json").read_text())
+    cleaned = pd.read_parquet(tmp_path / "processed" / f"{dataset}_clean.parquet")
+    validate_events(cleaned)
+    assert len(cleaned) == 2
+    assert cleaned["timestamp_ms"].is_monotonic_increasing
+    assert manifest["counts_before"]["events"] == 3
+    assert manifest["counts_after"]["events"] == 2
+    assert manifest["raw_files"][0]["rows"] == 3
+    assert shlex.split(manifest["reproduce_command"]) == [
+        "python",
+        "scripts/run_clean.py",
+        *arguments,
+    ]
+    assert (
+        file_entry(manifest["processed_files"][0]["path"], "local", rows=2)["sha256"]
+        == (manifest["processed_files"][0]["sha256"])
+    )
+    # Invoke the same main(argv) API with unrelated process argv to guard against sys.argv leakage.
+    import runpy
+
+    main = runpy.run_path(str(ROOT / "scripts/run_clean.py"))["main"]
+    assert main(arguments) == 0
+    replayed = json.loads((tmp_path / "manifests" / f"{dataset}_manifest.json").read_text())
+    assert replayed["reproduce_command"] == manifest["reproduce_command"]

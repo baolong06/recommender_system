@@ -7,7 +7,7 @@ name = "recommender-system-p0"
 version = "0.1.0"
 description = "Shared evaluation foundations for the three P0 recommendation projects"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = ["pandas==2.3.3", "pyarrow==26.0.1"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

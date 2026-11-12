@@ -131,6 +131,6 @@
     }
   ],
   "schema_reference": "docs/data/schema.md",
-  "reproduce_command": "python scripts/run_clean.py --dataset diginetica --source-reference Kaggle CIKM Cup 2016",
-  "review_status": "draft"
+  "reproduce_command": "python scripts/run_clean.py --dataset diginetica --source-reference 'Kaggle CIKM Cup 2016'",
+  "review_status": "requires-rerun"
 }
