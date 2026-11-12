@@ -1,0 +1,106 @@
+{
+  "kind": "partial-run-not-for-research",
+  "owner": "ba-chien",
+  "dataset": "yoochoose",
+  "dataset_version": "unspecified",
+  "source_reference": "Kaggle dataset_po",
+  "code_commit": "6eac36cd57d41f8795d26c4736e161a4689ae7da",
+  "config_path": "configs/data.toml",
+  "raw_files": [
+    {
+      "path": "data/raw/yoochoose/yoochoose-clicks.dat",
+      "location": "Kaggle dataset_po",
+      "sha256": "0deaf041a4f60955928fe8430e525a1dbf38e9013c7482420973e4aa492fa762",
+      "rows": 33003944
+    }
+  ],
+  "processed_files": [
+    {
+      "path": "data/processed/yoochoose_clean_nrows1000000.parquet",
+      "location": "local: data/processed",
+      "sha256": "d295ee2692821a77f08d3894c7ff82beaea74e82dceedf2e95e7f48d7d785016",
+      "rows": 960813
+    }
+  ],
+  "counts_before": {
+    "events": 1000000,
+    "sessions": 254619,
+    "items": 20843
+  },
+  "counts_after": {
+    "events": 960813,
+    "sessions": 233958,
+    "items": 11705
+  },
+  "filter_steps": [
+    {
+      "step": "raw",
+      "events": 1000000,
+      "sessions": 254619,
+      "items": 20843
+    },
+    {
+      "step": "drop_missing",
+      "events": 1000000,
+      "sessions": 254619,
+      "items": 20843
+    },
+    {
+      "step": "drop_duplicates",
+      "events": 997821,
+      "sessions": 254619,
+      "items": 20843
+    },
+    {
+      "step": "item_frequency_1",
+      "events": 980286,
+      "sessions": 252710,
+      "items": 11922
+    },
+    {
+      "step": "session_length_1",
+      "events": 961733,
+      "sessions": 234157,
+      "items": 11920
+    },
+    {
+      "step": "item_frequency_2",
+      "events": 960978,
+      "sessions": 234089,
+      "items": 11715
+    },
+    {
+      "step": "session_length_2",
+      "events": 960859,
+      "sessions": 233970,
+      "items": 11715
+    },
+    {
+      "step": "item_frequency_3",
+      "events": 960819,
+      "sessions": 233964,
+      "items": 11705
+    },
+    {
+      "step": "session_length_3",
+      "events": 960813,
+      "sessions": 233958,
+      "items": 11705
+    },
+    {
+      "step": "item_frequency_4",
+      "events": 960813,
+      "sessions": 233958,
+      "items": 11705
+    },
+    {
+      "step": "session_length_4",
+      "events": 960813,
+      "sessions": 233958,
+      "items": 11705
+    }
+  ],
+  "schema_reference": "docs/data/schema.md",
+  "reproduce_command": "python scripts/run_clean.py --dataset yoochoose --nrows 1000000 --source-reference 'Kaggle dataset_po'",
+  "review_status": "requires-rerun"
+}

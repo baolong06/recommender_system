@@ -1,0 +1,26 @@
+kind = "research-run"
+owner = "ba-chien"
+datasets = ["yoochoose", "diginetica"]
+
+[input]
+raw_directory = "data/raw"
+
+[output]
+processed_directory = "data/processed"
+manifest_directory = "docs/data"
+
+[cleaning]
+min_session_length = 2
+min_item_frequency = 5
+# Đề xuất, chờ nhóm duyệt
+filter_order = ["drop_missing", "drop_invalid_timestamp", "drop_duplicates", "item_frequency", "session_length"]
+repeat_until_stable = true
+max_iterations = 10
+
+[schema]
+required_fields = ["session_id", "item_id", "timestamp", "category_id"]
+id_type = "string"
+timestamp_unit = "unix_seconds"
+# Đề xuất, chờ nhóm duyệt
+missing_category_policy = "UNK"
+multi_category_policy = "most_frequent"

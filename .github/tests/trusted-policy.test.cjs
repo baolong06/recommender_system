@@ -112,3 +112,21 @@ test('rejects symlink evidence', async () => {
 test('rejects oversized evidence before downloading it', async () => {
   await assert.rejects(fixture({ size: 524289 }).execute, /regular file/);
 });
+
+
+for (const [source, target] of [
+  ['bachien-dev', 'ba-chien'], ['trungchien-dev', 'trung-chien'], ['baolong-dev', 'bao-long']
+]) {
+  test(`work branch ${source} is read as metadata for ${target}`, async () => {
+    const probe = fixture({ source, target });
+    await probe.execute();
+    assert.deepEqual(probe.fetched, []);
+    const pr = JSON.parse(probe.written.get('event.json')).pull_request;
+    assert.equal(pr.head.ref, source);
+    assert.equal(pr.base.ref, target);
+  });
+}
+
+test('trusted trigger covers every personal staging branch', () => {
+  assert.match(workflow, /branches: \[bao-long, ba-chien, trung-chien, dev, main\]/);
+});
