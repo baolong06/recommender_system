@@ -15,6 +15,7 @@ import duckdb
 from recommender.data.category_v2 import fit_category_mapping
 from recommender.data.neutral import normalize_dataset
 from recommender.data.protocol_v2 import build_splits
+from recommender.data.provenance_v2 import enrich_manifest
 
 EXPECTED = {
     "protocol_version": "P0-data-v2",
@@ -255,6 +256,7 @@ def run_dataset(dataset, raw_root, output_root, config_path, batch_size=500000):
         return value
 
     manifest = portable(manifest)
+    enrich_manifest(manifest, directory, Path(__file__).resolve().parents[1])
     (directory / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     print(f"{dataset}: verified {checks['neutral_rows']:,} neutral events", flush=True)
     return manifest

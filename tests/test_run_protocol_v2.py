@@ -56,6 +56,12 @@ def test_cli_end_to_end_keeps_duplicate_events_and_emits_portable_verified_manif
         path = output / "yoochoose" / f["path"]
         assert path.stat().st_size == f["bytes"]
         assert hashlib.sha256(path.read_bytes()).hexdigest() == f["sha256"]
+    assert manifest["runtime_environment"]["packages"]["duckdb"]
+    assert set(manifest["dependency_locks_sha256"]) == {
+        "requirements-dev.txt",
+        "requirements-audit.txt",
+    }
+    assert all(f["rows"] >= 0 and f["schema"] for f in manifest["files"])
     neutral = pq.read_table(output / "yoochoose/neutral.parquet")
     assert neutral.num_rows == 111
     with pytest.raises(FileExistsError, match="preserve"):
