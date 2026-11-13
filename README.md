@@ -1,91 +1,84 @@
-# bao-long — Cat-Popularity và đánh giá warm/cold P0 v2
+# Recommender System — nền nghiên cứu P0 v2
 
-Phần Bảo Long dùng nguyên bộ bàn giao của Bá Chiến và Trung Chiến, triển khai công cụ
-đánh giá theo nhóm cùng Cat-Popularity oracle/non-oracle. Làm việc trên `bao-long`,
-review qua PR vào `dev`; việc phê duyệt báo cáo và đưa lên `main` vẫn tách riêng.
+Repository dùng chung cho ba đề tài của Bá Chiến, Trung Chiến và Bảo Long:
+chuẩn bị dữ liệu/metric, split cold-start và baseline, đánh giá category theo nhóm warm/cold.
+Nhánh `dev` tích hợp kết quả để nhóm review; quy trình đưa lên `main` vẫn theo hồ sơ nghiên cứu.
 
-## Kết quả và tài liệu
+## Thành phần và tài liệu
 
-- [Báo cáo nghiên cứu](docs/category/v2/RESULTS.md): điểm từng nhóm, mean/std, coverage,
-  chênh lệch trên cùng tập mẫu và giới hạn diễn giải.
-- [Hợp đồng và hướng dẫn bàn giao](docs/category/HANDOFF.md).
-- [Kết quả từng lượt](docs/category/v2/runs.csv), [tổng hợp](docs/category/v2/summary.json),
-  [so sánh paired](docs/category/v2/paired_differences.json), [manifest](docs/category/v2/manifest.json).
-- [Công thức chốt trước khi chạy](docs/plans/2026-11-13-bao-long-category-design.md)
-  và [config thực nghiệm](configs/category_v2.toml).
-- [Bộ split cố định của Trung Chiến](docs/splits/HANDOFF.md).
+| Phần | Nội dung | Tài liệu |
+| --- | --- | --- |
+| Bá Chiến | Chuẩn hóa raw, thời gian mili giây, dữ liệu trung tính, lọc train-only và mapping category | [P0 data v2](docs/data/PROTOCOL_V2.md) |
+| Trung Chiến | Xác minh split/cold 20%, Random/Popularity, ba seed và bộ tải split | [Bàn giao split/baseline](docs/splits/HANDOFF.md) |
+| Bảo Long | Group-wise, Cat-Popularity oracle/non-oracle, so sánh trên cùng mẫu | [Bàn giao category](docs/category/HANDOFF.md) |
 
-## Cài và chạy lại
+Kết quả thật, config, input/source hashes và mean/sample std nằm ở:
 
-Git, Python 3.12, Node.js 24+ để kiểm tra workflow; không cần GPU.
+- [Bảng Random/Popularity](docs/splits/v2/RESULTS.md).
+- [Bảng Cat-Popularity và warm/cold](docs/category/v2/RESULTS.md).
+- [Hướng dẫn chi tiết phần Bảo Long](docs/category/README_BAO_LONG.md).
+- [Luồng nhánh](docs/plans/2026-11-12-work-branches.md) và [hồ sơ nghiên cứu](docs/research-readiness.json).
+
+## Cài môi trường
+
+Git, Python 3.12; Node.js 24+ để kiểm tra workflow. Các baseline hiện tại không cần GPU.
 
 ```powershell
-git clone --branch bao-long https://github.com/baolong06/recommender_system.git
+git clone --branch dev https://github.com/baolong06/recommender_system.git
 cd recommender_system
 py -3.12 -m venv .venv
 .venv\Scripts\python.exe -m pip install --require-hashes --only-binary=:all: -r requirements-dev.txt
 .venv\Scripts\python.exe -m pip install --no-build-isolation --no-deps -e .
+```
+
+Linux/macOS dùng `.venv/bin/python`. Dependency được khóa phiên bản và SHA-256;
+đọc `docs/security.md` khi cần cập nhật môi trường.
+
+## Tải đúng split và chạy lại thực nghiệm
+
+```powershell
 .venv\Scripts\python.exe scripts/download_splits_v2.py
+.venv\Scripts\python.exe scripts/run_baselines_v2.py --output-dir artifacts/my-baselines-v2 --reference-root docs/data/protocol_v2
 .venv\Scripts\python.exe scripts/download_raw.py --dataset diginetica --cache-dir artifacts/kagglehub
 .venv\Scripts\python.exe scripts/run_category_v2.py --output-dir artifacts/my-category-v2
 ```
 
-Linux/macOS thay interpreter bằng `.venv/bin/python`. Chọn `--dataset yoochoose` hoặc
-`diginetica` để chạy một bộ. Raw catalog Diginetica được dùng để kiểm chứng mapping;
-runner không chạy lại split và không dùng raw holdout làm thống kê fit. Yoochoose chỉ
-cần final train để tái dựng mapping. Dùng output-directory mới, không ghi đè kết quả cũ.
-Dataset exact hash phải khớp bảng Trung Chiến; nếu tự dựng lại với encoding khác cần
-lập bản tham chiếu mới, không sửa checksum để bỏ qua xác minh.
+Bộ tải xác minh ZIP và từng payload, lưu vào `data/protocol_v2/<dataset>/`.
+Catalog raw Diginetica dùng để kiểm chứng category mapping; Yoochoose mapping chỉ suy
+ra từ final train. Chọn `--dataset` để chạy riêng một dataset. Mỗi lần chạy dùng
+output-directory mới. Dữ liệu lớn nằm ở Release; repo giữ code/config/báo cáo và manifest.
 
-Kiểm chứng độc lập các dòng Cat-Popularity và Popularity trên matched cohorts:
+Nếu cần tạo lại dữ liệu từ raw:
 
 ```powershell
-.venv\Scripts\python.exe scripts/verify_category_results.py --input-root data/protocol_v2 --runs artifacts/my-category-v2/runs.json --output artifacts/my-category-v2-independent.json
+.venv\Scripts\python.exe scripts/download_raw.py --cache-dir artifacts/kagglehub
+.venv\Scripts\python.exe scripts/run_protocol_v2.py --dataset all
 ```
 
-## Thuật toán và thông tin được phép
+Định dạng Parquet có thể khác byte khi dựng lại trên môi trường khác. Bản category
+chính yêu cầu exact split manifest đã bàn giao bởi Trung Chiến; không sửa checksum
+để dùng lẫn phiên bản. Bộ legacy trong `data/processed` được giữ để đối chiếu,
+không phải input của thực nghiệm v2 này.
 
-| Chế độ | Chọn category | Ranking |
-| --- | --- | --- |
-| Non-oracle | Category biết được xuất hiện nhiều nhất trong prefix; hòa chọn lần xuất hiện cuối | Item cùng category trước, rồi số event final train giảm dần, ID chuỗi tăng dần |
-| Oracle | Được biết category target từ mapping được phép, không truyền target ID | Cùng luật ranking; đây là điều kiện đặc quyền |
+## Quy ước đánh giá và trạng thái
 
-Không có category prefix thì non-oracle fallback Popularity. Oracle thiếu category
-thì N/A. Cả hai giữ cùng candidates W∪C, giữ item đã xem, cùng K=20, cùng metric và
-ba split seed 42/43/44. Random chạy thêm ba model seed trong mỗi split; mô hình xác
-định có model_seed trống. Không refit trên validation/test hoặc chọn seed từ kết quả test.
+- Giữ cold 20% theo U0, seeds 42/43/44, temporal windows và train-only filtering của v2.
+- Dùng cùng split/candidates W∪C, giữ item đã xem và K=20 cho các model.
+- Random có ba model seed trong mỗi split; mô hình xác định có model_seed trống.
+- Oracle biết category target và được ghi là điều kiện đặc quyền. Non-oracle chỉ dùng prefix.
+- Yoochoose cold category là N/A khi chưa có catalog độc lập. Mẫu không được hỗ trợ
+  phải có lý do/coverage; chỉ so metric trên cùng cohort.
+- Mean/std của Random được tính qua model seed trong split, rồi qua ba split mean;
+  không coi chín lượt Random là chín split độc lập.
+- Yoochoose có tập test nhỏ; Diginetica primary coverage khoảng 76,3% và dùng giả định
+  catalog tĩnh. Xem giới hạn đầy đủ trong báo cáo trước khi diễn giải.
 
-Yoochoose chỉ suy category thật 1..12 từ final train. Cold không có catalog độc lập nên
-Cat-Popularity cold primary là N/A. Diginetica dùng catalog tĩnh với giả định metadata
-có sẵn lúc inference; chưa có chứng minh thời điểm catalog được công bố trong lịch sử.
+Phần code/thực nghiệm đã có kết quả và kiểm chứng; hồ sơ vẫn `in_progress`.
+Thống kê/biểu đồ phân phối theo dữ liệu v2 cần bổ sung vào bộ bàn giao chung;
+nhóm/giảng viên còn cần review công thức, protocol và báo cáo. Việc tích hợp vào dev
+không tự đánh dấu protocol approved hoặc nghiên cứu hoàn tất.
 
-Công thức không thêm pseudo-count hoặc vector cho cold item. Biết category không bảo
-đảm rank cao: trong category, cold có số đếm bằng 0 và đứng sau item warm có count dương.
-Oracle cũng không phải bảo đảm upper bound accuracy cho công thức ranking cố định này.
-
-## Đọc đúng bảng kết quả
-
-- Nhóm dựa vào **target**, không dựa vào history. Overall lấy trung bình theo mẫu.
-- `n_eligible` là target thuộc primary candidates, `n` là mẫu mô hình thực sự hỗ trợ.
-  `support_fraction=n/n_eligible`; nhóm thiếu mẫu có `status=partial`; n=0 có metric null/N/A.
-- Các target ngoài candidates vẫn được báo trong split coverage và giữ vị trí OOV trong prefix.
-- So sánh category với Random/Popularity ở cùng `cohort` (`oracle-supported` hoặc
-  `non-oracle-supported`). Không so điểm partial với baseline trên full-primary.
-- Mean/std của Random được tính qua model seed trong split, sau đó qua ba split mean;
-  sample std dùng ddof=1. Chênh lệch paired chỉ mô tả, không phải kiểm định ý nghĩa thống kê.
-- Giữ số thấp, 0 và N/A. Không khuyến nghị mô hình từ kết quả P0; báo cáo mô tả hiện tượng.
-
-## File triển khai và kiểm thử
-
-| File | Vai trò |
-| --- | --- |
-| `src/recommender/evaluation.py` | GroupMetrics streaming và giao diện evaluate_groups cũ |
-| `src/recommender/category.py` | Hai giao diện dự đoán tách ranh giới oracle |
-| `src/recommender/category_metadata.py` | Tái dựng mapping từ nguồn được phép |
-| `src/recommender/category_evaluation.py` | Chấm nhóm, matched cohorts và chênh lệch paired |
-| `scripts/run_category_v2.py` | Xác minh input, chạy bốn baseline và xuất provenance |
-| `scripts/verify_category_results.py` | Tính độc lập bằng SQL counts + analytical rank |
-| `tests/test_category.py` | Test tính tay, chống đọc target, missing metadata, N/A và tái lập |
+## Kiểm tra và luồng làm việc
 
 ```powershell
 .venv\Scripts\python.exe -m ruff check .
@@ -95,7 +88,7 @@ Oracle cũng không phải bảo đảm upper bound accuracy cho công thức ra
 node --test .github/tests/trusted-policy.test.cjs
 ```
 
-Dữ liệu lớn giữ ở Release của Trung Chiến; repo lưu code/config/báo cáo nhỏ. Gia cố CI
-đã tích hợp cùng nền chung, không thay thế nhiệm vụ nghiên cứu. Xem `docs/security.md`
-về activation của trusted workflow trên main. Không tắt required checks hoặc tự duyệt
-báo cáo để đưa research-readiness thành complete.
+Ba nhánh cá nhân `ba-chien`, `trung-chien`, `bao-long` gửi PR vào `dev`.
+Chỉ `dev` gửi PR vào `main` sau khi đáp ứng điều kiện nghiên cứu/review.
+Không force-push để đồng bộ, không tắt required checks. Hướng dẫn cá nhân được giữ
+trong tài liệu riêng; README trên nhánh tích hợp dùng làm trang đầu chung.
