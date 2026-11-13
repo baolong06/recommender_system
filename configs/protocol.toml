@@ -11,23 +11,24 @@ candidate_policy = "all fixture catalog items"
 tie_break = "item_id ascending"
 
 [research]
-status = "pending-team-agreement"
-open_decisions = [
-  "Item universe and rounding for cold item selection",
-  "Temporal/session split and filtering order",
-  "Candidate availability and treatment of previously seen items",
-  "Tie-breaking and oracle/non-oracle category sources",
-  "Fixed split or multiple shared split seeds; K values",
-]
+status = "approved"
+open_decisions = []
+item_universe = "U0 distinct items after train-only session-min2/item-support5 stabilization"
+cold_count_rounding = "ceil(0.20 * |U0|), selected by sha256(dataset:seed:item_id), then item_id"
+session_or_temporal_split = "UTC calendar windows; whole parent sessions stay in one window"
+filtering_order = "neutral validation -> temporal window -> train-only support/session stabilization -> cold intervention -> contiguous segmentation"
+candidate_policy = "final warm W union controlled cold C; keep previously seen items; report I0/out-of-candidate coverage"
+tie_break = "Popularity and category ranking use train event count descending, then item_id ascending; prefix category ties use latest occurrence"
+fixed_split_or_seeds = "split seeds 42,43,44; K=20; Random model seeds 42,43,44; no test tuning"
+oracle_non_oracle = "non-oracle uses observed prefix metadata; oracle receives allowed target category and is labelled privileged; unknown support is N/A"
 
 [data_pipeline]
 version = "P0-data-v2"
 config = "configs/data_v2.toml"
 status = "implementation-selected"
-# Research readiness still requires model results and review; this does not approve promotion.
+# Data execution is complete for this protocol version; evidence is tracked in research-readiness.json.
 
 [category_experiment]
 version = "P0-category-v2"
 config = "configs/category_v2.toml"
-status = "implementation-selected"
-# Execution evidence does not substitute for the team's protocol/report approval.
+status = "approved"
