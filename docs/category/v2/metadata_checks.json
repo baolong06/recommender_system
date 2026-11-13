@@ -1,0 +1,116 @@
+[
+  {
+    "seed": 42,
+    "metadata_policy": "static-catalog-known-at-inference-assumption",
+    "coverage": {
+      "warm": {
+        "items": 27642,
+        "known": 27642
+      },
+      "cold": {
+        "items": 6911,
+        "known": 6911
+      }
+    },
+    "allowed_source_reconstruction_equal": true,
+    "mapping_sha256": "9b75d9551430e5f0c741e4cc53225c07e8adb5ddb65ff5e3b100b4f9f27ba090",
+    "static_catalog_sha256": "9e9566e34548e5d1b8d05ed6dd0222fbb8a7b7b2a8a18cdf28c1a4eba8f9e42c",
+    "historical_catalog_availability_verified": false,
+    "dataset": "diginetica"
+  },
+  {
+    "seed": 43,
+    "metadata_policy": "static-catalog-known-at-inference-assumption",
+    "coverage": {
+      "warm": {
+        "items": 27639,
+        "known": 27639
+      },
+      "cold": {
+        "items": 6911,
+        "known": 6911
+      }
+    },
+    "allowed_source_reconstruction_equal": true,
+    "mapping_sha256": "d416b4c661f52afb0505261a41b931637daeba16a3259850ce06632bd8b33840",
+    "static_catalog_sha256": "9e9566e34548e5d1b8d05ed6dd0222fbb8a7b7b2a8a18cdf28c1a4eba8f9e42c",
+    "historical_catalog_availability_verified": false,
+    "dataset": "diginetica"
+  },
+  {
+    "seed": 44,
+    "metadata_policy": "static-catalog-known-at-inference-assumption",
+    "coverage": {
+      "warm": {
+        "items": 27641,
+        "known": 27641
+      },
+      "cold": {
+        "items": 6911,
+        "known": 6911
+      }
+    },
+    "allowed_source_reconstruction_equal": true,
+    "mapping_sha256": "10c9acb8e0b9352e0848eb72ecce2d323177b3d371dfdf2c4d3c76805657356b",
+    "static_catalog_sha256": "9e9566e34548e5d1b8d05ed6dd0222fbb8a7b7b2a8a18cdf28c1a4eba8f9e42c",
+    "historical_catalog_availability_verified": false,
+    "dataset": "diginetica"
+  },
+  {
+    "seed": 42,
+    "metadata_policy": "final-train-only-genuine-context",
+    "coverage": {
+      "warm": {
+        "items": 29493,
+        "known": 26280
+      },
+      "cold": {
+        "items": 7375,
+        "known": 0
+      }
+    },
+    "allowed_source_reconstruction_equal": true,
+    "mapping_sha256": "b67582002a171bb15e7ad56b6af8f3d3e9a43ce34f1de9af2b21fd066aeb3d85",
+    "static_catalog_sha256": null,
+    "historical_catalog_availability_verified": false,
+    "dataset": "yoochoose"
+  },
+  {
+    "seed": 43,
+    "metadata_policy": "final-train-only-genuine-context",
+    "coverage": {
+      "warm": {
+        "items": 29497,
+        "known": 26314
+      },
+      "cold": {
+        "items": 7375,
+        "known": 0
+      }
+    },
+    "allowed_source_reconstruction_equal": true,
+    "mapping_sha256": "bb8af2c26f44f3f70d9b7a274a5c4aa4a8226436a9af452253112500309c9367",
+    "static_catalog_sha256": null,
+    "historical_catalog_availability_verified": false,
+    "dataset": "yoochoose"
+  },
+  {
+    "seed": 44,
+    "metadata_policy": "final-train-only-genuine-context",
+    "coverage": {
+      "warm": {
+        "items": 29496,
+        "known": 26272
+      },
+      "cold": {
+        "items": 7375,
+        "known": 0
+      }
+    },
+    "allowed_source_reconstruction_equal": true,
+    "mapping_sha256": "b449a39d9cb9544eaa66f1192625e739b73b123452d681a90e7af0509ab468dc",
+    "static_catalog_sha256": null,
+    "historical_catalog_availability_verified": false,
+    "dataset": "yoochoose"
+  }
+]

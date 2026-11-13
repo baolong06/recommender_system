@@ -1,0 +1,2306 @@
+[
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Random",
+    "group": "overall",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 40482,
+        "hr": 0.28082439932150915,
+        "mrr": 0.06986851728865394,
+        "ndcg": 0.11528889973933205
+      },
+      {
+        "split_seed": 43,
+        "n": 40483,
+        "hr": 0.2855025566287084,
+        "mrr": 0.07292828489066157,
+        "ndcg": 0.11862124077931252
+      },
+      {
+        "split_seed": 44,
+        "n": 40483,
+        "hr": 0.28154204645571396,
+        "mrr": 0.07207119889696746,
+        "ndcg": 0.11724663891969028
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.28262300080197716,
+        "sample_std": 0.0025194514624724104,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.07162266702542766,
+        "sample_std": 0.0015784264551806427,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.11705225981277828,
+        "sample_std": 0.0016746526892425942,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Popularity",
+    "group": "overall",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 40482,
+        "hr": 0.27214564497801497,
+        "mrr": 0.06787185144575662,
+        "ndcg": 0.11183401630625321
+      },
+      {
+        "split_seed": 43,
+        "n": 40483,
+        "hr": 0.2774250920139318,
+        "mrr": 0.07135280376397908,
+        "ndcg": 0.11565666971073565
+      },
+      {
+        "split_seed": 44,
+        "n": 40483,
+        "hr": 0.2714472741644641,
+        "mrr": 0.07024805023303198,
+        "ndcg": 0.11364607807179784
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.2736726703854703,
+        "sample_std": 0.0032683989209724867,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.06982423514758923,
+        "sample_std": 0.0017787556550637328,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.11371225469626224,
+        "sample_std": 0.0019121857315437297,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Random",
+    "group": "warm",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 32403,
+        "hr": 0.3449371971731013,
+        "mrr": 0.08662907185944166,
+        "ndcg": 0.14228720775090412
+      },
+      {
+        "split_seed": 43,
+        "n": 32836,
+        "hr": 0.34422584967718356,
+        "mrr": 0.08885186615562987,
+        "ndcg": 0.1437934149586991
+      },
+      {
+        "split_seed": 44,
+        "n": 32179,
+        "hr": 0.34605384463987904,
+        "mrr": 0.08950955826106974,
+        "ndcg": 0.1448964533845104
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.34507229716338794,
+        "sample_std": 0.0009214555884260543,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.08833016542538043,
+        "sample_std": 0.0015094466590271339,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.14365902536470454,
+        "sample_std": 0.0013098038465182058,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Popularity",
+    "group": "warm",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 32403,
+        "hr": 0.333950560133321,
+        "mrr": 0.08411814544135303,
+        "ndcg": 0.13792866284047284
+      },
+      {
+        "split_seed": 43,
+        "n": 32836,
+        "hr": 0.33417590449506634,
+        "mrr": 0.0868868877015902,
+        "ndcg": 0.14010124954867315
+      },
+      {
+        "split_seed": 44,
+        "n": 32179,
+        "hr": 0.33322974610771,
+        "mrr": 0.08716560400265036,
+        "ndcg": 0.1403001251410206
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.3337854035786991,
+        "sample_std": 0.0004942281245964393,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.0860568790485312,
+        "sample_std": 0.0016847660650133936,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.13944334584338886,
+        "sample_std": 0.001315517512160109,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Random",
+    "group": "cold",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 8079,
+        "hr": 0.023682799026282134,
+        "mrr": 0.0026458103005075105,
+        "ndcg": 0.007004932107325948
+      },
+      {
+        "split_seed": 43,
+        "n": 7647,
+        "hr": 0.03334641035700274,
+        "mrr": 0.0045528808869346755,
+        "ndcg": 0.010532642459140994
+      },
+      {
+        "split_seed": 44,
+        "n": 8304,
+        "hr": 0.031551059730250484,
+        "mrr": 0.004495456365964714,
+        "ndcg": 0.010100278170236272
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.029526756371178454,
+        "sample_std": 0.005140009635688503,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.003898049184468967,
+        "sample_std": 0.001084850708983007,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.009212617578901072,
+        "sample_std": 0.0019240948717859337,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Popularity",
+    "group": "cold",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 8079,
+        "hr": 0.0242604282708256,
+        "mrr": 0.0027117246553975648,
+        "ndcg": 0.007174425806398457
+      },
+      {
+        "split_seed": 43,
+        "n": 7647,
+        "hr": 0.03373872106708513,
+        "mrr": 0.004649890180168555,
+        "ndcg": 0.010692340750551345
+      },
+      {
+        "split_seed": 44,
+        "n": 8304,
+        "hr": 0.03203275529865125,
+        "mrr": 0.004690492098091005,
+        "ndcg": 0.010358435894469033
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.030010634878853994,
+        "sample_std": 0.005052349634281767,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.0040173689778857085,
+        "sample_std": 0.001130903378529257,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.009408400817139612,
+        "sample_std": 0.0019418692990751964,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Random",
+    "group": "overall",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 40482,
+        "hr": 0.3681224577178334,
+        "mrr": 0.1001708121857695,
+        "ndcg": 0.15815731552788503
+      },
+      {
+        "split_seed": 43,
+        "n": 40483,
+        "hr": 0.3746263863844083,
+        "mrr": 0.10469626204800186,
+        "ndcg": 0.16303891468846088
+      },
+      {
+        "split_seed": 44,
+        "n": 40483,
+        "hr": 0.3691837726123723,
+        "mrr": 0.10278735281314262,
+        "ndcg": 0.16051880756991618
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.370644205571538,
+        "sample_std": 0.0034892578503367797,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.10255147568230466,
+        "sample_std": 0.0022719270739911535,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.16057167926208737,
+        "sample_std": 0.0024412290251036427,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Popularity",
+    "group": "overall",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 40482,
+        "hr": 0.3594437033743392,
+        "mrr": 0.09817414634287218,
+        "ndcg": 0.1547024320948062
+      },
+      {
+        "split_seed": 43,
+        "n": 40483,
+        "hr": 0.3665489217696317,
+        "mrr": 0.10312078092131938,
+        "ndcg": 0.160074343619884
+      },
+      {
+        "split_seed": 44,
+        "n": 40483,
+        "hr": 0.35908900032112245,
+        "mrr": 0.10096420414920713,
+        "ndcg": 0.15691824672202376
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.3616938751550311,
+        "sample_std": 0.004208332423472378,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.10075304380446623,
+        "sample_std": 0.0024800685336429104,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.15723167414557132,
+        "sample_std": 0.0026996362571075623,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Random",
+    "group": "warm",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 32403,
+        "hr": 0.44785976607104283,
+        "mrr": 0.12318215735917395,
+        "ndcg": 0.19350451916423753
+      },
+      {
+        "split_seed": 43,
+        "n": 32836,
+        "hr": 0.4480143744670484,
+        "mrr": 0.12673490472017074,
+        "ndcg": 0.19623721466682728
+      },
+      {
+        "split_seed": 44,
+        "n": 32179,
+        "hr": 0.4493199498637828,
+        "mrr": 0.1267347661304018,
+        "ndcg": 0.19673004738478092
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.448398030133958,
+        "sample_std": 0.0008021395952133482,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.12555060940324883,
+        "sample_std": 0.002051139638984539,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.19549059373861524,
+        "sample_std": 0.001737552929614984,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Popularity",
+    "group": "warm",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 32403,
+        "hr": 0.4368731290312625,
+        "mrr": 0.12067123094108533,
+        "ndcg": 0.18914597425380625
+      },
+      {
+        "split_seed": 43,
+        "n": 32836,
+        "hr": 0.4379644292849312,
+        "mrr": 0.12476992626613106,
+        "ndcg": 0.19254504925680133
+      },
+      {
+        "split_seed": 44,
+        "n": 32179,
+        "hr": 0.4364958513316138,
+        "mrr": 0.12439081187198242,
+        "ndcg": 0.19213371914129113
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.43711113654926914,
+        "sample_std": 0.0007626702991550405,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.1232773230263996,
+        "sample_std": 0.002264888275128812,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.19127491421729956,
+        "sample_std": 0.0018551515145940527,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Random",
+    "group": "cold",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 8079,
+        "hr": 0.048314560382885674,
+        "mrr": 0.007877630151627641,
+        "ndcg": 0.0163878589826758
+      },
+      {
+        "split_seed": 43,
+        "n": 7647,
+        "hr": 0.05950045769582843,
+        "mrr": 0.010062958689385398,
+        "ndcg": 0.020486360995552556
+      },
+      {
+        "split_seed": 44,
+        "n": 8304,
+        "hr": 0.058646435452793834,
+        "mrr": 0.00998824236804592,
+        "ndcg": 0.02019589258887536
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.05548715117716931,
+        "sample_std": 0.006226305688334074,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.009309610403019654,
+        "sample_std": 0.0012406938431584053,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.01902337085570124,
+        "sample_std": 0.0022870363133240673,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Popularity",
+    "group": "cold",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 8079,
+        "hr": 0.04889218962742914,
+        "mrr": 0.007943544506517696,
+        "ndcg": 0.016557352681748308
+      },
+      {
+        "split_seed": 43,
+        "n": 7647,
+        "hr": 0.05989276840591082,
+        "mrr": 0.010159967982619278,
+        "ndcg": 0.020646059286962906
+      },
+      {
+        "split_seed": 44,
+        "n": 8304,
+        "hr": 0.0591281310211946,
+        "mrr": 0.010183278100172211,
+        "ndcg": 0.02045405031310812
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.05597102968484485,
+        "sample_std": 0.006142365179748058,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.009428930196436395,
+        "sample_std": 0.0012864345402143554,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.01921915409393978,
+        "sample_std": 0.0023071859331160486,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Random",
+    "group": "overall",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 54399,
+        "hr": 0.2655992450841621,
+        "mrr": 0.06924294381376914,
+        "ndcg": 0.11157930484060648
+      },
+      {
+        "split_seed": 43,
+        "n": 54397,
+        "hr": 0.27599561250314053,
+        "mrr": 0.07110598552250398,
+        "ndcg": 0.1152901685460503
+      },
+      {
+        "split_seed": 44,
+        "n": 54399,
+        "hr": 0.27427587516927393,
+        "mrr": 0.07124114572350097,
+        "ndcg": 0.11510651205254509
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.2719569109188589,
+        "sample_std": 0.005572639435099528,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.0705300250199247,
+        "sample_std": 0.0011166918077126409,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.11399199514640063,
+        "sample_std": 0.0020914679798305397,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Popularity",
+    "group": "overall",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 54399,
+        "hr": 0.25824004117722754,
+        "mrr": 0.06732061722162384,
+        "ndcg": 0.10845070958626779
+      },
+      {
+        "split_seed": 43,
+        "n": 54397,
+        "hr": 0.26856260455539827,
+        "mrr": 0.06919737741865717,
+        "ndcg": 0.11219292680663995
+      },
+      {
+        "split_seed": 44,
+        "n": 54399,
+        "hr": 0.2653725252302432,
+        "mrr": 0.0691446588750763,
+        "ndcg": 0.11154045969309334
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.26405839032095635,
+        "sample_std": 0.00528526646385427,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.06855421783845243,
+        "sample_std": 0.0010686546086501653,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.11072803202866703,
+        "sample_std": 0.001999018875237644,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Random",
+    "group": "warm",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 43184,
+        "hr": 0.32823885389650487,
+        "mrr": 0.08642323994762881,
+        "ndcg": 0.13860419623822404
+      },
+      {
+        "split_seed": 43,
+        "n": 44040,
+        "hr": 0.3348471086890705,
+        "mrr": 0.08698131541418506,
+        "ndcg": 0.1404913187527157
+      },
+      {
+        "split_seed": 44,
+        "n": 43448,
+        "hr": 0.3361719756950838,
+        "mrr": 0.08816762079918496,
+        "ndcg": 0.14180299203382668
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.3330859794268864,
+        "sample_std": 0.004249680879355873,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.08719072538699961,
+        "sample_std": 0.000890845408224446,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.1402995023415888,
+        "sample_std": 0.0016080014885485924,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Popularity",
+    "group": "warm",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 43184,
+        "hr": 0.3188680992960356,
+        "mrr": 0.08398414634196895,
+        "ndcg": 0.1346276286815015
+      },
+      {
+        "split_seed": 43,
+        "n": 44040,
+        "hr": 0.32556766575840146,
+        "mrr": 0.08461077963966178,
+        "ndcg": 0.1366343824807018
+      },
+      {
+        "split_seed": 44,
+        "n": 43448,
+        "hr": 0.32489412631191306,
+        "mrr": 0.08551022315675966,
+        "ndcg": 0.1372846120821331
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.32310996378878337,
+        "sample_std": 0.0036889666070079445,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.08470171637946346,
+        "sample_std": 0.0007670917345042623,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.13618220774811213,
+        "sample_std": 0.0013850042199944337,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Random",
+    "group": "cold",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 11215,
+        "hr": 0.02440184277009957,
+        "mrr": 0.003089229302436135,
+        "ndcg": 0.007518412275762222
+      },
+      {
+        "split_seed": 43,
+        "n": 10357,
+        "hr": 0.0257474815744585,
+        "mrr": 0.003600962018628577,
+        "ndcg": 0.008129923774247129
+      },
+      {
+        "split_seed": 44,
+        "n": 10951,
+        "hr": 0.028703619151980032,
+        "mrr": 0.004085498833872055,
+        "ndcg": 0.009188453224424808
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.026284314498846034,
+        "sample_std": 0.0022005595200893777,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.0035918967183122554,
+        "sample_std": 0.0004981966274165809,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.00827892975814472,
+        "sample_std": 0.000844932707368122,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Popularity",
+    "group": "cold",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 11215,
+        "hr": 0.024788230049041463,
+        "mrr": 0.003156743701072193,
+        "ndcg": 0.00765498295152999
+      },
+      {
+        "split_seed": 43,
+        "n": 10357,
+        "hr": 0.02616587815004345,
+        "mrr": 0.00365656117717362,
+        "ndcg": 0.008263052529754207
+      },
+      {
+        "split_seed": 44,
+        "n": 10951,
+        "hr": 0.02922107570084924,
+        "mrr": 0.004214420822790006,
+        "ndcg": 0.009400752543150636
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.02672506129997805,
+        "sample_std": 0.0022687098733786704,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.00367590856701194,
+        "sample_std": 0.0005291039260594145,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.008439596008144944,
+        "sample_std": 0.0008861735533057589,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Random",
+    "group": "overall",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 54399,
+        "hr": 0.3537074823679357,
+        "mrr": 0.09998275698753673,
+        "ndcg": 0.15495232971096223
+      },
+      {
+        "split_seed": 43,
+        "n": 54397,
+        "hr": 0.36491595737510035,
+        "mrr": 0.10275390473590053,
+        "ndcg": 0.15957293450369475
+      },
+      {
+        "split_seed": 44,
+        "n": 54399,
+        "hr": 0.3616855702004326,
+        "mrr": 0.10197916073973733,
+        "ndcg": 0.15831148038950202
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.3601030033144896,
+        "sample_std": 0.005769390475424707,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.1015719408210582,
+        "sample_std": 0.0014297503304571129,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.15761224820138633,
+        "sample_std": 0.0023883449085775835,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Popularity",
+    "group": "overall",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 54399,
+        "hr": 0.34634827846100114,
+        "mrr": 0.09806043039539143,
+        "ndcg": 0.15182373445662356
+      },
+      {
+        "split_seed": 43,
+        "n": 54397,
+        "hr": 0.3574829494273581,
+        "mrr": 0.10084529663205372,
+        "ndcg": 0.15647569276428439
+      },
+      {
+        "split_seed": 44,
+        "n": 54399,
+        "hr": 0.3527822202614019,
+        "mrr": 0.09988267389131265,
+        "ndcg": 0.15474542803005026
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.35220448271658705,
+        "sample_std": 0.005589772793707686,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.09959613363958593,
+        "sample_std": 0.0014143722904243058,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.15434828508365273,
+        "sample_std": 0.002351270064020427,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Random",
+    "group": "warm",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 43184,
+        "hr": 0.4332314437445967,
+        "mrr": 0.12398494155439392,
+        "ndcg": 0.19103421827828254
+      },
+      {
+        "split_seed": 43,
+        "n": 44040,
+        "hr": 0.4385937026945201,
+        "mrr": 0.12470837327543986,
+        "ndcg": 0.19282447699432195
+      },
+      {
+        "split_seed": 44,
+        "n": 43448,
+        "hr": 0.4382019885840545,
+        "mrr": 0.12522743500301747,
+        "ndcg": 0.1932052057061683
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.43667571167439045,
+        "sample_std": 0.0029892467554952064,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.12464024994428376,
+        "sample_std": 0.0006240417323015872,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.19235463365959093,
+        "sample_std": 0.0011592502630592275,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Popularity",
+    "group": "warm",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 43184,
+        "hr": 0.42386068914412744,
+        "mrr": 0.12154584794873406,
+        "ndcg": 0.18705765072156
+      },
+      {
+        "split_seed": 43,
+        "n": 44040,
+        "hr": 0.429314259763851,
+        "mrr": 0.12233783750091658,
+        "ndcg": 0.18896754072230806
+      },
+      {
+        "split_seed": 44,
+        "n": 43448,
+        "hr": 0.4269241392008838,
+        "mrr": 0.12257003736059216,
+        "ndcg": 0.18868682575447474
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.42669969603628743,
+        "sample_std": 0.0027337042957640014,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.1221512409367476,
+        "sample_std": 0.0005369866815483505,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.18823733906611426,
+        "sample_std": 0.001031236474335207,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Random",
+    "group": "cold",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 11215,
+        "hr": 0.04749591321147273,
+        "mrr": 0.0075609702434299,
+        "ndcg": 0.016016950674746278
+      },
+      {
+        "split_seed": 43,
+        "n": 10357,
+        "hr": 0.05162370055678929,
+        "mrr": 0.009399188651965911,
+        "ndcg": 0.01818083917809843
+      },
+      {
+        "split_seed": 44,
+        "n": 10951,
+        "hr": 0.05810732657595958,
+        "mrr": 0.009741828971772639,
+        "ndcg": 0.01987091993305829
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.05240898011474053,
+        "sample_std": 0.0053491140748823645,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.008900662622389484,
+        "sample_std": 0.0011727882800706638,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.018022903261967666,
+        "sample_std": 0.0019318326988138903,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Popularity",
+    "group": "cold",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 11215,
+        "hr": 0.04788230049041462,
+        "mrr": 0.007628484642065958,
+        "ndcg": 0.016153521350514045
+      },
+      {
+        "split_seed": 43,
+        "n": 10357,
+        "hr": 0.05204209713237424,
+        "mrr": 0.009454787810510954,
+        "ndcg": 0.018313967933605506
+      },
+      {
+        "split_seed": 44,
+        "n": 10951,
+        "hr": 0.058624783124828786,
+        "mrr": 0.00987075096069059,
+        "ndcg": 0.02008321925178412
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.05284972691587255,
+        "sample_std": 0.005416588657824002,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.008984674471089167,
+        "sample_std": 0.0011927675694938823,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.018183569511967892,
+        "sample_std": 0.0019680915146623123,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Random",
+    "group": "overall",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 43415,
+        "hr": 0.027271680294828977,
+        "mrr": 0.005430487996804735,
+        "ndcg": 0.0101086450027793
+      },
+      {
+        "split_seed": 43,
+        "n": 44734,
+        "hr": 0.034358653373273124,
+        "mrr": 0.007044610121876549,
+        "ndcg": 0.01280737666630863
+      },
+      {
+        "split_seed": 44,
+        "n": 45019,
+        "hr": 0.0378358767039102,
+        "mrr": 0.007394677798739873,
+        "ndcg": 0.01386812108001038
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.03315540345733743,
+        "sample_std": 0.005383903715015767,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.0066232586391403855,
+        "sample_std": 0.0010476942294913496,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.012261380916366103,
+        "sample_std": 0.001938297864889365,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Popularity",
+    "group": "overall",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 43415,
+        "hr": 0.020499827248646782,
+        "mrr": 0.004676636398977199,
+        "ndcg": 0.008148288768852915
+      },
+      {
+        "split_seed": 43,
+        "n": 44734,
+        "hr": 0.028233558367237448,
+        "mrr": 0.0056384771685136365,
+        "ndcg": 0.010366210980648043
+      },
+      {
+        "split_seed": 44,
+        "n": 45019,
+        "hr": 0.029898487305359957,
+        "mrr": 0.006088965832648491,
+        "ndcg": 0.01116642650019115
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.026210624307081397,
+        "sample_std": 0.005015266630421409,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.005468026466713109,
+        "sample_std": 0.000721428228316433,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.009893642083230703,
+        "sample_std": 0.00156357918361577,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Random",
+    "group": "warm",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 43415,
+        "hr": 0.027271680294828977,
+        "mrr": 0.005430487996804735,
+        "ndcg": 0.0101086450027793
+      },
+      {
+        "split_seed": 43,
+        "n": 44734,
+        "hr": 0.034358653373273124,
+        "mrr": 0.007044610121876549,
+        "ndcg": 0.01280737666630863
+      },
+      {
+        "split_seed": 44,
+        "n": 45019,
+        "hr": 0.0378358767039102,
+        "mrr": 0.007394677798739873,
+        "ndcg": 0.01386812108001038
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.03315540345733743,
+        "sample_std": 0.005383903715015767,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.0066232586391403855,
+        "sample_std": 0.0010476942294913496,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.012261380916366103,
+        "sample_std": 0.001938297864889365,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Popularity",
+    "group": "warm",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 43415,
+        "hr": 0.020499827248646782,
+        "mrr": 0.004676636398977199,
+        "ndcg": 0.008148288768852915
+      },
+      {
+        "split_seed": 43,
+        "n": 44734,
+        "hr": 0.028233558367237448,
+        "mrr": 0.0056384771685136365,
+        "ndcg": 0.010366210980648043
+      },
+      {
+        "split_seed": 44,
+        "n": 45019,
+        "hr": 0.029898487305359957,
+        "mrr": 0.006088965832648491,
+        "ndcg": 0.01116642650019115
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.026210624307081397,
+        "sample_std": 0.005015266630421409,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.005468026466713109,
+        "sample_std": 0.000721428228316433,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.009893642083230703,
+        "sample_std": 0.00156357918361577,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Random",
+    "group": "cold",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 43,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 44,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "mrr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "ndcg": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Popularity",
+    "group": "cold",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 43,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 44,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "mrr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "ndcg": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Random",
+    "group": "overall",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 39203,
+        "hr": 0.04366162453553725,
+        "mrr": 0.0086398170956308,
+        "ndcg": 0.01617083974095829
+      },
+      {
+        "split_seed": 43,
+        "n": 40820,
+        "hr": 0.054768904131961456,
+        "mrr": 0.010809011073849854,
+        "ndcg": 0.02012221447298533
+      },
+      {
+        "split_seed": 44,
+        "n": 41075,
+        "hr": 0.057804828565631974,
+        "mrr": 0.010934196965716297,
+        "ndcg": 0.020898503637426992
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.05207845241104356,
+        "sample_std": 0.007445565989645412,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.01012767504506565,
+        "sample_std": 0.0012900421834781055,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.01906385261712354,
+        "sample_std": 0.0025353104036687146,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Popularity",
+    "group": "overall",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 39203,
+        "hr": 0.03611968471800628,
+        "mrr": 0.007800861448593746,
+        "ndcg": 0.013987825619117315
+      },
+      {
+        "split_seed": 43,
+        "n": 40820,
+        "hr": 0.04882410583047525,
+        "mrr": 0.00930791975600659,
+        "ndcg": 0.01762447949978325
+      },
+      {
+        "split_seed": 44,
+        "n": 41075,
+        "hr": 0.04986001217285454,
+        "mrr": 0.009534830731459,
+        "ndcg": 0.018102660347946376
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.04493460090711202,
+        "sample_std": 0.007651492406927181,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.008881203978686445,
+        "sample_std": 0.0009424580279463442,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.016571655155615646,
+        "sample_std": 0.002250398972659824,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Random",
+    "group": "warm",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 39203,
+        "hr": 0.04366162453553725,
+        "mrr": 0.0086398170956308,
+        "ndcg": 0.01617083974095829
+      },
+      {
+        "split_seed": 43,
+        "n": 40820,
+        "hr": 0.054768904131961456,
+        "mrr": 0.010809011073849854,
+        "ndcg": 0.02012221447298533
+      },
+      {
+        "split_seed": 44,
+        "n": 41075,
+        "hr": 0.057804828565631974,
+        "mrr": 0.010934196965716297,
+        "ndcg": 0.020898503637426992
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.05207845241104356,
+        "sample_std": 0.007445565989645412,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.01012767504506565,
+        "sample_std": 0.0012900421834781055,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.01906385261712354,
+        "sample_std": 0.0025353104036687146,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Popularity",
+    "group": "warm",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 39203,
+        "hr": 0.03611968471800628,
+        "mrr": 0.007800861448593746,
+        "ndcg": 0.013987825619117315
+      },
+      {
+        "split_seed": 43,
+        "n": 40820,
+        "hr": 0.04882410583047525,
+        "mrr": 0.00930791975600659,
+        "ndcg": 0.01762447949978325
+      },
+      {
+        "split_seed": 44,
+        "n": 41075,
+        "hr": 0.04986001217285454,
+        "mrr": 0.009534830731459,
+        "ndcg": 0.018102660347946376
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.04493460090711202,
+        "sample_std": 0.007651492406927181,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.008881203978686445,
+        "sample_std": 0.0009424580279463442,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.016571655155615646,
+        "sample_std": 0.002250398972659824,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Random",
+    "group": "cold",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 43,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 44,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "mrr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "ndcg": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Popularity",
+    "group": "cold",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 43,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 44,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "mrr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "ndcg": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Random",
+    "group": "overall",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 1138,
+        "hr": 0.03866432337434095,
+        "mrr": 0.011767376075311349,
+        "ndcg": 0.017622477375383677
+      },
+      {
+        "split_seed": 43,
+        "n": 1142,
+        "hr": 0.046701692936368944,
+        "mrr": 0.010264868016734546,
+        "ndcg": 0.018095090777934145
+      },
+      {
+        "split_seed": 44,
+        "n": 1221,
+        "hr": 0.04722904722904723,
+        "mrr": 0.012168296259205343,
+        "ndcg": 0.019648694688829325
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.04419835451325237,
+        "sample_std": 0.004799859489853064,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.011400180117083747,
+        "sample_std": 0.0010034363070782733,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.01845542094738238,
+        "sample_std": 0.0010600790176150414,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Popularity",
+    "group": "overall",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 1138,
+        "hr": 0.029876977152899824,
+        "mrr": 0.010411211403664624,
+        "ndcg": 0.014747723459313867
+      },
+      {
+        "split_seed": 43,
+        "n": 1142,
+        "hr": 0.03765323992994746,
+        "mrr": 0.009237645579704754,
+        "ndcg": 0.015431232919461003
+      },
+      {
+        "split_seed": 44,
+        "n": 1221,
+        "hr": 0.042588042588042586,
+        "mrr": 0.011389890935345473,
+        "ndcg": 0.01805405470702974
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.03670608655696329,
+        "sample_std": 0.00640824630909945,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.010346249306238283,
+        "sample_std": 0.0010775922574405327,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.01607767036193487,
+        "sample_std": 0.0017453846582285854,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Random",
+    "group": "warm",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 1138,
+        "hr": 0.03866432337434095,
+        "mrr": 0.011767376075311349,
+        "ndcg": 0.017622477375383677
+      },
+      {
+        "split_seed": 43,
+        "n": 1142,
+        "hr": 0.046701692936368944,
+        "mrr": 0.010264868016734546,
+        "ndcg": 0.018095090777934145
+      },
+      {
+        "split_seed": 44,
+        "n": 1221,
+        "hr": 0.04722904722904723,
+        "mrr": 0.012168296259205343,
+        "ndcg": 0.019648694688829325
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.04419835451325237,
+        "sample_std": 0.004799859489853064,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.011400180117083747,
+        "sample_std": 0.0010034363070782733,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.01845542094738238,
+        "sample_std": 0.0010600790176150414,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Popularity",
+    "group": "warm",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 1138,
+        "hr": 0.029876977152899824,
+        "mrr": 0.010411211403664624,
+        "ndcg": 0.014747723459313867
+      },
+      {
+        "split_seed": 43,
+        "n": 1142,
+        "hr": 0.03765323992994746,
+        "mrr": 0.009237645579704754,
+        "ndcg": 0.015431232919461003
+      },
+      {
+        "split_seed": 44,
+        "n": 1221,
+        "hr": 0.042588042588042586,
+        "mrr": 0.011389890935345473,
+        "ndcg": 0.01805405470702974
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.03670608655696329,
+        "sample_std": 0.00640824630909945,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.010346249306238283,
+        "sample_std": 0.0010775922574405327,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.01607767036193487,
+        "sample_std": 0.0017453846582285854,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Random",
+    "group": "cold",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 43,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 44,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "mrr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "ndcg": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-non-oracle",
+    "baseline": "Popularity",
+    "group": "cold",
+    "cohort": "non-oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 43,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 44,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "mrr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "ndcg": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Random",
+    "group": "overall",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 1032,
+        "hr": 0.055232558139534885,
+        "mrr": 0.015163229559964382,
+        "ndcg": 0.023907031667811208
+      },
+      {
+        "split_seed": 43,
+        "n": 1049,
+        "hr": 0.07658087067047982,
+        "mrr": 0.014584846467709987,
+        "ndcg": 0.027793256637269
+      },
+      {
+        "split_seed": 44,
+        "n": 1129,
+        "hr": 0.06967818128136995,
+        "mrr": 0.015359836994026536,
+        "ndcg": 0.026892315501240487
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.06716387003046155,
+        "sample_std": 0.010893986083135894,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.015035971007233636,
+        "sample_std": 0.0004028630454663764,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.026197534602106897,
+        "sample_std": 0.0020341402364782925,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Popularity",
+    "group": "overall",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 1032,
+        "hr": 0.04554263565891473,
+        "mrr": 0.013667768904602006,
+        "ndcg": 0.020737002640207093
+      },
+      {
+        "split_seed": 43,
+        "n": 1049,
+        "hr": 0.06768350810295519,
+        "mrr": 0.013519515230786757,
+        "ndcg": 0.025117644853656335
+      },
+      {
+        "split_seed": 44,
+        "n": 1129,
+        "hr": 0.06554472984942428,
+        "mrr": 0.014562287923669672,
+        "ndcg": 0.025369387982125922
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.05959029120376473,
+        "sample_std": 0.012212537117016692,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.013916524019686145,
+        "sample_std": 0.0005641392139498582,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.023741345158663118,
+        "sample_std": 0.0026048798680236534,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Random",
+    "group": "warm",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 1032,
+        "hr": 0.055232558139534885,
+        "mrr": 0.015163229559964382,
+        "ndcg": 0.023907031667811208
+      },
+      {
+        "split_seed": 43,
+        "n": 1049,
+        "hr": 0.07658087067047982,
+        "mrr": 0.014584846467709987,
+        "ndcg": 0.027793256637269
+      },
+      {
+        "split_seed": 44,
+        "n": 1129,
+        "hr": 0.06967818128136995,
+        "mrr": 0.015359836994026536,
+        "ndcg": 0.026892315501240487
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.06716387003046155,
+        "sample_std": 0.010893986083135894,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.015035971007233636,
+        "sample_std": 0.0004028630454663764,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.026197534602106897,
+        "sample_std": 0.0020341402364782925,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Popularity",
+    "group": "warm",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 1032,
+        "hr": 0.04554263565891473,
+        "mrr": 0.013667768904602006,
+        "ndcg": 0.020737002640207093
+      },
+      {
+        "split_seed": 43,
+        "n": 1049,
+        "hr": 0.06768350810295519,
+        "mrr": 0.013519515230786757,
+        "ndcg": 0.025117644853656335
+      },
+      {
+        "split_seed": 44,
+        "n": 1129,
+        "hr": 0.06554472984942428,
+        "mrr": 0.014562287923669672,
+        "ndcg": 0.025369387982125922
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": 0.05959029120376473,
+        "sample_std": 0.012212537117016692,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean_difference": 0.013916524019686145,
+        "sample_std": 0.0005641392139498582,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean_difference": 0.023741345158663118,
+        "sample_std": 0.0026048798680236534,
+        "contributing_splits": 3
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Random",
+    "group": "cold",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 43,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 44,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "mrr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "ndcg": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      }
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "category_model": "CatPopularity-oracle",
+    "baseline": "Popularity",
+    "group": "cold",
+    "cohort": "oracle-supported",
+    "split_differences": [
+      {
+        "split_seed": 42,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 43,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      },
+      {
+        "split_seed": 44,
+        "n": 0,
+        "hr": null,
+        "mrr": null,
+        "ndcg": null
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "mrr": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      },
+      "ndcg": {
+        "mean_difference": null,
+        "sample_std": null,
+        "contributing_splits": 0
+      }
+    }
+  }
+]

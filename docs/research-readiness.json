@@ -1,6 +1,6 @@
 {
   "status": "in_progress",
-  "summary": "Trung Chien executed verified P0 v2 splits and Random/Popularity at K=20 on both datasets with three split seeds. CatPopularity and independent report review remain pending.",
+  "summary": "Bao Long executed CatPopularity oracle/non-oracle and target-group evaluation on the exact Trung Chien splits for both datasets and all three seeds. 144 baseline rows reproduced exactly; 144 category/matched-Popularity rows independently verified. Human protocol approval and independent report review remain pending.",
   "checks": {
     "data_and_splits_verified": true,
     "metrics_verified": true,
@@ -11,7 +11,7 @@
   "evidence": {
     "data_manifest": "docs/splits/v2/publication_manifest.json",
     "split_manifest": "docs/splits/v2/delivery.json",
-    "results_manifest": "docs/splits/v2/manifest.json",
-    "report": "docs/splits/v2/RESULTS.md"
+    "results_manifest": "docs/category/v2/manifest.json",
+    "report": "docs/category/v2/RESULTS.md"
   }
 }
