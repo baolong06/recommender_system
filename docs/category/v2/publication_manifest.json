@@ -1,0 +1,55 @@
+{
+  "kind": "Bao Long category handoff publication",
+  "files": [
+    {
+      "path": "baseline_reproduction.json",
+      "bytes": 152,
+      "sha256": "a19168217cc69fd6b3658bd9ebca40ecc739a7ffb38b91f5fa0d91aab3e0b7f9"
+    },
+    {
+      "path": "independent_check.json",
+      "bytes": 449,
+      "sha256": "73f1d474171ff55394b018398005751c6ea54c79bd4fbddd99df3aa15b0fda4a"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 3886,
+      "sha256": "a139cc607698a6aef615a339afde6e9bd32b3f856bb59805b86152615904c460"
+    },
+    {
+      "path": "metadata_checks.json",
+      "bytes": 3255,
+      "sha256": "b955d6889b639c051ae198e0c55f06c7115d5cb299b0d8d128f203a596c3bb40"
+    },
+    {
+      "path": "paired_differences.json",
+      "bytes": 56704,
+      "sha256": "86b2d81fcec285d123e215a15312d56881cd4bfa732c9068e0a13b905abe7be2"
+    },
+    {
+      "path": "RESULTS.md",
+      "bytes": 12091,
+      "sha256": "9a5a847d5a7e06d47dd7de08c21a1b84c56a52eb7ff0a2df6ac64ee7f841d504"
+    },
+    {
+      "path": "runs.csv",
+      "bytes": 141828,
+      "sha256": "85f84c5e2499f4f23aaa868c3483c25996c24fc12c5e38a3caaac365964168d9"
+    },
+    {
+      "path": "runs.json",
+      "bytes": 337323,
+      "sha256": "79cb5da3e018ac66ebb1ea4b45639f089824bea4dea03ccd4b38bc40527d0aef"
+    },
+    {
+      "path": "split_acceptance.json",
+      "bytes": 5071,
+      "sha256": "171a705f2bba6d31da58c555f7ed8a5d3512b6ce0cf3ea4973103e47799f3a6c"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 239403,
+      "sha256": "6ae114e6661433330b901e43e908feded0183f6d1847e960c78dbc685f09d040"
+    }
+  ]
+}

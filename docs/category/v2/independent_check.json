@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "category_and_matched_popularity_rows": 144,
+  "method": "independent SQL train counts, full raw holdout traversal, analytic ranks and direct metric sums",
+  "shared_prediction_or_metric_code_used": false,
+  "metric_tolerance": 1e-12,
+  "input_runs_sha256": "79cb5da3e018ac66ebb1ea4b45639f089824bea4dea03ccd4b38bc40527d0aef",
+  "verifier_source_sha256": "c0a0862dfd80466eae5d00db3193e32be53634278bfb036d471f70edeb6f542d"
+}

@@ -19,6 +19,7 @@ data/splits/
 !.env.example
 
 data/protocol_v2/
+data/protocol_v2_trung_chien/
 data/neutral/
 *.duckdb
 *.duckdb.wal

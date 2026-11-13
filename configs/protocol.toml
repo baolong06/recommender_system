@@ -25,3 +25,9 @@ version = "P0-data-v2"
 config = "configs/data_v2.toml"
 status = "implementation-selected"
 # Research readiness still requires model results and review; this does not approve promotion.
+
+[category_experiment]
+version = "P0-category-v2"
+config = "configs/category_v2.toml"
+status = "implementation-selected"
+# Execution evidence does not substitute for the team's protocol/report approval.

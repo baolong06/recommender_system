@@ -1,0 +1,23 @@
+kind = "template-not-a-research-run"
+owner = "trung-chien"
+cold_item_fraction = 0.20
+split_seed = 42
+model_seeds = [42, 43, 44]
+
+[input]
+data_manifest = "docs/data/data_manifest.json"
+
+[output]
+split_directory = "data/splits"
+manifest_directory = "docs/splits"
+
+[protocol]
+status = "pending-team-agreement"
+item_universe = "pending-team-agreement"
+cold_count_rounding = "pending-team-agreement"
+session_or_temporal_split = "pending-team-agreement"
+filtering_order = "pending-team-agreement"
+candidate_policy = "pending-team-agreement"
+tie_break = "pending-team-agreement"
+
+# The input manifest is supplied by Ba Chien; the research split runner is not implemented yet.
