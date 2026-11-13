@@ -7,4 +7,4 @@
 data/processed/source-manifest.json -text
 data/processed/SHA256SUMS text eol=lf
 # Preserve execution artifacts byte-for-byte so published SHA-256 remains valid.
-docs/splits/v2/** -text
+docs/splits/v2/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
