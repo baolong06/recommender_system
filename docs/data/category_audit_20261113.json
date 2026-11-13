@@ -1,0 +1,31 @@
+{
+  "audit_type": "read-only full raw scan; no code/data modified",
+  "yoochoose": {
+    "raw_sha256": "0deaf041a4f60955928fe8430e525a1dbf38e9013c7482420973e4aa492fa762",
+    "events": 33003944,
+    "context_counts": {
+      "missing0": 16337653,
+      "specialS": 10769610,
+      "real_category_1_12": 5820377,
+      "brand_or_other": 76304,
+      "blank": 0
+    },
+    "raw_items": 52739,
+    "items_with_any_real_category": 42471,
+    "items_with_multiple_true_categories": 2978,
+    "items_with_tied_modal_true_categories": 48
+  },
+  "diginetica_catalog": {
+    "raw_sha256": "9e9566e34548e5d1b8d05ed6dd0222fbb8a7b7b2a8a18cdf28c1a4eba8f9e42c",
+    "rows": 184047,
+    "items": 184047,
+    "categories": 1217,
+    "missing_values": {
+      "itemId": 0,
+      "categoryId": 0
+    },
+    "duplicate_item_rows": 0,
+    "conflicting_items": 0
+  },
+  "method": "Full raw streaming scan dtype=str, chunksize=1000000; counts exact raw context tokens. Genuine category tokens1..12;0 missing;S special offer; other numbers brand per provider README. Full data aggregation diagnostic only, not usable as train mapping. Diginetica entire static catalog checked nulls/duplicate/conflicting mappings."
+}

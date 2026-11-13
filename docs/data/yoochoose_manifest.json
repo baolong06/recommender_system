@@ -1,0 +1,112 @@
+{
+  "kind": "research-run",
+  "owner": "ba-chien",
+  "dataset": "yoochoose",
+  "dataset_version": "kaggle-v1",
+  "source_reference": "https://www.kaggle.com/datasets/phhasian0710/yoochoose/versions/1",
+  "code_commit": "9229e6aff1b9e42534126d2beee0842fabbb5052",
+  "config_path": "configs/data.toml",
+  "raw_files": [
+    {
+      "path": "data/raw/yoochoose/yoochoose-clicks.dat",
+      "location": "https://www.kaggle.com/datasets/phhasian0710/yoochoose/versions/1",
+      "sha256": "0deaf041a4f60955928fe8430e525a1dbf38e9013c7482420973e4aa492fa762",
+      "rows": 33003944
+    }
+  ],
+  "processed_files": [
+    {
+      "path": "data/processed/yoochoose_clean.parquet",
+      "location": "local: data/processed",
+      "sha256": "e2d47b77ffeaa3acae7f69b370582f2f7e133e4e8242f9dcb3868e1848b2defe",
+      "rows": 31707554
+    }
+  ],
+  "counts_before": {
+    "events": 33003944,
+    "sessions": 9249729,
+    "items": 52739
+  },
+  "counts_after": {
+    "events": 31707554,
+    "sessions": 7981328,
+    "items": 37298
+  },
+  "filter_steps": [
+    {
+      "step": "raw",
+      "events": 33003944,
+      "sessions": 9249729,
+      "items": 52739
+    },
+    {
+      "step": "drop_missing",
+      "events": 33003944,
+      "sessions": 9249729,
+      "items": 52739
+    },
+    {
+      "step": "drop_invalid_timestamp",
+      "events": 33003944,
+      "sessions": 9249729,
+      "items": 52739
+    },
+    {
+      "step": "drop_duplicates",
+      "events": 33003875,
+      "sessions": 9249729,
+      "items": 52739
+    },
+    {
+      "step": "item_frequency_1",
+      "events": 32972781,
+      "sessions": 9244493,
+      "items": 37964
+    },
+    {
+      "step": "session_length_1",
+      "events": 31710470,
+      "sessions": 7982182,
+      "items": 37961
+    },
+    {
+      "step": "item_frequency_2",
+      "events": 31708125,
+      "sessions": 7981840,
+      "items": 37315
+    },
+    {
+      "step": "session_length_2",
+      "events": 31707636,
+      "sessions": 7981351,
+      "items": 37315
+    },
+    {
+      "step": "item_frequency_3",
+      "events": 31707569,
+      "sessions": 7981343,
+      "items": 37298
+    },
+    {
+      "step": "session_length_3",
+      "events": 31707554,
+      "sessions": 7981328,
+      "items": 37298
+    },
+    {
+      "step": "item_frequency_4",
+      "events": 31707554,
+      "sessions": 7981328,
+      "items": 37298
+    },
+    {
+      "step": "session_length_4",
+      "events": 31707554,
+      "sessions": 7981328,
+      "items": 37298
+    }
+  ],
+  "schema_reference": "docs/data/schema.md",
+  "reproduce_command": "python scripts/run_clean.py --dataset yoochoose --dataset-version kaggle-v1 --source-reference https://www.kaggle.com/datasets/phhasian0710/yoochoose/versions/1",
+  "review_status": "draft"
+}

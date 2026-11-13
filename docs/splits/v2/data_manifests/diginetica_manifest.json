@@ -1,0 +1,952 @@
+{
+  "protocol_version": "P0-data-v2",
+  "dataset": "diginetica",
+  "created_at": "2026-11-13T05:05:03.794109+00:00",
+  "code_commit": "5eab92a7288390eb8e346878d36586016cb31212",
+  "source_code_sha256": {
+    "configs\\data_v2.toml": "3cf3c69bb7754f70f169bee8b739f5de26a4f815438ad0e858811dc09494b1fd",
+    "E:\\ba_chien_outputs\\.publish\\recommender_system\\scripts\\run_protocol_v2.py": "e4049c1538aa11ff5eb4891c0e18161644afb83308ffc8fc1f638300ae078349",
+    "src\\recommender\\data\\category_v2.py": "fab0dc919a4def91b43e3d90ec0fc26ec00143f94df4e260bd6ab5f63546de34",
+    "src\\recommender\\data\\examples_v2.py": "185fac8a7a27f11094bf16da5b4e0e11148e48e14eefbdd50bb381f6ab27ff0b",
+    "src\\recommender\\data\\neutral.py": "4056dd96567e52d555de1dd5bf9fbbe5143c2753aeb1fd043b043a4d415a225d",
+    "src\\recommender\\data\\protocol_v2.py": "4a0984d882f5d79460b78d49e76d1e19ae2bfd769bee754ab1aa3b4b2d74496e",
+    "src\\recommender\\data\\provenance_v2.py": "fb43697f38d30145fba8b31d7f55177d753522ca6765daf571096fb83c78ef94"
+  },
+  "config_sha256": "3cf3c69bb7754f70f169bee8b739f5de26a4f815438ad0e858811dc09494b1fd",
+  "normalization_before_duplicate_flag": {
+    "dataset": "diginetica",
+    "raw_rows": 1235380,
+    "valid_rows": 1235380,
+    "dropped_reasons": {
+      "missing_session_or_item": 0,
+      "invalid_date": 0,
+      "invalid_timeframe": 0,
+      "negative_timestamp": 0
+    },
+    "raw_files": [
+      {
+        "path": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\raw\\diginetica\\train-item-views.csv",
+        "sha256": "0b9edf1b7960bb855a2248972f8ed593f18721f321b976b2077c9f782fb43e38",
+        "bytes": 42664076
+      },
+      {
+        "path": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\raw\\diginetica\\product-categories.csv",
+        "sha256": "9e9566e34548e5d1b8d05ed6dd0222fbb8a7b7b2a8a18cdf28c1a4eba8f9e42c",
+        "bytes": 1979575
+      }
+    ],
+    "duplicate_policy": "keep-all-valid-events; global flag added by runner",
+    "support_filter_applied": false,
+    "identical_catalog_duplicates_collapsed": 0,
+    "dropped_rows": 0,
+    "output_sha256": "b35f0b23b60fc6eaf246dba5b87ca2ae884d434d50e74f1f490cb21f3f870bcc",
+    "output_bytes": 18418197
+  },
+  "duplicate_flags": {
+    "rows": 1235380,
+    "flagged_rows": 0,
+    "duplicate_tuple_excess_rows": 0
+  },
+  "split_audit": {
+    "dataset": "diginetica",
+    "protocol": "P0-v2",
+    "windows_utc_ms": {
+      "train_end_exclusive": 1463616000000,
+      "validation_start_inclusive": 1463616000000,
+      "validation_end_exclusive": 1464220800000,
+      "test_start_inclusive": 1464220800000,
+      "test_end_exclusive": 1464825600000
+    },
+    "temporal_counts": {
+      "crossing": {
+        "sessions": 1,
+        "events": 2
+      },
+      "singleton": {
+        "sessions": 90694,
+        "events": 90694
+      },
+      "test": {
+        "sessions": 17154,
+        "events": 88443
+      },
+      "train": {
+        "sessions": 189774,
+        "events": 990708
+      },
+      "validation": {
+        "sessions": 12701,
+        "events": 65533
+      }
+    },
+    "train_before_filtering": {
+      "events": 990708,
+      "parent_sessions": 189774,
+      "items": 114768
+    },
+    "train_filter_steps": [
+      {
+        "iteration": 1,
+        "after_item_support_events": 856503,
+        "events": 815327,
+        "parent_sessions": 171119,
+        "items": 39187
+      },
+      {
+        "iteration": 2,
+        "after_item_support_events": 802604,
+        "events": 796417,
+        "parent_sessions": 168149,
+        "items": 35505
+      },
+      {
+        "iteration": 3,
+        "after_item_support_events": 793834,
+        "events": 792395,
+        "parent_sessions": 167465,
+        "items": 34818
+      },
+      {
+        "iteration": 4,
+        "after_item_support_events": 791644,
+        "events": 791254,
+        "parent_sessions": 167253,
+        "items": 34621
+      },
+      {
+        "iteration": 5,
+        "after_item_support_events": 791068,
+        "events": 790963,
+        "parent_sessions": 167187,
+        "items": 34572
+      },
+      {
+        "iteration": 6,
+        "after_item_support_events": 790907,
+        "events": 790882,
+        "parent_sessions": 167167,
+        "items": 34557
+      },
+      {
+        "iteration": 7,
+        "after_item_support_events": 790878,
+        "events": 790874,
+        "parent_sessions": 167164,
+        "items": 34556
+      },
+      {
+        "iteration": 8,
+        "after_item_support_events": 790870,
+        "events": 790869,
+        "parent_sessions": 167162,
+        "items": 34555
+      },
+      {
+        "iteration": 9,
+        "after_item_support_events": 790869,
+        "events": 790869,
+        "parent_sessions": 167162,
+        "items": 34555
+      }
+    ],
+    "preholdout_item_universe": 34555,
+    "preholdout_min_item_support": 5,
+    "preholdout_items_path": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\preholdout_items.parquet",
+    "holdout_paths": {
+      "validation": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\validation.parquet",
+      "test": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\test.parquet"
+    },
+    "category_metadata_policy": "separate final-train mapper; no future category aggregation",
+    "seeds": [
+      {
+        "seed": 42,
+        "cold_items": 6911,
+        "cold_fraction_denominator": 34555,
+        "selection": "sha256(dataset:seed:item_id), then item_id; first ceil(0.20*U0)",
+        "after_mask_before_short_segment_filter_events": 629224,
+        "short_segment_events_removed": 69343,
+        "final_train": {
+          "events": 559881,
+          "parent_sessions": 135830,
+          "items": 27642
+        },
+        "training_segments": 165472,
+        "warm_items": 27642,
+        "incidental_items": 2,
+        "postholdout_min_item_support": 1,
+        "support_recore_after_holdout": false,
+        "coverage": {
+          "validation": {
+            "all_targets": 52832,
+            "warm_targets": 32403,
+            "cold_targets": 8079,
+            "excluded_targets": 12350,
+            "incidental_targets": 1,
+            "primary_target_coverage": 0.7662401574803149
+          },
+          "test": {
+            "all_targets": 71289,
+            "warm_targets": 43184,
+            "cold_targets": 11215,
+            "excluded_targets": 16890,
+            "incidental_targets": 0,
+            "primary_target_coverage": 0.7630770525607036
+          }
+        },
+        "paths": {
+          "train": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-42\\train.parquet",
+          "cold_items": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-42\\cold_items.parquet",
+          "incidental_items": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-42\\incidental_items.parquet",
+          "candidates": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-42\\candidates.parquet"
+        }
+      },
+      {
+        "seed": 43,
+        "cold_items": 6911,
+        "cold_fraction_denominator": 34555,
+        "selection": "sha256(dataset:seed:item_id), then item_id; first ceil(0.20*U0)",
+        "after_mask_before_short_segment_filter_events": 636395,
+        "short_segment_events_removed": 67182,
+        "final_train": {
+          "events": 569213,
+          "parent_sessions": 137479,
+          "items": 27639
+        },
+        "training_segments": 167025,
+        "warm_items": 27639,
+        "incidental_items": 5,
+        "postholdout_min_item_support": 1,
+        "support_recore_after_holdout": false,
+        "coverage": {
+          "validation": {
+            "all_targets": 52832,
+            "warm_targets": 32836,
+            "cold_targets": 7647,
+            "excluded_targets": 12349,
+            "incidental_targets": 0,
+            "primary_target_coverage": 0.7662590854027862
+          },
+          "test": {
+            "all_targets": 71289,
+            "warm_targets": 44040,
+            "cold_targets": 10357,
+            "excluded_targets": 16892,
+            "incidental_targets": 2,
+            "primary_target_coverage": 0.7630489977415871
+          }
+        },
+        "paths": {
+          "train": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-43\\train.parquet",
+          "cold_items": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-43\\cold_items.parquet",
+          "incidental_items": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-43\\incidental_items.parquet",
+          "candidates": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-43\\candidates.parquet"
+        }
+      },
+      {
+        "seed": 44,
+        "cold_items": 6911,
+        "cold_fraction_denominator": 34555,
+        "selection": "sha256(dataset:seed:item_id), then item_id; first ceil(0.20*U0)",
+        "after_mask_before_short_segment_filter_events": 631405,
+        "short_segment_events_removed": 69364,
+        "final_train": {
+          "events": 562041,
+          "parent_sessions": 136701,
+          "items": 27641
+        },
+        "training_segments": 166514,
+        "warm_items": 27641,
+        "incidental_items": 3,
+        "postholdout_min_item_support": 1,
+        "support_recore_after_holdout": false,
+        "coverage": {
+          "validation": {
+            "all_targets": 52832,
+            "warm_targets": 32179,
+            "cold_targets": 8304,
+            "excluded_targets": 12349,
+            "incidental_targets": 0,
+            "primary_target_coverage": 0.7662590854027862
+          },
+          "test": {
+            "all_targets": 71289,
+            "warm_targets": 43448,
+            "cold_targets": 10951,
+            "excluded_targets": 16890,
+            "incidental_targets": 0,
+            "primary_target_coverage": 0.7630770525607036
+          }
+        },
+        "paths": {
+          "train": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-44\\train.parquet",
+          "cold_items": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-44\\cold_items.parquet",
+          "incidental_items": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-44\\incidental_items.parquet",
+          "candidates": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-44\\candidates.parquet"
+        }
+      }
+    ]
+  },
+  "category_audits": [
+    {
+      "dataset": "diginetica",
+      "mapping_path": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-42\\category_mapping.parquet",
+      "coverage": {
+        "warm": {
+          "n": 27642,
+          "known": 27642,
+          "unknown": 0,
+          "fraction_known": 1.0
+        },
+        "cold": {
+          "n": 6911,
+          "known": 6911,
+          "unknown": 0,
+          "fraction_known": 1.0
+        }
+      },
+      "metadata_policy": "static-catalog-known-at-inference-assumption",
+      "cold_category_available": true,
+      "cold_catpop_status": "available",
+      "identical_catalog_duplicates_collapsed": 0,
+      "heldout_interactions_read": false,
+      "oracle_target_access": false,
+      "oracle_scorer_implemented": false,
+      "historical_catalog_availability_verified": false
+    },
+    {
+      "dataset": "diginetica",
+      "mapping_path": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-43\\category_mapping.parquet",
+      "coverage": {
+        "warm": {
+          "n": 27639,
+          "known": 27639,
+          "unknown": 0,
+          "fraction_known": 1.0
+        },
+        "cold": {
+          "n": 6911,
+          "known": 6911,
+          "unknown": 0,
+          "fraction_known": 1.0
+        }
+      },
+      "metadata_policy": "static-catalog-known-at-inference-assumption",
+      "cold_category_available": true,
+      "cold_catpop_status": "available",
+      "identical_catalog_duplicates_collapsed": 0,
+      "heldout_interactions_read": false,
+      "oracle_target_access": false,
+      "oracle_scorer_implemented": false,
+      "historical_catalog_availability_verified": false
+    },
+    {
+      "dataset": "diginetica",
+      "mapping_path": "E:\\ba_chien_outputs\\.publish\\recommender_system\\data\\protocol_v2_trung_chien\\diginetica\\splits\\seed-44\\category_mapping.parquet",
+      "coverage": {
+        "warm": {
+          "n": 27641,
+          "known": 27641,
+          "unknown": 0,
+          "fraction_known": 1.0
+        },
+        "cold": {
+          "n": 6911,
+          "known": 6911,
+          "unknown": 0,
+          "fraction_known": 1.0
+        }
+      },
+      "metadata_policy": "static-catalog-known-at-inference-assumption",
+      "cold_category_available": true,
+      "cold_catpop_status": "available",
+      "identical_catalog_duplicates_collapsed": 0,
+      "heldout_interactions_read": false,
+      "oracle_target_access": false,
+      "oracle_scorer_implemented": false,
+      "historical_catalog_availability_verified": false
+    }
+  ],
+  "verification": {
+    "neutral_rows": 1235380,
+    "unique_raw_row_index": 1235380,
+    "verified_seeds": [
+      42,
+      43,
+      44
+    ],
+    "independent_parquet_readback": true,
+    "no_controlled_cold_in_train": true,
+    "global_time_windows_disjoint": true,
+    "parent_sessions_disjoint": true,
+    "no_training_transition_across_removed_event": true,
+    "cold_selection_sha256_reproduced": true,
+    "target_coverage_recomputed": true
+  },
+  "files": [
+    {
+      "path": "neutral.parquet",
+      "bytes": 14729358,
+      "sha256": "883fa98e0746829e1568117dabbe7574b83db88de059ed6e1d5b81c8ecee7038",
+      "rows": 1235380,
+      "schema": [
+        {
+          "name": "session_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "timestamp",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "category_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "timestamp_ms",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "raw_row_index",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "raw_context",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "exact_duplicate",
+          "type": "bool",
+          "nullable": true
+        }
+      ]
+    },
+    {
+      "path": "splits\\preholdout_items.parquet",
+      "bytes": 93493,
+      "sha256": "dd09b74be02662ebafd04828920415a2d5902ff83f7b5c5ede2635456e9af843",
+      "rows": 34555,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-42\\candidates.parquet",
+      "bytes": 129748,
+      "sha256": "e9764c0a9cd6e4a934d244ba58057070681d4c491f31305f2f569612897600b3",
+      "rows": 34553,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "group",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "support",
+          "type": "int64",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-42\\category_mapping.parquet",
+      "bytes": 139122,
+      "sha256": "9b75d9551430e5f0c741e4cc53225c07e8adb5ddb65ff5e3b100b4f9f27ba090",
+      "rows": 34553,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "category_id",
+          "type": "string",
+          "nullable": true
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-42\\cold_items.parquet",
+      "bytes": 262630,
+      "sha256": "2de357bd7e072dce918cd9c6f0d4f851dc95118c0d83e1e1b445a4cfa8cc877e",
+      "rows": 6911,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "selection_sha256",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-42\\incidental_items.parquet",
+      "bytes": 235,
+      "sha256": "78de18227338eedb1b372ce933672516b563363d725ff2e4007a937e1a16bf81",
+      "rows": 2,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-42\\train.parquet",
+      "bytes": 7579925,
+      "sha256": "d4a62d1ee4f1a9059e7a0f9645fb123667fd2f192a35f58553665b8ea4e8a204",
+      "rows": 559881,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "timestamp",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "category_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "timestamp_ms",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "raw_row_index",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "raw_context",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "exact_duplicate",
+          "type": "bool",
+          "nullable": false
+        },
+        {
+          "name": "parent_session_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "event_pos",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "session_id",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-43\\candidates.parquet",
+      "bytes": 130593,
+      "sha256": "002f0942aef04265e26b36f0c4ff3e65403d2e2822b9e6a35a8bbc22310c2d74",
+      "rows": 34550,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "group",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "support",
+          "type": "int64",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-43\\category_mapping.parquet",
+      "bytes": 139106,
+      "sha256": "d416b4c661f52afb0505261a41b931637daeba16a3259850ce06632bd8b33840",
+      "rows": 34550,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "category_id",
+          "type": "string",
+          "nullable": true
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-43\\cold_items.parquet",
+      "bytes": 263030,
+      "sha256": "42ba5cd720c25f98ffdfe541b11c7024a64f79eaa3dfdd066ea1db85898524f8",
+      "rows": 6911,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "selection_sha256",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-43\\incidental_items.parquet",
+      "bytes": 262,
+      "sha256": "950613aefe91665c02fa8cafea2407c3c34d1964aa196e2f2246e7d2a9b3cf3e",
+      "rows": 5,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-43\\train.parquet",
+      "bytes": 7688472,
+      "sha256": "27a30325ebaf002307891c5c0ce445dbfb0bea80f61c4ce762f6185941002615",
+      "rows": 569213,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "timestamp",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "category_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "timestamp_ms",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "raw_row_index",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "raw_context",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "exact_duplicate",
+          "type": "bool",
+          "nullable": false
+        },
+        {
+          "name": "parent_session_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "event_pos",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "session_id",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-44\\candidates.parquet",
+      "bytes": 129043,
+      "sha256": "7d89ee09b6098a9eecb236cffa03515b6569ad239a2ff950f1af0b28af9b3693",
+      "rows": 34552,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "group",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "support",
+          "type": "int64",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-44\\category_mapping.parquet",
+      "bytes": 139101,
+      "sha256": "10c9acb8e0b9352e0848eb72ecce2d323177b3d371dfdf2c4d3c76805657356b",
+      "rows": 34552,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "category_id",
+          "type": "string",
+          "nullable": true
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-44\\cold_items.parquet",
+      "bytes": 262578,
+      "sha256": "13033e10a271f19d809892fd96eddad8a7ef1ea0e09566688e72d1e94be1ea81",
+      "rows": 6911,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "selection_sha256",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-44\\incidental_items.parquet",
+      "bytes": 245,
+      "sha256": "6193bdfae535569da81d5c6cc5d45642841baf69ff987bb362cf0bbe35c2164c",
+      "rows": 3,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\seed-44\\train.parquet",
+      "bytes": 7612182,
+      "sha256": "566ea8a1e7d6bddb92a9d21440daf5b5ff23df03db1017a28ed98e914173536c",
+      "rows": 562041,
+      "schema": [
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "timestamp",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "category_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "timestamp_ms",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "raw_row_index",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "raw_context",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "exact_duplicate",
+          "type": "bool",
+          "nullable": false
+        },
+        {
+          "name": "parent_session_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "event_pos",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "session_id",
+          "type": "string",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\test.parquet",
+      "bytes": 1133405,
+      "sha256": "da5decb9f06d55a0cfa3d932f264751e2517214a66783edaa9bd294e43ce2ec4",
+      "rows": 88443,
+      "schema": [
+        {
+          "name": "session_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "timestamp",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "category_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "timestamp_ms",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "raw_row_index",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "raw_context",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "exact_duplicate",
+          "type": "bool",
+          "nullable": false
+        }
+      ]
+    },
+    {
+      "path": "splits\\validation.parquet",
+      "bytes": 824526,
+      "sha256": "d213b83879308fbb1b2538de705b1229e804adc66be00f876fae5b29fc377ae0",
+      "rows": 65533,
+      "schema": [
+        {
+          "name": "session_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "item_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "timestamp",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "category_id",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "timestamp_ms",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "raw_row_index",
+          "type": "int64",
+          "nullable": false
+        },
+        {
+          "name": "raw_context",
+          "type": "string",
+          "nullable": false
+        },
+        {
+          "name": "exact_duplicate",
+          "type": "bool",
+          "nullable": false
+        }
+      ]
+    }
+  ],
+  "review_status": "data-verified-research-incomplete",
+  "catpop_scorer_implemented": false,
+  "runtime_environment": {
+    "python": "3.12.13 (main, Jun 11 2026, 04:05:29) [MSC v.1944 64 bit (AMD64)]",
+    "python_implementation": "CPython",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "packages": {
+      "duckdb": "2.0.0",
+      "pandas": "2.3.3",
+      "pyarrow": "26.0.1",
+      "kagglehub": "1.0.3"
+    },
+    "environment_capture": "same interpreter/environment as the data pipeline"
+  },
+  "dependency_locks_sha256": {
+    "requirements-dev.txt": "aa7a36d607b86399314e950fdafdd1a0e1cf584118151124164353403cc2f03f",
+    "requirements-audit.txt": "22006f6bb0c50163574f807befa446c3e09d49a7152ab80c6c230d67c3686f33"
+  }
+}

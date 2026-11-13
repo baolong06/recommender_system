@@ -1,0 +1,11 @@
+protocol_version = "P0-baselines-v2"
+data_protocol_version = "P0-data-v2"
+split_seeds = [42, 43, 44]
+model_seeds = [42, 43, 44]
+k = 20
+evaluation_splits = ["validation", "test"]
+candidate_policy = "final-warm-union-fixed-controlled-cold"
+popularity_tie_break = "item_id ascending (lexicographic)"
+random_policy = "per-query sha256 seed + Python Random.sample sorted candidates"
+seen_items = "keep"
+refit_on_validation = false

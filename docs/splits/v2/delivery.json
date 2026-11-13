@@ -1,0 +1,227 @@
+{
+  "kind": "P0-v2-shared-splits",
+  "release_tag": "trung-chien-p0-v2-2026-11-13",
+  "release_url": "https://github.com/baolong06/recommender_system/releases/tag/trung-chien-p0-v2-2026-11-13",
+  "bundles": [
+    {
+      "dataset": "diginetica",
+      "asset": "diginetica-P0-v2-all-seeds.zip",
+      "sha256": "8e185ec63ef8dcb8724424eb4b4442d2c7643c61a9a0edb1ab25e24b3ea098c7",
+      "bytes": 41288827,
+      "data_manifest_sha256": "1cc9b36914e897e84714512cdfc3f7df033670b2b1953a9491e6b243045caed9",
+      "url": "https://github.com/baolong06/recommender_system/releases/download/trung-chien-p0-v2-2026-11-13/diginetica-P0-v2-all-seeds.zip",
+      "files": [
+        {
+          "path": "diginetica/neutral.parquet",
+          "bytes": 14729358,
+          "sha256": "883fa98e0746829e1568117dabbe7574b83db88de059ed6e1d5b81c8ecee7038"
+        },
+        {
+          "path": "diginetica/splits/preholdout_items.parquet",
+          "bytes": 93493,
+          "sha256": "dd09b74be02662ebafd04828920415a2d5902ff83f7b5c5ede2635456e9af843"
+        },
+        {
+          "path": "diginetica/splits/seed-42/candidates.parquet",
+          "bytes": 129748,
+          "sha256": "e9764c0a9cd6e4a934d244ba58057070681d4c491f31305f2f569612897600b3"
+        },
+        {
+          "path": "diginetica/splits/seed-42/category_mapping.parquet",
+          "bytes": 139122,
+          "sha256": "9b75d9551430e5f0c741e4cc53225c07e8adb5ddb65ff5e3b100b4f9f27ba090"
+        },
+        {
+          "path": "diginetica/splits/seed-42/cold_items.parquet",
+          "bytes": 262630,
+          "sha256": "2de357bd7e072dce918cd9c6f0d4f851dc95118c0d83e1e1b445a4cfa8cc877e"
+        },
+        {
+          "path": "diginetica/splits/seed-42/incidental_items.parquet",
+          "bytes": 235,
+          "sha256": "78de18227338eedb1b372ce933672516b563363d725ff2e4007a937e1a16bf81"
+        },
+        {
+          "path": "diginetica/splits/seed-42/train.parquet",
+          "bytes": 7579925,
+          "sha256": "d4a62d1ee4f1a9059e7a0f9645fb123667fd2f192a35f58553665b8ea4e8a204"
+        },
+        {
+          "path": "diginetica/splits/seed-43/candidates.parquet",
+          "bytes": 130593,
+          "sha256": "002f0942aef04265e26b36f0c4ff3e65403d2e2822b9e6a35a8bbc22310c2d74"
+        },
+        {
+          "path": "diginetica/splits/seed-43/category_mapping.parquet",
+          "bytes": 139106,
+          "sha256": "d416b4c661f52afb0505261a41b931637daeba16a3259850ce06632bd8b33840"
+        },
+        {
+          "path": "diginetica/splits/seed-43/cold_items.parquet",
+          "bytes": 263030,
+          "sha256": "42ba5cd720c25f98ffdfe541b11c7024a64f79eaa3dfdd066ea1db85898524f8"
+        },
+        {
+          "path": "diginetica/splits/seed-43/incidental_items.parquet",
+          "bytes": 262,
+          "sha256": "950613aefe91665c02fa8cafea2407c3c34d1964aa196e2f2246e7d2a9b3cf3e"
+        },
+        {
+          "path": "diginetica/splits/seed-43/train.parquet",
+          "bytes": 7688472,
+          "sha256": "27a30325ebaf002307891c5c0ce445dbfb0bea80f61c4ce762f6185941002615"
+        },
+        {
+          "path": "diginetica/splits/seed-44/candidates.parquet",
+          "bytes": 129043,
+          "sha256": "7d89ee09b6098a9eecb236cffa03515b6569ad239a2ff950f1af0b28af9b3693"
+        },
+        {
+          "path": "diginetica/splits/seed-44/category_mapping.parquet",
+          "bytes": 139101,
+          "sha256": "10c9acb8e0b9352e0848eb72ecce2d323177b3d371dfdf2c4d3c76805657356b"
+        },
+        {
+          "path": "diginetica/splits/seed-44/cold_items.parquet",
+          "bytes": 262578,
+          "sha256": "13033e10a271f19d809892fd96eddad8a7ef1ea0e09566688e72d1e94be1ea81"
+        },
+        {
+          "path": "diginetica/splits/seed-44/incidental_items.parquet",
+          "bytes": 245,
+          "sha256": "6193bdfae535569da81d5c6cc5d45642841baf69ff987bb362cf0bbe35c2164c"
+        },
+        {
+          "path": "diginetica/splits/seed-44/train.parquet",
+          "bytes": 7612182,
+          "sha256": "566ea8a1e7d6bddb92a9d21440daf5b5ff23df03db1017a28ed98e914173536c"
+        },
+        {
+          "path": "diginetica/splits/test.parquet",
+          "bytes": 1133405,
+          "sha256": "da5decb9f06d55a0cfa3d932f264751e2517214a66783edaa9bd294e43ce2ec4"
+        },
+        {
+          "path": "diginetica/splits/validation.parquet",
+          "bytes": 824526,
+          "sha256": "d213b83879308fbb1b2538de705b1229e804adc66be00f876fae5b29fc377ae0"
+        },
+        {
+          "path": "diginetica/manifest.json",
+          "bytes": 28553,
+          "sha256": "1cc9b36914e897e84714512cdfc3f7df033670b2b1953a9491e6b243045caed9"
+        }
+      ]
+    },
+    {
+      "dataset": "yoochoose",
+      "asset": "yoochoose-P0-v2-all-seeds.zip",
+      "sha256": "b85b3a370bc7f239b19ffbb73322af8ff407d2b069f00fbfb21ee7201b5c4025",
+      "bytes": 1181880842,
+      "data_manifest_sha256": "0e975ef74c58920e5b42db2d463815364cc83c21ad384c01d07f731d8b5dc81b",
+      "url": "https://github.com/baolong06/recommender_system/releases/download/trung-chien-p0-v2-2026-11-13/yoochoose-P0-v2-all-seeds.zip",
+      "files": [
+        {
+          "path": "yoochoose/neutral.parquet",
+          "bytes": 336651207,
+          "sha256": "995d06f7590007e4514800f0e2a7c6a07950423bfb39fa9d7a62504af09778f4"
+        },
+        {
+          "path": "yoochoose/splits/preholdout_items.parquet",
+          "bytes": 85770,
+          "sha256": "09ab227dfd514e55e10e42f08415313921e0229502591fa2ddc2f1c5dbf482ec"
+        },
+        {
+          "path": "yoochoose/splits/seed-42/candidates.parquet",
+          "bytes": 151728,
+          "sha256": "ca76225cc31bf5072dead4e8e38d3f199ff1229c5dfa3c8eedeeffe8f3c46d43"
+        },
+        {
+          "path": "yoochoose/splits/seed-42/category_mapping.parquet",
+          "bytes": 97122,
+          "sha256": "b67582002a171bb15e7ad56b6af8f3d3e9a43ce34f1de9af2b21fd066aeb3d85"
+        },
+        {
+          "path": "yoochoose/splits/seed-42/cold_items.parquet",
+          "bytes": 281303,
+          "sha256": "7e99704c503c1efd11ca8feb43b2ef0b790b5a080a6ac5de516abd0027402b6e"
+        },
+        {
+          "path": "yoochoose/splits/seed-42/incidental_items.parquet",
+          "bytes": 273,
+          "sha256": "8f0741d4d67e6679fef51461ce409b9a9b5d8a50caa9070ddae46de2a25038a5"
+        },
+        {
+          "path": "yoochoose/splits/seed-42/train.parquet",
+          "bytes": 279976781,
+          "sha256": "1b4da8fb046d631d4e771ab29147334d87288434390d00b2e0b03f748ac0a931"
+        },
+        {
+          "path": "yoochoose/splits/seed-43/candidates.parquet",
+          "bytes": 150846,
+          "sha256": "a7e8d1a86b340f0d0a38bee8268a5bc5559f1b45f805927c8b4053b87a74f6f1"
+        },
+        {
+          "path": "yoochoose/splits/seed-43/category_mapping.parquet",
+          "bytes": 97180,
+          "sha256": "bb8af2c26f44f3f70d9b7a274a5c4aa4a8226436a9af452253112500309c9367"
+        },
+        {
+          "path": "yoochoose/splits/seed-43/cold_items.parquet",
+          "bytes": 281349,
+          "sha256": "cd43c15f0b7901e803250eff210b1bea340cdeb4f7b5c67bcf3e19f791a612df"
+        },
+        {
+          "path": "yoochoose/splits/seed-43/incidental_items.parquet",
+          "bytes": 104,
+          "sha256": "a8cc33ce5afb81e254bab95b6a55a946b2751ffbe4220ecb2d25d7152e79a384"
+        },
+        {
+          "path": "yoochoose/splits/seed-43/train.parquet",
+          "bytes": 279341774,
+          "sha256": "25771e5818c21b14d2fc06a3d2524cd85625c3a64c61914ab52ebf1949105ed3"
+        },
+        {
+          "path": "yoochoose/splits/seed-44/candidates.parquet",
+          "bytes": 151447,
+          "sha256": "3328f7cf906adcda14e43808f2d219227ddfe928772b61e2cce1f7c56985b37c"
+        },
+        {
+          "path": "yoochoose/splits/seed-44/category_mapping.parquet",
+          "bytes": 97194,
+          "sha256": "b449a39d9cb9544eaa66f1192625e739b73b123452d681a90e7af0509ab468dc"
+        },
+        {
+          "path": "yoochoose/splits/seed-44/cold_items.parquet",
+          "bytes": 282246,
+          "sha256": "1ad19c728f010e519361bb624f20d4f0182d962a6519aade92b937f46179dedd"
+        },
+        {
+          "path": "yoochoose/splits/seed-44/incidental_items.parquet",
+          "bytes": 243,
+          "sha256": "348602f330404a0ed570320c410f18c4508ba5f64c04dc3612c7afbcd8d07381"
+        },
+        {
+          "path": "yoochoose/splits/seed-44/train.parquet",
+          "bytes": 283482022,
+          "sha256": "534e9e41fcfa63da261741eb83b2af803d43d34c413c07bb1f292f325706ef2a"
+        },
+        {
+          "path": "yoochoose/splits/test.parquet",
+          "bytes": 22657,
+          "sha256": "9ed8c0c8efe3c0b7dcfb9f56690fecd3f51d71f86bee6fe7936bcf776eef3a1e"
+        },
+        {
+          "path": "yoochoose/splits/validation.parquet",
+          "bytes": 698795,
+          "sha256": "96718fa3cd6e9391c9eac730ac41c156c790f1145b0fbe0ae5f759b5d82135c7"
+        },
+        {
+          "path": "yoochoose/manifest.json",
+          "bytes": 27621,
+          "sha256": "0e975ef74c58920e5b42db2d463815364cc83c21ad384c01d07f731d8b5dc81b"
+        }
+      ]
+    }
+  ]
+}

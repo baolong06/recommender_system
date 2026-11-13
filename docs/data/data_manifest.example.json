@@ -1,0 +1,17 @@
+{
+  "kind": "template-not-a-research-result",
+  "owner": "ba-chien",
+  "dataset": "",
+  "dataset_version": "",
+  "source_reference": "",
+  "code_commit": "",
+  "config_path": "configs/data.example.toml",
+  "raw_files": [],
+  "processed_files": [],
+  "counts_before": {"events": null, "sessions": null, "items": null},
+  "counts_after": {"events": null, "sessions": null, "items": null},
+  "filter_steps": [],
+  "schema_reference": "docs/data/schema.md",
+  "reproduce_command": "",
+  "review_status": "not_started"
+}

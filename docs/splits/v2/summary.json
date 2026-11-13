@@ -1,0 +1,2018 @@
+[
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "model": "Popularity",
+    "k": 20,
+    "group": "cold",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 11215,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 10357,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 10951,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0,
+        "sample_std": 0.0,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.0,
+        "sample_std": 0.0,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.0,
+        "sample_std": 0.0,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "model": "Popularity",
+    "k": 20,
+    "group": "overall",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 54399,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.007849408996488906,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.002005969796723073,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.003298378909995461,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 54397,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.007978381160725776,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0019940889282469092,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0032788090666562813,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 54399,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.009503851173734812,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0022126489532719477,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0037845129439498457,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.008443880443649831,
+        "sample_std": 0.0009202238403044396,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.002070902559413977,
+        "sample_std": 0.00012289962932304253,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.003453900306867196,
+        "sample_std": 0.0002864860931025062,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "model": "Popularity",
+    "k": 20,
+    "group": "warm",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 43184,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.009887921452389774,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0025269255041667853,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.004154976711857241,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 44040,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.009854677565849228,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.00246304394709008,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.004049895022681692,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 43448,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.01189928190020254,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0027703436385803876,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.004738393473529913,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.010547293639480515,
+        "sample_std": 0.0011709741593415746,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.002586771029945751,
+        "sample_std": 0.00016215545107806336,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.004314421736022949,
+        "sample_std": 0.00037091045550577607,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "model": "Random",
+    "k": 20,
+    "group": "cold",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 11215,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0003863872789418933,
+            "sample_std": 5.148018450197286e-05
+          },
+          "mrr": {
+            "mean": 6.751439863605818e-05,
+            "sample_std": 3.216673368668938e-05
+          },
+          "ndcg": {
+            "mean": 0.00013657067576776822,
+            "sample_std": 3.8321580989505815e-05
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 10357,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0004183965755849506,
+            "sample_std": 0.00014748722908679605
+          },
+          "mrr": {
+            "mean": 5.5599158545043096e-05,
+            "sample_std": 2.552539458526178e-05
+          },
+          "ndcg": {
+            "mean": 0.00013312875550707836,
+            "sample_std": 5.0783474615714654e-05
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 10951,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005174565488692053,
+            "sample_std": 0.00013948728259080876
+          },
+          "mrr": {
+            "mean": 0.0001289219889179518,
+            "sample_std": 5.85655531301555e-05
+          },
+          "ndcg": {
+            "mean": 0.0002122993187258286,
+            "sample_std": 6.363558205208666e-05
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0004407468011320164,
+        "sample_std": 6.833328483486783e-05,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 8.401184869968436e-05,
+        "sample_std": 3.934696630523077e-05,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.00016066625000022507,
+        "sample_std": 4.4748654094703354e-05,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "model": "Random",
+    "k": 20,
+    "group": "overall",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 54399,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0004902050895543423,
+            "sample_std": 0.000137972269701008
+          },
+          "mrr": {
+            "mean": 8.364320457777716e-05,
+            "sample_std": 2.8662721814461888e-05
+          },
+          "ndcg": {
+            "mean": 0.00016978365565677563,
+            "sample_std": 5.295211385555905e-05
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 54397,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005453732129835591,
+            "sample_std": 0.00013550590649910826
+          },
+          "mrr": {
+            "mean": 8.548082440010779e-05,
+            "sample_std": 2.709240980532881e-05
+          },
+          "ndcg": {
+            "mean": 0.00018156732724592563,
+            "sample_std": 4.4837220949400314e-05
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 54399,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0006005012347040693,
+            "sample_std": 7.429276060823511e-05
+          },
+          "mrr": {
+            "mean": 0.00011616210484727404,
+            "sample_std": 2.8099682241479304e-05
+          },
+          "ndcg": {
+            "mean": 0.00021846058449809824,
+            "sample_std": 3.847669750772199e-05
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0005453598457473236,
+        "sample_std": 5.514807378988555e-05,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 9.509537794171967e-05,
+        "sample_std": 1.826744230968753e-05,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.00018993718913359983,
+        "sample_std": 2.539491664427848e-05,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "test",
+    "model": "Random",
+    "k": 20,
+    "group": "warm",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 43184,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005171668519204644,
+            "sample_std": 0.00016264748908319035
+          },
+          "mrr": {
+            "mean": 8.783189850692635e-05,
+            "sample_std": 2.7770459425364854e-05
+          },
+          "ndcg": {
+            "mean": 0.00017840915513471232,
+            "sample_std": 5.689403882175514e-05
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 44040,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005752346351801393,
+            "sample_std": 0.00013304871201367654
+          },
+          "mrr": {
+            "mean": 9.250817256679502e-05,
+            "sample_std": 2.8032169095475752e-05
+          },
+          "ndcg": {
+            "mean": 0.00019295875066779758,
+            "sample_std": 4.3783010325925334e-05
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 43448,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0006214325170318542,
+            "sample_std": 0.00012178932567964422
+          },
+          "mrr": {
+            "mean": 0.00011294599615509047,
+            "sample_std": 3.250612001046111e-05
+          },
+          "ndcg": {
+            "mean": 0.00022001352183634448,
+            "sample_std": 5.1571986369906595e-05
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.000571278001377486,
+        "sample_std": 5.2245319824519636e-05,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 9.776202240960395e-05,
+        "sample_std": 1.3355960422166137e-05,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.0001971271425462848,
+        "sample_std": 2.1113087180714436e-05,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "model": "Popularity",
+    "k": 20,
+    "group": "cold",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 8079,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 7647,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 8304,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0,
+        "sample_std": 0.0,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.0,
+        "sample_std": 0.0,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.0,
+        "sample_std": 0.0,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "model": "Popularity",
+    "k": 20,
+    "group": "overall",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 40482,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.009213971641717306,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0020945505938750335,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.003642924824184172,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 40483,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.008596200874441124,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0016866390150298903,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0031621654478441257,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 40483,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.010671145913099325,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.001963830618780886,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.00383346087156219,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.009493772809752585,
+        "sample_std": 0.0010653946445277926,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.0019150067425619365,
+        "sample_std": 0.00020829256397136899,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.0035461837145301625,
+        "sample_std": 0.00034594583130747605,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "model": "Popularity",
+    "k": 20,
+    "group": "warm",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 32403,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.011511279819769774,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0026167823084667814,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.004551210774700603,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 32836,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.010598124010232671,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.00207943133284977,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.003898585206026122,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 32179,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.013424904440784362,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0024706098679296005,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.004822710353443306,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.011844769423595603,
+        "sample_std": 0.0014425960583380336,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.002388941169748717,
+        "sample_std": 0.0002778288141033227,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.004424168778056677,
+        "sample_std": 0.0004749806035046742,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "model": "Random",
+    "k": 20,
+    "group": "cold",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 8079,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005776292445434666,
+            "sample_std": 7.146308567763655e-05
+          },
+          "mrr": {
+            "mean": 6.591435489005423e-05,
+            "sample_std": 4.705957148353763e-05
+          },
+          "ndcg": {
+            "mean": 0.00016949369907250922,
+            "sample_std": 5.135624837055856e-05
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 7647,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.00039231071008238524,
+            "sample_std": 0.0001307702366941284
+          },
+          "mrr": {
+            "mean": 9.700929323387958e-05,
+            "sample_std": 6.34994845687131e-05
+          },
+          "ndcg": {
+            "mean": 0.00015969829141034974,
+            "sample_std": 5.921946665742961e-05
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 8304,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0004816955684007707,
+            "sample_std": 0.00031861167040758557
+          },
+          "mrr": {
+            "mean": 0.00019503573212629089,
+            "sample_std": 8.026099274475494e-05
+          },
+          "ndcg": {
+            "mean": 0.0002581577242327607,
+            "sample_std": 0.00010523284525606451
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.00048387850767554085,
+        "sample_std": 9.267855049367546e-05,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.00011931979341674157,
+        "sample_std": 6.738992008195846e-05,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.0001957832382385399,
+        "sample_std": 5.423946791866057e-05,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "model": "Random",
+    "k": 20,
+    "group": "overall",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 40482,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005352172982230786,
+            "sample_std": 8.675175594793353e-05
+          },
+          "mrr": {
+            "mean": 9.788475097771297e-05,
+            "sample_std": 6.63626833259917e-05
+          },
+          "ndcg": {
+            "mean": 0.00018804139110533194,
+            "sample_std": 6.785274116078758e-05
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 40483,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005187362596645506,
+            "sample_std": 0.00010767233020133571
+          },
+          "mrr": {
+            "mean": 0.00011115788834739623,
+            "sample_std": 2.8466616317627428e-05
+          },
+          "ndcg": {
+            "mean": 0.00019759437926726543,
+            "sample_std": 4.411886121968041e-05
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 40483,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005763736218495006,
+            "sample_std": 9.351922775486455e-05
+          },
+          "mrr": {
+            "mean": 0.00014068195484539722,
+            "sample_std": 7.000611598209416e-06
+          },
+          "ndcg": {
+            "mean": 0.00023290002366975615,
+            "sample_std": 1.5879915933343488e-05
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.00054344239324571,
+        "sample_std": 2.9685948208003456e-05,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.00011657486472350214,
+        "sample_std": 2.190680007480552e-05,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.00020617859801411783,
+        "sample_std": 2.3629236921827673e-05,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "diginetica",
+    "evaluation_split": "validation",
+    "model": "Random",
+    "k": 20,
+    "group": "warm",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 32403,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005246427799895072,
+            "sample_std": 9.258401999814831e-05
+          },
+          "mrr": {
+            "mean": 0.00010585589037814488,
+            "sample_std": 7.142923088617836e-05
+          },
+          "ndcg": {
+            "mean": 0.00019266586426933447,
+            "sample_std": 7.236130840342933e-05
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 32836,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005481788281154831,
+            "sample_std": 0.0001611494281315989
+          },
+          "mrr": {
+            "mean": 0.00011445287881009152,
+            "sample_std": 2.2653527361815663e-05
+          },
+          "ndcg": {
+            "mean": 0.00020641979600017547,
+            "sample_std": 5.241210918417906e-05
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 32179,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0006008059086153496,
+            "sample_std": 9.989590272116342e-05
+          },
+          "mrr": {
+            "mean": 0.00012665560951022396,
+            "sample_std": 1.9561168497396297e-05
+          },
+          "ndcg": {
+            "mean": 0.00022638210995350668,
+            "sample_std": 3.775438864761306e-05
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.00055787583890678,
+        "sample_std": 3.8996532592450425e-05,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.00011565479289948679,
+        "sample_std": 1.0451819320197767e-05,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.00020848925674100553,
+        "sample_std": 1.6953120850664723e-05,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "model": "Popularity",
+    "k": 20,
+    "group": "cold",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 311,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 307,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 228,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0,
+        "sample_std": 0.0,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.0,
+        "sample_std": 0.0,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.0,
+        "sample_std": 0.0,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "model": "Popularity",
+    "k": 20,
+    "group": "overall",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 1449,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.00759144237405107,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0011519617593626144,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.002472534107808227,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 1449,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.00759144237405107,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0009191291799987452,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0022911687040400998,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 1449,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.004140786749482402,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.000885967035035358,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0015737672540446022,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.00644122383252818,
+        "sample_std": 0.001992236953725417,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.0009856859914655724,
+        "sample_std": 0.000144950526756395,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.0021124900219643096,
+        "sample_std": 0.0004752788843692692,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "model": "Popularity",
+    "k": 20,
+    "group": "warm",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 1138,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.009666080843585237,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0014667773192587243,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.003148244219871811,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 1142,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.009632224168126095,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0011662155707689859,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0029070958425167293,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 1221,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.004914004914004914,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0010514055968601423,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0018676402547998597,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.00807076997523875,
+        "sample_std": 0.0027338911477029,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.0012281328289626176,
+        "sample_std": 0.00021449645006095977,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.0026409934390628,
+        "sample_std": 0.0006805104669896483,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "model": "Random",
+    "k": 20,
+    "group": "cold",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 311,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0010718113612004287,
+            "sample_std": 0.0018564317337287002
+          },
+          "mrr": {
+            "mean": 6.304772712943699e-05,
+            "sample_std": 0.00010920186668992355
+          },
+          "ndcg": {
+            "mean": 0.0002570337262252213,
+            "sample_std": 0.0004451954730808322
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 307,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0010857763300760044,
+            "sample_std": 0.0018806197693473153
+          },
+          "mrr": {
+            "mean": 7.238508867173363e-05,
+            "sample_std": 0.00012537465128982102
+          },
+          "ndcg": {
+            "mean": 0.0002714440825190011,
+            "sample_std": 0.0004701549423368288
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 228,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0007191958970921443,
+        "sample_std": 0.0006228810551658757,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 4.514427193372354e-05,
+        "sample_std": 3.937385612893884e-05,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.00017615926958140747,
+        "sample_std": 0.00015272845441082568,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "model": "Random",
+    "k": 20,
+    "group": "overall",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 1449,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0009201748332183116,
+            "sample_std": 0.0010541927064540695
+          },
+          "mrr": {
+            "mean": 0.00010040375163541135,
+            "sample_std": 0.0001402241579217441
+          },
+          "ndcg": {
+            "mean": 0.0002699582157230644,
+            "sample_std": 0.00033464508093905917
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 1449,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0006901311249137336,
+            "sample_std": 0.0006901311249137336
+          },
+          "mrr": {
+            "mean": 0.00012488087022248512,
+            "sample_std": 0.00017794848822742625
+          },
+          "ndcg": {
+            "mean": 0.00024921401732995934,
+            "sample_std": 0.0002951231561678677
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 1449,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.00023004370830457787,
+            "sample_std": 0.00039844739074508333
+          },
+          "mrr": {
+            "mean": 0.00023004370830457787,
+            "sample_std": 0.00039844739074508333
+          },
+          "ndcg": {
+            "mean": 0.00023004370830457787,
+            "sample_std": 0.00039844739074508333
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0006134498888122077,
+        "sample_std": 0.0003513975688180232,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.00015177611005415812,
+        "sample_std": 6.887775428611367e-05,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.00024973864711920056,
+        "sample_std": 1.996242477573613e-05,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "test",
+    "model": "Random",
+    "k": 20,
+    "group": "warm",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 1138,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0008787346221441125,
+            "sample_std": 0.0015220130119234423
+          },
+          "mrr": {
+            "mean": 0.00011061264761200012,
+            "sample_std": 0.00019158672562369646
+          },
+          "ndcg": {
+            "mean": 0.00027349030380200047,
+            "sample_std": 0.0004736991015625125
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 1142,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005837711617046118,
+            "sample_std": 0.0010111213120658944
+          },
+          "mrr": {
+            "mean": 0.00013899313373919327,
+            "sample_std": 0.00024074316953949867
+          },
+          "ndcg": {
+            "mean": 0.00024323798404358822,
+            "sample_std": 0.00042130054669412264
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 1221,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.000273000273000273,
+            "sample_std": 0.00047285034331664684
+          },
+          "mrr": {
+            "mean": 0.000273000273000273,
+            "sample_std": 0.00047285034331664684
+          },
+          "ndcg": {
+            "mean": 0.000273000273000273,
+            "sample_std": 0.00047285034331664684
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0005785020189496658,
+        "sample_std": 0.00030290154891021395,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.00017420201811715546,
+        "sample_std": 8.673052734859881e-05,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.00026324285361528724,
+        "sample_std": 1.7326457730366505e-05,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "model": "Popularity",
+    "k": 20,
+    "group": "cold",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 11099,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 9780,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 9495,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0,
+        "sample_std": 0.0,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.0,
+        "sample_std": 0.0,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.0,
+        "sample_std": 0.0,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "model": "Popularity",
+    "k": 20,
+    "group": "overall",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 54514,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.005815019994863705,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0006811597729028748,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0017133538639345198,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 54514,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.005484829585060719,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0012224696828516928,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0021533171266100346,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 54514,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.0069890303408298785,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0011464963664371735,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0023760159197030953,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0060962933069181,
+        "sample_std": 0.0007905637137319579,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.001016708607397247,
+        "sample_std": 0.0002930661212928814,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.0020808956367492164,
+        "sample_std": 0.000337214922837208,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "model": "Popularity",
+    "k": 20,
+    "group": "warm",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 43415,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.007301623862720258,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0008552975667402353,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.0021513710132103287,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 44734,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.006683954039433094,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0014897329165953679,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.002624087491394005,
+            "sample_std": 0.0
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 45019,
+        "model_runs": 1,
+        "metrics": {
+          "hr": {
+            "mean": 0.008463093360581087,
+            "sample_std": 0.0
+          },
+          "mrr": {
+            "mean": 0.0013883050027756296,
+            "sample_std": 0.0
+          },
+          "ndcg": {
+            "mean": 0.002877143691479032,
+            "sample_std": 0.0
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.00748289042091148,
+        "sample_std": 0.0009033146488641731,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.0012444451620370776,
+        "sample_std": 0.0003408060938707556,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.002550867398694455,
+        "sample_std": 0.00036838482815057636,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "model": "Random",
+    "k": 20,
+    "group": "cold",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 11099,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0006006547136378652,
+            "sample_std": 0.00020807289636530344
+          },
+          "mrr": {
+            "mean": 0.00013191245888833627,
+            "sample_std": 0.00012013170715982108
+          },
+          "ndcg": {
+            "mean": 0.00022975681982105958,
+            "sample_std": 0.00013109954936745843
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 9780,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0006475800954328562,
+            "sample_std": 0.00015618867399304156
+          },
+          "mrr": {
+            "mean": 9.741949048330302e-05,
+            "sample_std": 6.325711522223771e-05
+          },
+          "ndcg": {
+            "mean": 0.00021105704821639573,
+            "sample_std": 6.890455527913942e-05
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 9495,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.000631911532385466,
+            "sample_std": 0.00010531858873091105
+          },
+          "mrr": {
+            "mean": 0.00015981492449472173,
+            "sample_std": 0.0001249174532518697
+          },
+          "ndcg": {
+            "mean": 0.00025771452381649347,
+            "sample_std": 0.00012553121014672857
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0006267154471520625,
+        "sample_std": 2.3890318969532688e-05,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 0.00012971562462212033,
+        "sample_std": 3.125567319644935e-05,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.0002328427972846496,
+        "sample_std": 2.3481321300616115e-05,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "model": "Random",
+    "k": 20,
+    "group": "overall",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 54514,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005442027124530702,
+            "sample_std": 0.00018826728691517347
+          },
+          "mrr": {
+            "mean": 0.0001076489181044593,
+            "sample_std": 2.8302155002153885e-05
+          },
+          "ndcg": {
+            "mean": 0.000198902622918999,
+            "sample_std": 5.529894989958182e-05
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 54514,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005747758985459393,
+            "sample_std": 7.41360363269505e-05
+          },
+          "mrr": {
+            "mean": 8.607923418144579e-05,
+            "sample_std": 1.217659012202599e-05
+          },
+          "ndcg": {
+            "mean": 0.00018796936547006273,
+            "sample_std": 1.33561794585433e-05
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 54514,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005442027124530702,
+            "sample_std": 0.00011935295701375262
+          },
+          "mrr": {
+            "mean": 9.604319306169974e-05,
+            "sample_std": 3.113925590023927e-05
+          },
+          "ndcg": {
+            "mean": 0.0001897777261153164,
+            "sample_std": 4.955127150344588e-05
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0005543937744840265,
+        "sample_std": 1.7651437220702488e-05,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 9.659044844920161e-05,
+        "sample_std": 1.0795250459301039e-05,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.00019221657150145937,
+        "sample_std": 5.8604611358077715e-06,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  },
+  {
+    "dataset": "yoochoose",
+    "evaluation_split": "validation",
+    "model": "Random",
+    "k": 20,
+    "group": "warm",
+    "splits": [
+      {
+        "split_seed": 42,
+        "n": 43415,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005297708165380629,
+            "sample_std": 0.00020080151761099496
+          },
+          "mrr": {
+            "mean": 0.00010144596891269956,
+            "sample_std": 2.246392434111791e-05
+          },
+          "ndcg": {
+            "mean": 0.00019101477928394267,
+            "sample_std": 5.852697256271725e-05
+          }
+        }
+      },
+      {
+        "split_seed": 43,
+        "n": 44734,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005588590333974159,
+            "sample_std": 5.9144080812460105e-05
+          },
+          "mrr": {
+            "mean": 8.359996323245476e-05,
+            "sample_std": 1.527947529092712e-05
+          },
+          "ndcg": {
+            "mean": 0.00018292180573341635,
+            "sample_std": 3.254699351025558e-06
+          }
+        }
+      },
+      {
+        "split_seed": 44,
+        "n": 45019,
+        "model_runs": 3,
+        "metrics": {
+          "hr": {
+            "mean": 0.0005257039620308462,
+            "sample_std": 0.00015601788508337572
+          },
+          "mrr": {
+            "mean": 8.259303668424702e-05,
+            "sample_std": 4.714019958748593e-05
+          },
+          "ndcg": {
+            "mean": 0.00017544911165980477,
+            "sample_std": 7.083369516921992e-05
+          }
+        }
+      }
+    ],
+    "metrics": {
+      "hr": {
+        "mean": 0.0005381112706554417,
+        "sample_std": 1.80827838148239e-05,
+        "contributing_splits": 3
+      },
+      "mrr": {
+        "mean": 8.921298960980045e-05,
+        "sample_std": 1.0606027165590325e-05,
+        "contributing_splits": 3
+      },
+      "ndcg": {
+        "mean": 0.0001831285655590546,
+        "sample_std": 7.784893343226175e-06,
+        "contributing_splits": 3
+      }
+    },
+    "aggregation": "unweighted mean of split-level model-seed means; sample std ddof=1"
+  }
+]
