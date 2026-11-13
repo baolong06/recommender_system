@@ -37,7 +37,7 @@ python scripts/download_raw.py --help
 PYTHONPATH=src python scripts/run_protocol_v2.py --dataset all
 ```
 
-Use the pinned dependencies and a new empty output directory. See [PROTOCOL_V2.md](../PROTOCOL_V2.md) for full usage. Each published manifest preserves the actual execution commit and source hashes; subsequently added distribution metadata includes runtime, dependency-lock hashes, row counts and schema.
+Use the pinned dependencies and a new empty output directory. See [PROTOCOL_V2.md](https://github.com/baolong06/recommender_system/blob/ba-chien/docs/data/PROTOCOL_V2.md) for full usage. Each published manifest preserves the actual execution commit and source hashes; subsequently added distribution metadata includes runtime, dependency-lock hashes, row counts and schema.
 
 ## Packaged files
 
@@ -50,3 +50,4 @@ Use the pinned dependencies and a new empty output directory. See [PROTOCOL_V2.m
 ## Validation
 
 106 Python tests passed, including full miniature end-to-end execution and manifest tamper detection; Ruff passed. The implementation commit CI passed all five jobs. Final publication CI is checked separately.
+
