@@ -1,0 +1,51 @@
+{
+  "code_commit": "9229e6aff1b9e42534126d2beee0842fabbb5052",
+  "datasets": [
+    {
+      "dataset": "diginetica",
+      "counts": {
+        "events": 989204,
+        "sessions": 204061,
+        "items": 42171
+      },
+      "sha256": "ab5d1b3512f5b123bf3a071d713ae7c07996d953693a9805a803f12add1d6483",
+      "bytes": 14156289,
+      "min_session_events": 2,
+      "min_item_frequency": 5,
+      "events_with_subsecond_precision": 988159,
+      "checks": {
+        "checksum_matches_manifest": true,
+        "counts_match_manifest": true,
+        "schema_valid": true,
+        "no_missing_or_negative_timestamps": true,
+        "seconds_match_milliseconds": true,
+        "sorted_by_session_and_milliseconds": true,
+        "no_duplicate_session_item_millisecond": true,
+        "filter_thresholds_satisfied": true
+      }
+    },
+    {
+      "dataset": "yoochoose",
+      "counts": {
+        "events": 31707554,
+        "sessions": 7981328,
+        "items": 37298
+      },
+      "sha256": "e2d47b77ffeaa3acae7f69b370582f2f7e133e4e8242f9dcb3868e1848b2defe",
+      "bytes": 475862811,
+      "min_session_events": 2,
+      "min_item_frequency": 5,
+      "events_with_subsecond_precision": 31678400,
+      "checks": {
+        "checksum_matches_manifest": true,
+        "counts_match_manifest": true,
+        "schema_valid": true,
+        "no_missing_or_negative_timestamps": true,
+        "seconds_match_milliseconds": true,
+        "sorted_by_session_and_milliseconds": true,
+        "no_duplicate_session_item_millisecond": true,
+        "filter_thresholds_satisfied": true
+      }
+    }
+  ]
+}

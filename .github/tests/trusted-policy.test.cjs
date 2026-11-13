@@ -112,3 +112,8 @@ test('rejects symlink evidence', async () => {
 test('rejects oversized evidence before downloading it', async () => {
   await assert.rejects(fixture({ size: 524289 }).execute, /regular file/);
 });
+
+
+test('trusted trigger covers integration and Dependabot staging', () => {
+  assert.match(workflow, /branches: \[bao-long, dev, main\]/);
+});

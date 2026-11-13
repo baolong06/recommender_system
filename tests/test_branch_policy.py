@@ -124,3 +124,10 @@ def test_human_cannot_impersonate_dependabot_by_branch_name(tmp_path):
     event["pull_request"]["user"] = {"login": "someone"}
     with pytest.raises(ValueError, match="staging"):
         validate_event("pull_request", event, REPOSITORY, tmp_path)
+
+
+@pytest.mark.parametrize("source", ["baolong-dev", "bachien-dev", "trungchien-dev"])
+@pytest.mark.parametrize("target", ["bao-long", "ba-chien", "trung-chien", "dev", "main"])
+def test_retired_work_branches_are_rejected(source, target, tmp_path):
+    with pytest.raises(ValueError):
+        validate_event("pull_request_target", pull_request(source, target), REPOSITORY, tmp_path)

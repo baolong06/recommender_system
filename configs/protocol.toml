@@ -19,3 +19,9 @@ open_decisions = [
   "Tie-breaking and oracle/non-oracle category sources",
   "Fixed split or multiple shared split seeds; K values",
 ]
+
+[data_pipeline]
+version = "P0-data-v2"
+config = "configs/data_v2.toml"
+status = "implementation-selected"
+# Research readiness still requires model results and review; this does not approve promotion.

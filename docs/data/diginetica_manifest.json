@@ -1,0 +1,142 @@
+{
+  "kind": "research-run",
+  "owner": "ba-chien",
+  "dataset": "diginetica",
+  "dataset_version": "kaggle-v1",
+  "source_reference": "https://www.kaggle.com/datasets/profalbusdumbledore/diginetica-dataset/versions/1",
+  "code_commit": "9229e6aff1b9e42534126d2beee0842fabbb5052",
+  "config_path": "configs/data.toml",
+  "raw_files": [
+    {
+      "path": "data/raw/diginetica/train-item-views.csv",
+      "location": "https://www.kaggle.com/datasets/profalbusdumbledore/diginetica-dataset/versions/1",
+      "sha256": "0b9edf1b7960bb855a2248972f8ed593f18721f321b976b2077c9f782fb43e38",
+      "rows": 1235380
+    },
+    {
+      "path": "data/raw/diginetica/product-categories.csv",
+      "location": "https://www.kaggle.com/datasets/profalbusdumbledore/diginetica-dataset/versions/1",
+      "sha256": "9e9566e34548e5d1b8d05ed6dd0222fbb8a7b7b2a8a18cdf28c1a4eba8f9e42c",
+      "rows": 184047
+    }
+  ],
+  "processed_files": [
+    {
+      "path": "data/processed/diginetica_clean.parquet",
+      "location": "local: data/processed",
+      "sha256": "ab5d1b3512f5b123bf3a071d713ae7c07996d953693a9805a803f12add1d6483",
+      "rows": 989204
+    }
+  ],
+  "counts_before": {
+    "events": 1235380,
+    "sessions": 310324,
+    "items": 122993
+  },
+  "counts_after": {
+    "events": 989204,
+    "sessions": 204061,
+    "items": 42171
+  },
+  "filter_steps": [
+    {
+      "step": "raw",
+      "events": 1235380,
+      "sessions": 310324,
+      "items": 122993
+    },
+    {
+      "step": "drop_missing",
+      "events": 1235380,
+      "sessions": 310324,
+      "items": 122993
+    },
+    {
+      "step": "drop_invalid_timestamp",
+      "events": 1235380,
+      "sessions": 310324,
+      "items": 122993
+    },
+    {
+      "step": "drop_duplicates",
+      "events": 1235380,
+      "sessions": 310324,
+      "items": 122993
+    },
+    {
+      "step": "item_frequency_1",
+      "events": 1095051,
+      "sessions": 301550,
+      "items": 44529
+    },
+    {
+      "step": "session_length_1",
+      "events": 999198,
+      "sessions": 205697,
+      "items": 44526
+    },
+    {
+      "step": "item_frequency_2",
+      "events": 991148,
+      "sessions": 205460,
+      "items": 42314
+    },
+    {
+      "step": "session_length_2",
+      "events": 989881,
+      "sessions": 204193,
+      "items": 42314
+    },
+    {
+      "step": "item_frequency_3",
+      "events": 989394,
+      "sessions": 204179,
+      "items": 42190
+    },
+    {
+      "step": "session_length_3",
+      "events": 989290,
+      "sessions": 204075,
+      "items": 42190
+    },
+    {
+      "step": "item_frequency_4",
+      "events": 989219,
+      "sessions": 204072,
+      "items": 42172
+    },
+    {
+      "step": "session_length_4",
+      "events": 989208,
+      "sessions": 204061,
+      "items": 42172
+    },
+    {
+      "step": "item_frequency_5",
+      "events": 989204,
+      "sessions": 204061,
+      "items": 42171
+    },
+    {
+      "step": "session_length_5",
+      "events": 989204,
+      "sessions": 204061,
+      "items": 42171
+    },
+    {
+      "step": "item_frequency_6",
+      "events": 989204,
+      "sessions": 204061,
+      "items": 42171
+    },
+    {
+      "step": "session_length_6",
+      "events": 989204,
+      "sessions": 204061,
+      "items": 42171
+    }
+  ],
+  "schema_reference": "docs/data/schema.md",
+  "reproduce_command": "python scripts/run_clean.py --dataset diginetica --dataset-version kaggle-v1 --source-reference https://www.kaggle.com/datasets/profalbusdumbledore/diginetica-dataset/versions/1",
+  "review_status": "draft"
+}
