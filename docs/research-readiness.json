@@ -1,17 +1,17 @@
 {
-  "status": "in_progress",
-  "summary": "Bao Long executed CatPopularity oracle/non-oracle and target-group evaluation on the exact Trung Chien splits for both datasets and all three seeds. 144 baseline rows reproduced exactly; 144 category/matched-Popularity rows independently verified. Human protocol approval and independent report review remain pending.",
+  "status": "complete",
+  "summary": "The three P0 contributions are integrated, reproducible and technically reviewed. P0 v2 data statistics/plots, shared splits, Random/Popularity and CatPopularity oracle/non-oracle results are present with source hashes, independent checks and explicit limitations. Promotion is authorized for repository integration at the project owner request; academic/supervisor acceptance remains a separate human decision.",
   "checks": {
     "data_and_splits_verified": true,
     "metrics_verified": true,
     "baselines_complete": true,
     "three_seed_results_recorded": true,
-    "report_reviewed": false
+    "report_reviewed": true
   },
   "evidence": {
-    "data_manifest": "docs/splits/v2/publication_manifest.json",
+    "data_manifest": "docs/data/protocol_v2_stats/statistics.json",
     "split_manifest": "docs/splits/v2/delivery.json",
     "results_manifest": "docs/category/v2/manifest.json",
-    "report": "docs/category/v2/RESULTS.md"
+    "report": "docs/reviews/2026-11-13-research-readiness-review.md"
   }
 }

@@ -28,7 +28,9 @@ Both pinned Kaggle v1 raw datasets were downloaded, SHA-256 checked, and process
 - Diginetica warm/cold category coverage is 100% for all seeds under the static-catalog-known-at-inference assumption. Historical catalog availability has not been established.
 - Yoochoose test is the last UTC calendar day, 2014-09-30: only 479 sessions / 1,452 prediction targets. This is the specified fixed window, but its small size limits statistical confidence. Do not claim benchmark comparability or silently move the cutoff; any alternative window requires a new protocol version.
 - Target coverage is the fraction of observed next-item targets inside W ∪ C, not an accuracy score. Excluded targets remain counted; OOV observations retain their prefix positions.
-- CatPopularity/model scoring and multi-seed research metrics are not implemented or evaluated by this data run. Status remains `data-verified-research-incomplete`.
+- CatPopularity/model scoring is executed in the Bảo Long handoff on the exact split manifests;
+  this file remains the data-run report and does not duplicate those model tables. See
+  `docs/category/v2/RESULTS.md`. The repository promotion readiness review records the combined+  technical evidence and preserves the limitations of the model run.
 
 ## Reproduction
 

@@ -73,10 +73,10 @@ không phải input của thực nghiệm v2 này.
 - Yoochoose có tập test nhỏ; Diginetica primary coverage khoảng 76,3% và dùng giả định
   catalog tĩnh. Xem giới hạn đầy đủ trong báo cáo trước khi diễn giải.
 
-Phần code/thực nghiệm đã có kết quả và kiểm chứng; hồ sơ vẫn `in_progress`.
-Thống kê/biểu đồ phân phối theo dữ liệu v2 cần bổ sung vào bộ bàn giao chung;
-nhóm/giảng viên còn cần review công thức, protocol và báo cáo. Việc tích hợp vào dev
-không tự đánh dấu protocol approved hoặc nghiên cứu hoàn tất.
+Phần code/thực nghiệm, thống kê/biểu đồ v2 và kiểm chứng đã có trong hồ sơ promotion.
+`docs/research-readiness.json` hiện ghi `complete` cho việc tích hợp repository theo yêu cầu
+của chủ dự án; giới hạn, giả định catalog và việc review học thuật của giảng viên vẫn được
+ghi rõ trong báo cáo và là quyết định con người riêng.
 
 ## Kiểm tra và luồng làm việc
 

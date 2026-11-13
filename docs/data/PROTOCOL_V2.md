@@ -66,10 +66,12 @@ mọi model. Giữ item từng xem trong candidates vì next-item có thể lặ
 Các file train có `parent_session_id` để audit thời gian/phiên, `session_id` đoạn để huấn luyện.
 Không coi các đoạn của một phiên gốc là các người dùng khác nhau.
 
-Cat-Popularity chưa được triển khai bởi pipeline dữ liệu này. Yoochoose cold category
-được ghi N/A khi không có catalog độc lập; không thay bằng số0. Với Diginetica có thể dùng
-catalog cho cold item theo giả định nêu trên. Non-oracle không được đọc category của target;
-oracle là điều kiện riêng có thông tin nhãn, không được trộn vào kết quả non-oracle.
+Cat-Popularity and group-wise evaluation are implemented in `src/recommender/category.py`,
+`src/recommender/category_evaluation.py` and `scripts/run_category_v2.py`. Yoochoose cold category
+is recorded N/A without an independent catalog; it is never replaced by zero. Diginetica can use
+the static catalog under the assumption described above. Non-oracle does not read target category;
+oracle is a separate privileged condition and must not be mixed into non-oracle results. See
+`docs/category/v2/RESULTS.md` for executed results and matched-cohort comparisons.
 
 ## Kiểm tra và bàn giao
 
