@@ -1,0 +1,9 @@
+﻿[
+  {"step": "raw", "rows": 33003944, "sessions": 9249729, "items": 52739},
+  {"step": "drop_null", "rows": 33003944, "sessions": 9249729, "items": 52739},
+  {"step": "drop_dup", "rows": 32917217, "sessions": 9249729, "items": 52739},
+  {"step": "iter_0", "rows": 31597370, "sessions": 7955712, "items": 37939},
+  {"step": "iter_1", "rows": 31594472, "sessions": 7954858, "items": 37280},
+  {"step": "iter_2", "rows": 31594390, "sessions": 7954835, "items": 37263},
+  {"step": "iter_3", "rows": 31594390, "sessions": 7954835, "items": 37263}
+]

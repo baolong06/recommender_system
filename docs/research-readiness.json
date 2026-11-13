@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "summary": "The three P0 contributions are integrated, reproducible and technically reviewed. P0 v2 data statistics/plots, shared splits, Random/Popularity and CatPopularity oracle/non-oracle results are present with source hashes, independent checks and explicit limitations. Promotion is authorized for repository integration at the project owner request; academic/supervisor acceptance remains a separate human decision.",
+  "checks": {
+    "data_and_splits_verified": true,
+    "metrics_verified": true,
+    "baselines_complete": true,
+    "three_seed_results_recorded": true,
+    "report_reviewed": true
+  },
+  "evidence": {
+    "data_manifest": "docs/data/protocol_v2_stats/statistics.json",
+    "split_manifest": "docs/splits/v2/delivery.json",
+    "results_manifest": "docs/category/v2/manifest.json",
+    "report": "docs/reviews/2026-11-13-research-readiness-review.md"
+  }
+}

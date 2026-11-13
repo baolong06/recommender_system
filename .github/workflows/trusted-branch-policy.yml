@@ -1,0 +1,84 @@
+name: Trusted branch policy
+
+# Activation requires this workflow on the default branch after a reviewed promotion.
+# Never execute PR code, install its dependencies, or use a PR artifact in this workflow.
+on:
+  pull_request_target:
+    branches: [bao-long, dev, main]
+    types: [opened, synchronize, reopened, edited, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: trusted-policy-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  trusted-branch-policy:
+    name: trusted-branch-policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out trusted workflow source only
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: policy
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Read current PR metadata and bounded evidence as data
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require('node:fs/promises');
+            const path = require('node:path');
+            const { data: pr } = await github.rest.pulls.get({
+              ...context.repo, pull_number: context.payload.pull_request.number
+            });
+            if (pr.state !== 'open') throw new Error('PR is no longer open');
+            if (pr.head.sha !== context.payload.pull_request.head.sha ||
+                pr.base.ref !== context.payload.pull_request.base.ref) {
+              throw new Error('PR changed while this check was queued; use the newest run');
+            }
+            if (pr.head.repo?.full_name !== `${context.repo.owner}/${context.repo.repo}`) {
+              throw new Error('Only team branches in this repository are accepted');
+            }
+            await fs.mkdir('inputs', { recursive: true });
+            await fs.writeFile('event.json', JSON.stringify({ pull_request: pr }));
+            if (pr.base.ref !== 'main') return;
+            if (pr.head.ref !== 'dev') throw new Error('Only dev may target main');
+            const { data: tree } = await github.rest.git.getTree({
+              ...context.repo, tree_sha: pr.head.sha, recursive: 'true'
+            });
+            if (tree.truncated) throw new Error('Evidence tree truncated; manual investigation required');
+            const entries = new Map(tree.tree.map(entry => [entry.path, entry]));
+            let total = 0;
+            const readFile = async relative => {
+              if (typeof relative !== 'string' || !relative || relative.startsWith('/') ||
+                  relative.split('/').some(part => !part || part === '.' || part === '..') ||
+                  /[\\:\x00-\x1f\x7f]/.test(relative)) throw new Error('Invalid evidence path');
+              const entry = entries.get(relative);
+              if (!entry || entry.type !== 'blob' || !['100644', '100755'].includes(entry.mode) ||
+                  !entry.size || entry.size > 524288) throw new Error('Evidence must be a small regular file');
+              total += entry.size;
+              if (total > 2097152) throw new Error('Evidence exceeds total size limit');
+              const { data: blob } = await github.rest.git.getBlob({ ...context.repo, file_sha: entry.sha });
+              if (blob.encoding !== 'base64') throw new Error('Unsupported evidence encoding');
+              const content = Buffer.from(blob.content, 'base64');
+              const destination = path.join('inputs', relative);
+              await fs.mkdir(path.dirname(destination), { recursive: true });
+              await fs.writeFile(destination, content);
+              return content.toString('utf8');
+            };
+            const readiness = JSON.parse(await readFile('docs/research-readiness.json'));
+            await readFile('configs/protocol.toml');
+            for (const key of ['data_manifest', 'split_manifest', 'results_manifest', 'report']) {
+              await readFile(readiness.evidence?.[key]);
+            }
+      - name: Evaluate with trusted standard-library-only policy
+        working-directory: inputs
+        run: python -I ../policy/src/recommender/branch_policy.py --event-path ../event.json

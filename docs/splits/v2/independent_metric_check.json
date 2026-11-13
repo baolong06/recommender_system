@@ -1,0 +1,7 @@
+{
+  "check": "independent DuckDB event-frequency/top20 ranking and direct HR/MRR/NDCG SQL",
+  "popularity_group_rows_compared": 36,
+  "all_result_rows": 144,
+  "metric_tolerance": 1e-12,
+  "status": "passed"
+}

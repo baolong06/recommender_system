@@ -1,0 +1,55 @@
+{
+  "kind": "Trung Chien baseline handoff publication",
+  "files": [
+    {
+      "path": "data_manifests/diginetica_manifest.json",
+      "bytes": 28553,
+      "sha256": "1cc9b36914e897e84714512cdfc3f7df033670b2b1953a9491e6b243045caed9"
+    },
+    {
+      "path": "data_manifests/yoochoose_manifest.json",
+      "bytes": 27621,
+      "sha256": "0e975ef74c58920e5b42db2d463815364cc83c21ad384c01d07f731d8b5dc81b"
+    },
+    {
+      "path": "delivery.json",
+      "bytes": 9302,
+      "sha256": "cf9359f269a45052cbaa907c90741b30dc511f74098a9ae1513196353775080a"
+    },
+    {
+      "path": "independent_metric_check.json",
+      "bytes": 217,
+      "sha256": "4a306d72f8b08cc2a18ea66a7b62696c283e3df7fdd8efb215273cdd3469a665"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 2920,
+      "sha256": "01d7faefd5d9109d60136b5c8282ad24408dcf63614b8cba20bea32aca2f803e"
+    },
+    {
+      "path": "RESULTS.md",
+      "bytes": 5021,
+      "sha256": "5d6a3be1dd6f1bb779cb68db8b0393abfbccf714845721e391ba27000c76d24e"
+    },
+    {
+      "path": "runs.csv",
+      "bytes": 32464,
+      "sha256": "9a6966790de26bf098de74e1c456d413ee1852451932a522b5d6d2b277266d12"
+    },
+    {
+      "path": "runs.json",
+      "bytes": 76112,
+      "sha256": "10d6eebd002034e247d885042cc166413507881f03a65ec618ce1b0659695167"
+    },
+    {
+      "path": "split_acceptance.json",
+      "bytes": 5738,
+      "sha256": "1b66c643a21ba7351cdcb3111e147c5d7a51f800cdef07e90aaad4047e7bf7af"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 50482,
+      "sha256": "42208ff24800d0d055d47780122f2bf2c082ffc78c13e1b3c07f882adc9fa9b0"
+    }
+  ]
+}

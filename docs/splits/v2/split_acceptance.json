@@ -1,0 +1,190 @@
+[
+  {
+    "dataset": "diginetica",
+    "data_version": "P0-data-v2",
+    "data_manifest_sha256": "1cc9b36914e897e84714512cdfc3f7df033670b2b1953a9491e6b243045caed9",
+    "payload_files_verified": 19,
+    "windows_utc_ms": {
+      "train_end_exclusive": 1463616000000,
+      "validation_start_inclusive": 1463616000000,
+      "validation_end_exclusive": 1464220800000,
+      "test_start_inclusive": 1464220800000,
+      "test_end_exclusive": 1464825600000
+    },
+    "checks": [
+      "all payload sizes and SHA-256",
+      "fixed cold SHA-256 selection and ceil20%",
+      "cold absent from fit",
+      "train/holdout windows and parent sessions disjoint",
+      "segments min2 and no bridges across removed events",
+      "candidate membership and support equal actual final train plus cold",
+      "incidental set exact",
+      "coverage recounted from observed targets"
+    ],
+    "seeds": [
+      {
+        "seed": 42,
+        "train_events": 559881,
+        "warm_items": 27642,
+        "cold_items": 6911,
+        "coverage": {
+          "validation": {
+            "all_targets": 52832,
+            "warm_targets": 32403,
+            "cold_targets": 8079,
+            "excluded_targets": 12350
+          },
+          "test": {
+            "all_targets": 71289,
+            "warm_targets": 43184,
+            "cold_targets": 11215,
+            "excluded_targets": 16890
+          }
+        },
+        "checks": "passed"
+      },
+      {
+        "seed": 43,
+        "train_events": 569213,
+        "warm_items": 27639,
+        "cold_items": 6911,
+        "coverage": {
+          "validation": {
+            "all_targets": 52832,
+            "warm_targets": 32836,
+            "cold_targets": 7647,
+            "excluded_targets": 12349
+          },
+          "test": {
+            "all_targets": 71289,
+            "warm_targets": 44040,
+            "cold_targets": 10357,
+            "excluded_targets": 16892
+          }
+        },
+        "checks": "passed"
+      },
+      {
+        "seed": 44,
+        "train_events": 562041,
+        "warm_items": 27641,
+        "cold_items": 6911,
+        "coverage": {
+          "validation": {
+            "all_targets": 52832,
+            "warm_targets": 32179,
+            "cold_targets": 8304,
+            "excluded_targets": 12349
+          },
+          "test": {
+            "all_targets": 71289,
+            "warm_targets": 43448,
+            "cold_targets": 10951,
+            "excluded_targets": 16890
+          }
+        },
+        "checks": "passed"
+      }
+    ],
+    "status": "passed",
+    "dev_handoff_comparison": {
+      "reference": "docs/data/protocol_v2/diginetica_manifest.json",
+      "sha256": "5b1008f2a1d8355bba3281ef2cda5f6444e0d4e6d6980b5854603349c99f52ea",
+      "raw_hashes_and_split_audit_equal": true
+    }
+  },
+  {
+    "dataset": "yoochoose",
+    "data_version": "P0-data-v2",
+    "data_manifest_sha256": "0e975ef74c58920e5b42db2d463815364cc83c21ad384c01d07f731d8b5dc81b",
+    "payload_files_verified": 19,
+    "windows_utc_ms": {
+      "train_end_exclusive": 1411948800000,
+      "validation_start_inclusive": 1411948800000,
+      "validation_end_exclusive": 1412035200000,
+      "test_start_inclusive": 1412035200000,
+      "test_end_exclusive": 1412121600000
+    },
+    "checks": [
+      "all payload sizes and SHA-256",
+      "fixed cold SHA-256 selection and ceil20%",
+      "cold absent from fit",
+      "train/holdout windows and parent sessions disjoint",
+      "segments min2 and no bridges across removed events",
+      "candidate membership and support equal actual final train plus cold",
+      "incidental set exact",
+      "coverage recounted from observed targets"
+    ],
+    "seeds": [
+      {
+        "seed": 42,
+        "train_events": 22830238,
+        "warm_items": 29493,
+        "cold_items": 7375,
+        "coverage": {
+          "validation": {
+            "all_targets": 54641,
+            "warm_targets": 43415,
+            "cold_targets": 11099,
+            "excluded_targets": 127
+          },
+          "test": {
+            "all_targets": 1452,
+            "warm_targets": 1138,
+            "cold_targets": 311,
+            "excluded_targets": 3
+          }
+        },
+        "checks": "passed"
+      },
+      {
+        "seed": 43,
+        "train_events": 22811988,
+        "warm_items": 29497,
+        "cold_items": 7375,
+        "coverage": {
+          "validation": {
+            "all_targets": 54641,
+            "warm_targets": 44734,
+            "cold_targets": 9780,
+            "excluded_targets": 127
+          },
+          "test": {
+            "all_targets": 1452,
+            "warm_targets": 1142,
+            "cold_targets": 307,
+            "excluded_targets": 3
+          }
+        },
+        "checks": "passed"
+      },
+      {
+        "seed": 44,
+        "train_events": 23154210,
+        "warm_items": 29496,
+        "cold_items": 7375,
+        "coverage": {
+          "validation": {
+            "all_targets": 54641,
+            "warm_targets": 45019,
+            "cold_targets": 9495,
+            "excluded_targets": 127
+          },
+          "test": {
+            "all_targets": 1452,
+            "warm_targets": 1221,
+            "cold_targets": 228,
+            "excluded_targets": 3
+          }
+        },
+        "checks": "passed"
+      }
+    ],
+    "status": "passed",
+    "dev_handoff_comparison": {
+      "reference": "docs/data/protocol_v2/yoochoose_manifest.json",
+      "sha256": "0fbdb7a57558998dc802445df1da028644dfadda5b5966d33734796216fdcf3b",
+      "raw_hashes_and_split_audit_equal": true
+    }
+  }
+]

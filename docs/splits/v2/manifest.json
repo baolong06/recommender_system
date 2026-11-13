@@ -1,0 +1,83 @@
+{
+  "kind": "P0-Random-Popularity-baseline-results",
+  "protocol": {
+    "protocol_version": "P0-baselines-v2",
+    "data_protocol_version": "P0-data-v2",
+    "split_seeds": [
+      42,
+      43,
+      44
+    ],
+    "model_seeds": [
+      42,
+      43,
+      44
+    ],
+    "k": 20,
+    "evaluation_splits": [
+      "validation",
+      "test"
+    ],
+    "candidate_policy": "final-warm-union-fixed-controlled-cold",
+    "popularity_tie_break": "item_id ascending (lexicographic)",
+    "random_policy": "per-query sha256 seed + Python Random.sample sorted candidates",
+    "seen_items": "keep",
+    "refit_on_validation": false
+  },
+  "code_commit": "0256489a6d9db81be844c109a4a64406d5e66c14",
+  "source_code_sha256": {
+    "scripts/run_baselines_v2.py": "bb6c414658f7a04ebe289c5677a5aca788b1d2b6504513eb8509c4da5cabb1f5",
+    "src/recommender/baselines_v2.py": "3c6ab4fb89d30943c1c0881cd0f9f7a0a6076cb6d42678979d67179dae21828f",
+    "src/recommender/splits/acceptance.py": "a6bb9724d4813e1064b8f6e27ea5622884e9fa3d4616b7315551c20abf7ffade",
+    "src/recommender/metrics.py": "0aa79025a196a76800197cbae0379c6ed5c4619540d14f52e701a4ce7165ddd5",
+    "src/recommender/data/examples_v2.py": "185fac8a7a27f11094bf16da5b4e0e11148e48e14eefbdd50bb381f6ab27ff0b",
+    "configs/baselines_v2.toml": "1dffee240ef7f142c1380296ab4fb7178a19064182101173ef964e25099f0071"
+  },
+  "runtime": {
+    "python": "3.12.13",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "packages": {
+      "pyarrow": "26.0.1",
+      "duckdb": "2.0.0"
+    }
+  },
+  "dependency_locks_sha256": {
+    "requirements-dev.txt": "aa7a36d607b86399314e950fdafdd1a0e1cf584118151124164353403cc2f03f",
+    "requirements-audit.txt": "22006f6bb0c50163574f807befa446c3e09d49a7152ab80c6c230d67c3686f33"
+  },
+  "inputs": [
+    {
+      "dataset": "diginetica",
+      "data_manifest_sha256": "1cc9b36914e897e84714512cdfc3f7df033670b2b1953a9491e6b243045caed9"
+    },
+    {
+      "dataset": "yoochoose",
+      "data_manifest_sha256": "0e975ef74c58920e5b42db2d463815364cc83c21ad384c01d07f731d8b5dc81b"
+    }
+  ],
+  "files": [
+    {
+      "path": "runs.csv",
+      "sha256": "9a6966790de26bf098de74e1c456d413ee1852451932a522b5d6d2b277266d12",
+      "bytes": 32464
+    },
+    {
+      "path": "runs.json",
+      "sha256": "10d6eebd002034e247d885042cc166413507881f03a65ec618ce1b0659695167",
+      "bytes": 76112
+    },
+    {
+      "path": "split_acceptance.json",
+      "sha256": "1b66c643a21ba7351cdcb3111e147c5d7a51f800cdef07e90aaad4047e7bf7af",
+      "bytes": 5738
+    },
+    {
+      "path": "summary.json",
+      "sha256": "42208ff24800d0d055d47780122f2bf2c082ffc78c13e1b3c07f882adc9fa9b0",
+      "bytes": 50482
+    }
+  ],
+  "review_status": "executed-awaiting-independent-review",
+  "catpop_implemented": false,
+  "aggregation": "Random model-seed means within split, then 3 split means; ddof=1"
+}

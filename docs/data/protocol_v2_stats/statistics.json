@@ -1,0 +1,219 @@
+{
+  "protocol": "P0-data-v2",
+  "datasets": [
+    {
+      "dataset": "diginetica",
+      "data_protocol": "P0-data-v2",
+      "manifest_sha256": "1cc9b36914e897e84714512cdfc3f7df033670b2b1953a9491e6b243045caed9",
+      "events": 1235380,
+      "sessions": 310324,
+      "items": 122993,
+      "known_categories": 1208,
+      "flagged_duplicate_rows": 0,
+      "session_length": {
+        "n": 310324,
+        "min": 1,
+        "median": 3.0,
+        "mean": 3.9809360539307304,
+        "p90": 9.0,
+        "p99": 19.0,
+        "max": 87
+      },
+      "item_frequency": {
+        "items_for_80_percent": 27783,
+        "fraction_items_for_80_percent": 0.22589090436041076,
+        "top_10_percent_event_share": 0.6253039550583626,
+        "gini": 0.7259996946959596,
+        "top_items": [
+          {
+            "item_id": "79141",
+            "frequency": 1270
+          },
+          {
+            "item_id": "6848",
+            "frequency": 1115
+          },
+          {
+            "item_id": "14614",
+            "frequency": 1056
+          },
+          {
+            "item_id": "36083",
+            "frequency": 961
+          },
+          {
+            "item_id": "36031",
+            "frequency": 947
+          },
+          {
+            "item_id": "10858",
+            "frequency": 926
+          },
+          {
+            "item_id": "49272",
+            "frequency": 886
+          },
+          {
+            "item_id": "12862",
+            "frequency": 874
+          },
+          {
+            "item_id": "13931",
+            "frequency": 849
+          },
+          {
+            "item_id": "72562",
+            "frequency": 849
+          },
+          {
+            "item_id": "79130",
+            "frequency": 733
+          },
+          {
+            "item_id": "72561",
+            "frequency": 730
+          },
+          {
+            "item_id": "36956",
+            "frequency": 721
+          },
+          {
+            "item_id": "3147",
+            "frequency": 718
+          },
+          {
+            "item_id": "176018",
+            "frequency": 705
+          },
+          {
+            "item_id": "35980",
+            "frequency": 681
+          },
+          {
+            "item_id": "11338",
+            "frequency": 668
+          },
+          {
+            "item_id": "2843",
+            "frequency": 665
+          },
+          {
+            "item_id": "31013",
+            "frequency": 640
+          },
+          {
+            "item_id": "35015",
+            "frequency": 632
+          }
+        ]
+      }
+    },
+    {
+      "dataset": "yoochoose",
+      "data_protocol": "P0-data-v2",
+      "manifest_sha256": "0e975ef74c58920e5b42db2d463815364cc83c21ad384c01d07f731d8b5dc81b",
+      "events": 33003944,
+      "sessions": 9249729,
+      "items": 52739,
+      "known_categories": 0,
+      "flagged_duplicate_rows": 137,
+      "session_length": {
+        "n": 9249729,
+        "min": 1,
+        "median": 2.0,
+        "mean": 3.568098481587947,
+        "p90": 7.0,
+        "p99": 18.0,
+        "max": 200
+      },
+      "item_frequency": {
+        "items_for_80_percent": 3811,
+        "fraction_items_for_80_percent": 0.07226151424941694,
+        "top_10_percent_event_share": 0.8542295126909681,
+        "gini": 0.8987078425199315,
+        "top_items": [
+          {
+            "item_id": "643078800",
+            "frequency": 147419
+          },
+          {
+            "item_id": "214853094",
+            "frequency": 125690
+          },
+          {
+            "item_id": "214829878",
+            "frequency": 113488
+          },
+          {
+            "item_id": "214853420",
+            "frequency": 78448
+          },
+          {
+            "item_id": "214826610",
+            "frequency": 69710
+          },
+          {
+            "item_id": "214853096",
+            "frequency": 66067
+          },
+          {
+            "item_id": "214748336",
+            "frequency": 62150
+          },
+          {
+            "item_id": "214834880",
+            "frequency": 61668
+          },
+          {
+            "item_id": "214839973",
+            "frequency": 60332
+          },
+          {
+            "item_id": "214821309",
+            "frequency": 55854
+          },
+          {
+            "item_id": "214850743",
+            "frequency": 54762
+          },
+          {
+            "item_id": "214684093",
+            "frequency": 54471
+          },
+          {
+            "item_id": "214834877",
+            "frequency": 54128
+          },
+          {
+            "item_id": "214835017",
+            "frequency": 53076
+          },
+          {
+            "item_id": "214821305",
+            "frequency": 51652
+          },
+          {
+            "item_id": "214829880",
+            "frequency": 51609
+          },
+          {
+            "item_id": "214836932",
+            "frequency": 51323
+          },
+          {
+            "item_id": "214717003",
+            "frequency": 48949
+          },
+          {
+            "item_id": "214829747",
+            "frequency": 47294
+          },
+          {
+            "item_id": "214835019",
+            "frequency": 47071
+          }
+        ]
+      }
+    }
+  ]
+}

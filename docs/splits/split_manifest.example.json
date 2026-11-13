@@ -1,0 +1,24 @@
+{
+  "kind": "template-not-a-research-result",
+  "owner": "trung-chien",
+  "dataset": "",
+  "data_version": "",
+  "data_manifest_reference": "",
+  "split_id": "",
+  "split_seed": 42,
+  "model_seeds": [42, 43, 44],
+  "cold_item_fraction": 0.2,
+  "code_commit": "",
+  "config_path": "configs/split.example.toml",
+  "train": {"reference": "", "sha256": "", "examples": null},
+  "validation": {"reference": "", "sha256": "", "examples": null},
+  "test": {"reference": "", "sha256": "", "examples": null},
+  "cold_items": {"reference": "", "sha256": "", "count": null},
+  "leakage_checks": {
+    "cold_absent_from_fit_data": null,
+    "session_overlap_policy_verified": null,
+    "temporal_policy_verified": null
+  },
+  "reproduce_command": "",
+  "review_status": "not_started"
+}

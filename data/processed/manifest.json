@@ -1,0 +1,195 @@
+{
+  "format_version": "1.0",
+  "release_tag": "processed-legacy-v1-2026-11-12",
+  "release_url": "https://github.com/baolong06/recommender_system/releases/tag/processed-legacy-v1-2026-11-12",
+  "created_at": "2026-11-12T15:04:30.015412+00:00",
+  "review_status": "legacy-seconds-requires-rerun",
+  "processing_note": "Repack only. No raw-data cleaning rerun or millisecond recovery.",
+  "compression": {
+    "codec": "zstd",
+    "level": 6
+  },
+  "target_part_bytes": 268435456,
+  "partitioning": "session boundaries; a complete batch/session may exceed target size",
+  "packaging_environment": {
+    "pyarrow": "26.0.1"
+  },
+  "datasets": {
+    "diginetica_clean": {
+      "source_file": "diginetica_clean.parquet",
+      "source_sha256": "c1b6728d96cbdf0935ebc32f745133cadcb99305185d3e912616b90aebcc36b1",
+      "source_bytes": 8188740,
+      "rows": 988884,
+      "sessions": 204043,
+      "items": 42163,
+      "schema": [
+        {
+          "name": "session_id",
+          "type": "string"
+        },
+        {
+          "name": "item_id",
+          "type": "string"
+        },
+        {
+          "name": "timestamp",
+          "type": "int64"
+        },
+        {
+          "name": "category",
+          "type": "string"
+        }
+      ],
+      "source_provenance": {
+        "file": "diginetica_clean.parquet",
+        "sha256": "c1b6728d96cbdf0935ebc32f745133cadcb99305185d3e912616b90aebcc36b1",
+        "rows": 988884,
+        "sessions": 204043,
+        "items": 42163,
+        "schema_version": "1.0",
+        "config": {
+          "min_session_len": 2,
+          "min_item_support": 5,
+          "max_iter": 10
+        },
+        "raw_inputs": {
+          "train-item-views.csv": "0b9edf1b7960bb855a2248972f8ed593f18721f321b976b2077c9f782fb43e38",
+          "product-categories.csv": "9e9566e34548e5d1b8d05ed6dd0222fbb8a7b7b2a8a18cdf28c1a4eba8f9e42c"
+        },
+        "git_commit": "unknown",
+        "created_at": "2026-11-11T09:25:44.767402+00:00"
+      },
+      "verification": "all values, row order, schema and metadata equal to source",
+      "parts": [
+        {
+          "asset": "diginetica_clean-part-000.parquet",
+          "local_path": "diginetica_clean/part-000.parquet",
+          "bytes": 7384531,
+          "sha256": "7402849fa0184c854705809fa404c5366b153c97630e27bdff0a3adb737dc6e4",
+          "rows": 988884,
+          "sessions": 204043,
+          "first_session_id": "1",
+          "last_session_id": "99998",
+          "url": "https://github.com/baolong06/recommender_system/releases/download/processed-legacy-v1-2026-11-12/diginetica_clean-part-000.parquet"
+        }
+      ]
+    },
+    "yoochoose_clean": {
+      "source_file": "yoochoose_clean.parquet",
+      "source_sha256": "1df0d3fab022dd545a60039c48626a73e22a7249e6e26f75466c91984edf20ac",
+      "source_bytes": 282093227,
+      "rows": 31594390,
+      "sessions": 7954835,
+      "items": 37263,
+      "schema": [
+        {
+          "name": "session_id",
+          "type": "string"
+        },
+        {
+          "name": "item_id",
+          "type": "string"
+        },
+        {
+          "name": "timestamp",
+          "type": "int64"
+        },
+        {
+          "name": "category",
+          "type": "string"
+        }
+      ],
+      "source_provenance": {
+        "file": "yoochoose_clean.parquet",
+        "sha256": "1df0d3fab022dd545a60039c48626a73e22a7249e6e26f75466c91984edf20ac",
+        "rows": 31594390,
+        "sessions": 7954835,
+        "items": 37263,
+        "schema_version": "1.0",
+        "config": {
+          "min_session_len": 2,
+          "min_item_support": 5,
+          "max_iter": 10
+        },
+        "raw_inputs": {
+          "yoochoose-clicks.dat": "0deaf041a4f60955928fe8430e525a1dbf38e9013c7482420973e4aa492fa762"
+        },
+        "git_commit": "unknown",
+        "created_at": "2026-11-11T09:32:49.134001+00:00"
+      },
+      "verification": "all values, row order, schema and metadata equal to source",
+      "parts": [
+        {
+          "asset": "yoochoose_clean-part-000.parquet",
+          "local_path": "yoochoose_clean/part-000.parquet",
+          "bytes": 210022101,
+          "sha256": "8c05c0fce766607851153abfe9511dd547d1584d53e8c10e9717b6bda2be5070",
+          "rows": 31594390,
+          "sessions": 7954835,
+          "first_session_id": "1",
+          "last_session_id": "9999997",
+          "url": "https://github.com/baolong06/recommender_system/releases/download/processed-legacy-v1-2026-11-12/yoochoose_clean-part-000.parquet"
+        }
+      ]
+    },
+    "yoochoose_clean_nrows1000000": {
+      "source_file": "yoochoose_clean_nrows1000000.parquet",
+      "source_sha256": "69516ddbd56c0c7ad086598ab7b2fb6cb6ad15df10291addcee2d82e1af3a85a",
+      "source_bytes": 8084751,
+      "rows": 960813,
+      "sessions": 233958,
+      "items": 11705,
+      "schema": [
+        {
+          "name": "session_id",
+          "type": "string"
+        },
+        {
+          "name": "item_id",
+          "type": "string"
+        },
+        {
+          "name": "timestamp",
+          "type": "int64"
+        },
+        {
+          "name": "category",
+          "type": "string"
+        }
+      ],
+      "source_provenance": {
+        "file": "yoochoose_clean_nrows1000000.parquet",
+        "sha256": "69516ddbd56c0c7ad086598ab7b2fb6cb6ad15df10291addcee2d82e1af3a85a",
+        "rows": 960813,
+        "sessions": 233958,
+        "items": 11705,
+        "schema_version": "1.0",
+        "config": {
+          "min_session_len": 2,
+          "min_item_support": 5,
+          "max_iter": 10,
+          "nrows": 1000000
+        },
+        "raw_inputs": {
+          "yoochoose-clicks.dat": "0deaf041a4f60955928fe8430e525a1dbf38e9013c7482420973e4aa492fa762"
+        },
+        "git_commit": "unknown",
+        "created_at": "2026-11-11T09:27:09.687679+00:00"
+      },
+      "verification": "all values, row order, schema and metadata equal to source",
+      "parts": [
+        {
+          "asset": "yoochoose_clean_nrows1000000-part-000.parquet",
+          "local_path": "yoochoose_clean_nrows1000000/part-000.parquet",
+          "bytes": 6069712,
+          "sha256": "f07d0232d882529b98e6caac77b9351cf7bf122414a16a2910e847c0e0a7e5a0",
+          "rows": 960813,
+          "sessions": 233958,
+          "first_session_id": "1",
+          "last_session_id": "99999",
+          "url": "https://github.com/baolong06/recommender_system/releases/download/processed-legacy-v1-2026-11-12/yoochoose_clean_nrows1000000-part-000.parquet"
+        }
+      ]
+    }
+  }
+}

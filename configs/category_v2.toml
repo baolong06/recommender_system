@@ -1,0 +1,14 @@
+protocol_version = "P0-category-v2"
+data_protocol_version = "P0-data-v2"
+k = 20
+split_seeds = [42, 43, 44]
+random_model_seeds = [42, 43, 44]
+evaluation_splits = ["validation", "test"]
+candidate_policy = "final-warm-union-fixed-controlled-cold"
+category_selection = "prefix modal known category; tie by latest prefix occurrence"
+scoring = "selected-category first; train event count descending; item_id ascending"
+fallback = "no known prefix category -> global popularity"
+oracle = "allowed target category only; unknown -> unsupported"
+yoochoose_cold = "N/A without independent catalog"
+seen_items = "keep"
+refit_on_validation = false
