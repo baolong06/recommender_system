@@ -2,6 +2,7 @@
 
 import argparse
 import bisect
+import hashlib
 import json
 import math
 from collections import Counter, defaultdict
@@ -138,6 +139,8 @@ def verify(input_root, results_path, output):
         ),
         "shared_prediction_or_metric_code_used": False,
         "metric_tolerance": 1e-12,
+        "input_runs_sha256": hashlib.sha256(results_path.read_bytes()).hexdigest(),
+        "verifier_source_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
     }
     output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8", newline="\n")
     return report

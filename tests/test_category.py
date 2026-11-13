@@ -185,6 +185,11 @@ def test_end_to_end_reproducibility_and_three_model_seeds(experiment, tmp_path):
         for r in rows
         if r["group"] == "cold" and r["model"].startswith("CatPopularity")
     )
+    report = runpy.run_path(str(ROOT / "scripts/verify_category_results.py"))["verify"](
+        data, tmp_path / "first/runs.json", tmp_path / "independent-check.json"
+    )
+    assert report["category_and_matched_popularity_rows"] == 72
+    assert not report["shared_prediction_or_metric_code_used"]
     with pytest.raises(FileExistsError):
         run(
             data,

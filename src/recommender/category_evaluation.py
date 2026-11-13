@@ -39,7 +39,7 @@ def evaluate_categories(
         references = {("Popularity", None): list(model.popularity[: model.k])}
         for name, seed in baselines[1:]:
             references[(name, seed)] = random_topk(
-                list(model.candidates),
+                model.candidates,
                 model.k,
                 dataset=dataset,
                 split_seed=split_seed,
