@@ -1,17 +1,17 @@
 {
   "status": "in_progress",
-  "summary": "",
+  "summary": "Trung Chien executed verified P0 v2 splits and Random/Popularity at K=20 on both datasets with three split seeds. CatPopularity and independent report review remain pending.",
   "checks": {
-    "data_and_splits_verified": false,
-    "metrics_verified": false,
-    "baselines_complete": false,
-    "three_seed_results_recorded": false,
+    "data_and_splits_verified": true,
+    "metrics_verified": true,
+    "baselines_complete": true,
+    "three_seed_results_recorded": true,
     "report_reviewed": false
   },
   "evidence": {
-    "data_manifest": "",
-    "split_manifest": "",
-    "results_manifest": "",
-    "report": ""
+    "data_manifest": "docs/splits/v2/publication_manifest.json",
+    "split_manifest": "docs/splits/v2/delivery.json",
+    "results_manifest": "docs/splits/v2/manifest.json",
+    "report": "docs/splits/v2/RESULTS.md"
   }
 }

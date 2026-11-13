@@ -6,3 +6,5 @@
 *.md text eol=lf
 data/processed/source-manifest.json -text
 data/processed/SHA256SUMS text eol=lf
+# Preserve execution artifacts byte-for-byte so published SHA-256 remains valid.
+docs/splits/v2/** -text
