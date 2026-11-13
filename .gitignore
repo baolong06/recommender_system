@@ -17,3 +17,8 @@ data/splits/
 .env
 .env.*
 !.env.example
+
+data/protocol_v2/
+data/neutral/
+*.duckdb
+*.duckdb.wal

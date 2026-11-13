@@ -1,5 +1,10 @@
 # ba-chien - Hướng dẫn làm việc của Bá Chiến
 
+
+> **Pipeline dữ liệu P0 v2:** dùng `scripts/run_protocol_v2.py` với
+> `configs/data_v2.toml`. Hướng dẫn đầy đủ ở [docs/data/PROTOCOL_V2.md](docs/data/PROTOCOL_V2.md).
+> `scripts/run_clean.py` và release legacy vẫn được giữ để đối chiếu các phiên bản trước.
+
 **Đề tài 1: Chuẩn bị dữ liệu và bộ thước đo cho nghiên cứu P0.**
 
 Bạn phát triển trên `ba-chien`, gửi PR vào `dev`. Hai sản phẩm quan trọng nhất của bạn là

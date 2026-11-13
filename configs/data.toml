@@ -1,3 +1,4 @@
+# Legacy global-filtered exploratory pipeline. For P0 v2 use configs/data_v2.toml.
 kind = "research-run"
 owner = "ba-chien"
 datasets = ["yoochoose", "diginetica"]
