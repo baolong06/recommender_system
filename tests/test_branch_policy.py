@@ -95,3 +95,39 @@ def test_unresolved_protocol_blocks_main(research_tree):
 
 def test_push_on_dev_does_not_require_finished_research(tmp_path):
     validate_event("push", {}, REPOSITORY, tmp_path)
+
+
+def test_trusted_event_does_not_skip_source_validation(tmp_path):
+    with pytest.raises(ValueError, match="Only dev"):
+        validate_event(
+            "pull_request_target", pull_request("bao-long", "main"), REPOSITORY, tmp_path
+        )
+
+
+@pytest.mark.parametrize("path", ["../secret", "/etc/passwd", "..\\secret", "C:\\secret"])
+def test_evidence_paths_are_portable_and_confined(research_tree, path):
+    root, readiness = research_tree
+    readiness["evidence"]["report"] = path
+    (root / "docs/research-readiness.json").write_text(json.dumps(readiness), encoding="utf-8")
+    with pytest.raises(ValueError, match="within the repository"):
+        validate_event("pull_request_target", pull_request("dev", "main"), REPOSITORY, root)
+
+
+def test_dependabot_changes_stage_on_personal_branch(tmp_path):
+    event = pull_request("dependabot/pip/group", "bao-long")
+    event["pull_request"]["user"] = {"login": "dependabot[bot]"}
+    validate_event("pull_request", event, REPOSITORY, tmp_path)
+
+
+def test_human_cannot_impersonate_dependabot_by_branch_name(tmp_path):
+    event = pull_request("dependabot/pip/group", "bao-long")
+    event["pull_request"]["user"] = {"login": "someone"}
+    with pytest.raises(ValueError, match="staging"):
+        validate_event("pull_request", event, REPOSITORY, tmp_path)
+
+
+@pytest.mark.parametrize("source", ["baolong-dev", "bachien-dev", "trungchien-dev"])
+@pytest.mark.parametrize("target", ["bao-long", "ba-chien", "trung-chien", "dev", "main"])
+def test_retired_work_branches_are_rejected(source, target, tmp_path):
+    with pytest.raises(ValueError):
+        validate_event("pull_request_target", pull_request(source, target), REPOSITORY, tmp_path)

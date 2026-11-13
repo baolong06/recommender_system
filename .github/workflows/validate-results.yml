@@ -25,7 +25,8 @@ jobs:
           cache-dependency-path: |
             requirements-dev.txt
             pyproject.toml
-      - run: python -m pip install -r requirements-dev.txt -e .
+      - run: 'python -m pip install --require-hashes --only-binary=:all: -r requirements-dev.txt'
+      - run: python -m pip install --no-build-isolation --no-deps -e .
       - run: python -m pytest -m smoke
       - run: python -m recommender.smoke --seeds 42 43 44 --output artifacts/fixture-three-seeds.json
       - name: Record code and environment

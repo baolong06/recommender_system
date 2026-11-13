@@ -1,9 +1,10 @@
 """Require personal branches -> dev -> reviewed research promotion to main."""
 
+import argparse
 import json
 import os
 import tomllib
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 PERSONAL_BRANCHES = {"bao-long", "ba-chien", "trung-chien"}
 RESEARCH_CHECKS = {
@@ -30,10 +31,13 @@ def validate_research_readiness(root: Path) -> None:
         relative = evidence.get(name)
         if not isinstance(relative, str) or not relative.strip():
             raise ValueError(f"Missing evidence file: {name}")
+        portable_path = PurePosixPath(relative)
         path = root / relative
         if (
-            Path(relative).is_absolute()
-            or ".." in Path(relative).parts
+            portable_path.is_absolute()
+            or ".." in portable_path.parts
+            or "\\" in relative
+            or ":" in relative
             or not path.resolve().is_relative_to(root.resolve())
             or not path.is_file()
             or path.stat().st_size == 0
@@ -45,12 +49,18 @@ def validate_research_readiness(root: Path) -> None:
 
 
 def validate_event(event_name: str, event: dict, repository: str, root: Path) -> None:
-    if event_name != "pull_request":
+    if event_name not in {"pull_request", "pull_request_target"}:
         return
     pr = event["pull_request"]
     if (pr["head"].get("repo") or {}).get("full_name") != repository:
         raise ValueError("Use a branch in this repository for the shared team workflow.")
     source, target = pr["head"]["ref"], pr["base"]["ref"]
+    if (
+        target == "bao-long"
+        and pr.get("user", {}).get("login") == "dependabot[bot]"
+        and source.startswith("dependabot/")
+    ):
+        return
     if target == "dev":
         if source not in PERSONAL_BRANCHES:
             raise ValueError("PRs into dev must come from bao-long, ba-chien or trung-chien.")
@@ -59,11 +69,16 @@ def validate_event(event_name: str, event: dict, repository: str, root: Path) ->
             raise ValueError("Only dev may be promoted to main; send personal work to dev first.")
         validate_research_readiness(root)
     else:
-        raise ValueError("The shared workflow targets dev or main.")
+        raise ValueError("The shared workflow targets dev/main or Dependabot staging on bao-long.")
 
 
 def main() -> None:
-    event = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text(encoding="utf-8"))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--event-path", type=Path, default=os.environ.get("GITHUB_EVENT_PATH"))
+    args = parser.parse_args()
+    if args.event_path is None:
+        parser.error("--event-path or GITHUB_EVENT_PATH is required")
+    event = json.loads(args.event_path.read_text(encoding="utf-8"))
     validate_event(
         os.environ["GITHUB_EVENT_NAME"], event, os.environ["GITHUB_REPOSITORY"], Path.cwd()
     )

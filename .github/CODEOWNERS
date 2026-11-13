@@ -1,0 +1,8 @@
+# Both accounts currently have write access. A PR author cannot approve their own PR.
+/.github/ @baolong06 @luongtrungchien-249
+/src/recommender/branch_policy.py @baolong06 @luongtrungchien-249
+/tests/test_branch_policy.py @baolong06 @luongtrungchien-249
+/configs/protocol.toml @baolong06 @luongtrungchien-249
+/docs/research-readiness.json @baolong06 @luongtrungchien-249
+/requirements* @baolong06 @luongtrungchien-249
+/pyproject.toml @baolong06 @luongtrungchien-249

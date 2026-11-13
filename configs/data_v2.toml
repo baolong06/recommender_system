@@ -1,0 +1,13 @@
+protocol_version = "P0-data-v2"
+status = "implementation-selected"
+raw_directory = "data/raw"
+output_directory = "data/protocol_v2"
+seeds = [42, 43, 44]
+cold_item_fraction = 0.20
+min_session_events = 2
+min_item_support = 5
+max_filter_iterations = 100
+support_fit = "train-before-cold-intervention"
+duplicate_policy = "keep-and-flag"
+recore_after_cold_intervention = false
+candidate_policy = "final-warm-union-fixed-controlled-cold"
